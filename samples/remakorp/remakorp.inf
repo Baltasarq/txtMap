@@ -1,0 +1,95 @@
+! generado por INFORM@txtMap, v0.2/ v0.44 20080208
+! Mon May  5 14:53:30 2008
+
+
+
+Constant Story "My story";
+Constant Headline "An interactive fiction piece.";
+
+
+
+Include "Parser";
+Include "VerbLib";
+Include "Grammar";
+
+object limbo "Limbo"
+    with descripcion "limbo"
+;
+
+class Localidad
+has light;
+
+
+
+class Objeto;
+
+class ObjetoEstatico
+class Objeto
+has scenery;
+
+
+[ initialise;
+    location = EL_TEMPLO;
+];
+
+! ================= LOCALIDADES ===============
+
+
+Localidad CRIPTA_DE_LOS_REYES "Cripta de los Reyes"
+with
+    description "^La cripta se ilumina vagamente gracias a la poca luz que entra por la compuerta abierta, y a la que sale de unos respiraderos disimulados en la pared del templo. En el suelo, un pequeño canal semicircular conduce un líquido marrón en una secuencia que se adivina continúa por la pared del templo para aparecer en el otro lado. En el interior del semicírculo, sobre un pedestal, lo que aparentan ser estatuas te observan desde su imponente altura.",
+    w_to EL_TEMPLO,
+
+;
+
+Localidad EL_TEMPLO "El templo"
+with
+    description "^El templo tiene un pilón central, rematado por una argolla. Extrañas inscripciones llenan la parte media de las paredes.",
+    e_to CRIPTA_DE_LOS_REYES,
+
+;
+
+! ================= OBJETOS ===============
+
+
+ObjetoEstatico OBJ_CANAL "canal" CRIPTA_DE_LOS_REYES
+with
+    name 'CANAL',
+    description "El pequeño canal (de apenas el fondo de la suela de un zapato, y el ancho de un pie), rodea las estatuas, como si del foso de un castillo se tratara. Un líquido marrón corre por todo el canal, como si fuera un circuíto cerrado."
+has   ;
+
+ObjetoEstatico OBJ_ESTATUAS "estatuas" CRIPTA_DE_LOS_REYES
+with
+    name 'ESTATUAS',
+    description "Las estatuas son de piedra, y no son monolíticas, sino que una estrecha ranura las recorre por la totalidad de los costados. Se puede adivinar que son momias, y dada la pinta de la estatua y el territorio en el que se encuentra el templo, son con seguridad momias y'nharr."
+has   ;
+
+Objeto OBJ_FRASCO "frasco" CRIPTA_DE_LOS_REYES
+with
+    name 'FRASCO',
+    description "El interior del frasco está vacío. Si alguna vez hubo algo en su interior, se ha evaporado con el paso del tiempo."
+has   ;
+
+ObjetoEstatico OBJ_LIQUIDO "líquido" CRIPTA_DE_LOS_REYES
+with
+    name 'LIQUIDO',
+    description "Un líquido de parda apariencia corre contínuamente por el canal. Su olor es nauseabundo. Puede que los Y'nharr creyeran en este líquido como en una forma de alejar a los malos espíritus de sus reyes."
+has   ;
+
+ObjetoEstatico OBJ_PEDESTAL "pedestal" CRIPTA_DE_LOS_REYES
+with
+    name 'PEDESTAL',
+    description "Sobre el pedestal se sitúan tres estatuas. Bajo ellas, puedes ver varios recipientes."
+has   ;
+
+ObjetoEstatico OBJ_RECIPIENTES "recipientes" CRIPTA_DE_LOS_REYES
+with
+    name 'RECIPIENTES',
+    description "A los pies de las estatuas hay varios recipientes. A pesar de estar medio carcomidos por el paso del tiempo, puedes identificar un frasco entre todos ellos."
+has   ;
+
+ObjetoEstatico OBJ_RESPIRADEROS "respiraderos" CRIPTA_DE_LOS_REYES
+with
+    name 'RESPIRADEROS',
+    description "Unos respiraderos con formato vertical, de manera que quedan sin duda ocultos desde el exterior del templo."
+has   ;

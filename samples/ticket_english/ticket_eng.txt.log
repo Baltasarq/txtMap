@@ -1,0 +1,84 @@
+      0 txtMap v0.41 20070516
+      0 entrada: ..\ticket_eng.txt
+      0 ========================
+      2 nueva localidad 'Bus Stop'
+      4 tomando descripción
+      6 tomando inventario
+      6 Añadiendo objetos al inventario.
+     13 tomando desc. objeto
+     13 Aceptando descripción de objeto 
+     13 Objeto anorak
+     16 tomando objeto como 'ponible'
+     16 Creando/modificando objeto (poner).
+     16 Objeto ya existente: anorak
+     19 tomando desc. objeto
+     19 Aceptando descripción de objeto 
+     19 Objeto sandwich
+     22 tomando desc. objeto
+     22 Aceptando descripción de objeto 
+     22 Objeto unlit torch
+     25 tomando desc. objeto
+     25 Aceptando descripción de objeto 
+     25 Objeto apple
+     28 tomando desc. objeto
+     28 Aceptando descripción de objeto 
+     28 Objeto bag
+     31 tomando objeto
+     31 Creando/modificando objeto (coger).
+     31 Objeto ya existente: bag
+     34 tomando desc. objeto
+     34 Aceptando descripción de objeto 
+     34 Objeto dog
+     38 nueva localidad 'Gravel Path'
+     38 'Bus Stop' por OESTE a 'Gravel Path'
+     38 'Gravel Path' por [inversa]  ESTE a 'Bus Stop'
+     39 tomando descripción
+     41 tomando desc. objeto
+     41 Aceptando descripción de objeto 
+     41 Objeto bench
+     44 Gravel Path por OESTE a Large Tree
+     45 Gravel Path por NORTE a Bandstand
+     46 Gravel Path por SUR a Grassy Area
+     48 nueva localidad 'Bandstand'
+     49 tomando descripción
+     51 tomando desc. objeto
+     51 Aceptando descripción de objeto 
+     51 Objeto bandstand
+     54 Bandstand por SUR a Gravel Path
+     56 nueva localidad 'Grassy Area'
+     58 tomando descripción
+     60 tomando desc. objeto
+     60 Aceptando descripción de objeto 
+     60 Objeto lead
+     63 tomando objeto
+     63 Creando/modificando objeto (coger).
+     63 Objeto ya existente: lead
+     66 tomando desc. objeto
+     66 Aceptando descripción de objeto 
+     66 Objeto grass
+     71 nueva localidad 'Ornamental Pond'
+     71 'Grassy Area' por OESTE a 'Ornamental Pond'
+     71 'Ornamental Pond' por [inversa]  ESTE a 'Grassy Area'
+     73 tomando descripción
+     75 tomando desc. objeto
+     75 Aceptando descripción de objeto 
+     75 Objeto pond
+     78 tomando desc. objeto
+     78 Aceptando descripción de objeto 
+     78 Objeto water
+     83 nueva localidad 'Large Tree'
+     83 'Ornamental Pond' por NORTE a 'Large Tree'
+     83 'Large Tree' por [inversa]  SUR a 'Ornamental Pond'
+     85 tomando descripción
+     87 tomando desc. objeto
+     87 Aceptando descripción de objeto 
+     87 Objeto tree
+     90 Large Tree por ESTE a Gravel Path
+     91 Large Tree por ARRIBA a Branch of the Tree
+     93 nueva localidad 'Branch of the Tree'
+     94 tomando descripción
+     96 tomando desc. objeto
+     96 Aceptando descripción de objeto 
+     96 Objeto branch
+     99 Branch of the Tree por ABAJO a Large Tree
+    100 Fín del proceso de ..\ticket_eng.txt ...

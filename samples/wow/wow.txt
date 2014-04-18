@@ -1,0 +1,135 @@
+! Este texto apareció como una transcripción textual de World of Warcraft
+! en Wired, por Lore Sjöberg.
+! Pinucheke preguntó que cómo se podría adaptar a txtMap.
+! He aquí la respuesta.
+! Baltasar, el arquero.
+
+In front of a Brick Building
+
+Welcome to World of Warcraft: The Text Adventure.
+
+You are standing at the end of a road before a small brick building. Around you is a forest. A small stream flows out of the building and down a gully. There is an elf with an exclamation point above her head here.
+
+>Talk elf
+
+"Alas," she says. "There is a great darkness upon the land. Fifty years ago the Dwarf Lord Al'ham'bra came upon the Dragon Locket in the Miremuck Caverns. He immediately recognized the ..."
+
+> Click Accept
+
+"Hey," the elf protests. "This is important expository. Azeroth is a rich and storied land, with a tapestry of interwoven ..."
+
+> Click Accept
+
+"OK, fine. Bring me six kobold tails."
+
+> Shout "Where are the Kobolds?"
+
+You hear a voice in the distance. "NE of stream, near lake." You hear another voice in the distance. "Right near lake." You hear another voice in the distance. "LF1M! Need priest!"
+
+> east to Cramhollow Dale
+> NE to Ramshackle House
+
+! Aquí nos vamos a la otra localidad y volvemos
+
+> Talk to elf
+
+"At long last, you've returned!" the elf cries. "I had feared that you ..."
+
+> Click Complete Quest
+
+The elf snorts and hands you a slimy, rusted, bent dagger with runes on it reading "Discount Shiv Warehouse -- Bring us a lower price, we'll stab it."
+
+> Take dagger
+Taken.
+
+> Look dagger
+
+It's a noxious, poorly-balanced piece of crap, but it's better than the weapon you have right now.
+
+> What do I have now?
+
+It's not clear from the decay, but you think it may have once been a whisk.
+
+> Wield dagger
+
+You look slightly less feeble. A knight rides by on a gleaming white charger. He is bedecked from head to toe with shining armor. His shoulder armor alone is big enough to house you, your family and any pets you pick up at the auction house, and still have room to hang that pathetic dagger of yours on the wall as a constant reminder of your utter weakness compared to a true man like him.
+
+> Pout
+
+You hear a voice in the distance. "LF2M need healer and tank!"
+
+> Talk to elf
+
+"I have another task for you," the elf says. "In the east there are ..."
+
+> Click Accept
+
+"Take this bag of jelly to Commander Wolfchow in Cramhollow Dale."
+
+> Go to Cramhollow Dale
+You run to Cramhollow Dale. You run and run. You run and run and run. You keep on running. Someone runs past you, faster. You keep running. Two gnomes run past you in the opposite direction. Still you run. You're not there yet. What are you going to do?
+
+> run
+
+You run. You run and run. You run and run and run.
+
+.finloc
+
+Cramhollow Dale
+
+A tall man who looks like a lot of the other tall men around here has a question mark over his head.
+
+> w to In front of a Brick Building
+
+> Give bag of jelly to man
+
+"Good!" says ...
+
+> Click Complete Quest, Accept, whatever, just get on with it
+
+"Take this crate of liver back to Elfiwee Muttonscorner near the gully stream."
+
+.finloc
+
+Ramshackle House
+A small ramshackle house sits atop a hill, apparently abandoned. At the foot of the hill is a large field.
+
+> sw to In front of a Brick Building
+> x field
+The field is swarming with kobolds, their tails swinging seductively in the breeze.
+
+> x kobolds
+Their tails swing seductively in the breeze.
+
+> Kill kobold
+
+You kill a kobold. You get a kobold tail.
+
+> Kill kobold
+
+You kill a kobold. You get two pieces of silver and a kobold tail.
+
+> Kill kobold
+
+You kill a kobold. You get three pieces of silver and an apple.
+
+> What, no tail?
+
+Apparently this was the rare but majestic Manx kobold.
+
+> You said they had tails
+
+You hear a voice in the distance. "LF1M just need any healer ready to go!"
+
+> Kill three kobolds
+
+You kill three kobolds. You get eight pieces of silver and four tails.
+
+> Four tails?
+
+Maybe it's something in the water around here.
+
+> go back stream
+
+You return to the stream where the elf waits, a golden question mark floating above her head as if to say "Huh?"
+

@@ -1,0 +1,998 @@
+!El trono de Inglaterra.
+!Primera parte: El Rey Uther
+!Introducción
+!Cuenta la leyenda que cierto Rey de Inglaterra, llamado Uther
+!Pendragón,  enfermó de amor por una bella y prohibida mujer conocida 
+! como Lady Ingraine, fiel esposa del Duque de Cornualles.
+! Uther, era hombre de gran honor y coraje. Pero para el Rey el amor fue 
+! su enemigo más desafiante.
+! Debía tener a esa mujer, y no se resignaba a abandonar esa batalla.
+! Un buen día, mandó llamar a Ulfius, su caballero más valeroso y fiel.
+
+! Empieza el juego
+! En donde Ulfus es advertido de su misión y de la urgencia de la misma.
+Sala del Trono
+La sala del trono es abrumadoramente espaciosa. El trono se sitúa en el centro de la pared norte, mientras las paredes laterales se cubren con ricos tapices rememorando antiguas batallas ganadas por el rey. En el suelo, una alfombra roja conduce hasta el rey (si bien nadie se atrevería a llegar hasta él), y a los lados se sitúan los cortesanos.
+
+Delante de ti, se encuentra el rey Uther. Estás aquí por requerimiento suyo.
+
+> ex tapices
+Muy bonitos. Muestran distintas batallas victoriosas del Rey.
+
+> hablar con rey
+
+"Ulfius te he mandado llamar por que un gran mal apena mi corazón. Debo poseer a Lady Ingraine, aunque la vida y todo mi reino vaya en ello. Como sabéis, he puesto sitio a su reino. Por eso, debo pediros, viejo amigo, que vayáis en busca del único que puede ayudarme. Se trata del mago Merlín, que vive en las montañas, al norte de aquí. Tomad esta bolsa con dinero para pertrecharos y partid presto, trayéndolo ante mí".
+
+"Sí, majestad"
+
+> coger dinero
+Cogido.
+
+> ex dinero
+Se trata de veinte monedas de oro.
+
+> i
+dinero
+
+> habla con rey
+
+"Partid presto, Ulfius, cualquier otra conquista es baladí."
+
+> salidas
+
+Puedes ir al sur, por la puerta de la sala del trono.
+
+>ex cortesanos
+
+Todos te miran con esperanza, quizás pensando que podrás traer a Merlín y por tanto solucionar el mal que aqueja al rey y está desangrando el reino.
+
+> habla con cortesanos
+
+Te lo piensas mejor cuando te das cuenta de que no podrías hacerlo sin ignorar al rey.
+
+> s
+
+Pasillo Principal
+El pasillo principal de palacio, cuya puerta principal, al norte, permite acceder a la sala del trono, mientras al sur se encuentra el patio de armas. Hay otras salidas al este, y al oeste.
+[Al intentar ir a otras salidas se le responde que no se puede deambular libremente por palacio]
+
+> s
+
+Patio de armas
+En el patio de armas se entrenan y forman los otros caballeros del rey, tus compañeros. Se puede salir del castillo por la puerta principal.
+También se puede acceder a las almenas por las escaleras para realizar vigilancia.
+
+> salir a Plaza del castillo
+> entrar a Carruaje
+> subir
+
+Almenar
+Desde aquí se ve la pequeña villa de Westmorland, protegida por la muralla exterior, a los pies de este castillo.
+Hacia el sur, se encuentran los campos de cultivo que sustentan a las gentes del lugar, mientras que hacia el norte un corto espacio dedicado a campos antecede al bosque, para terminar en las lejanas montañas. En ese terreno no se puede ir a caballo.
+
+Aquí está Lucius.
+
+> habla con Lucius
+
+"Hola, Lucius"
+
+"Hola, Ulfius, amigo. Las cosas están tranquilas, últimamente, en cuanto a Sajones ...".
+
+"Así es, amigo".
+
+"Espero que vuelvas con bien en el empeño de tu misión. Ya ves cómo es el terreno. Yo llevaría una armadura ligera, mejor la de cuero que la de combate. Y recuerda llevar comida."
+
+> habla con Lucius
+
+"Buena suerte, amigo. Parte, no dudes más"
+
+> salidas
+Puedes bajar al patio de armas.
+
+> bajar con Patio de armas
+
+Plaza del castillo
+La villa bulle de actividad. El rastrillo del castillo desemboca en una amplísima plaza, donde se celebra siempre el mercado. Desde aquí parten calles hacia el noreste, este y el sur ... en el resto de direcciones la muralla del pueblo bloquea el paso.
+Sabes que tu casa se encuentra hacia la salida norte del pueblo, al noreste.
+
+> ex mercado
+
+Los puestos se sitúan a lo largo de toda la plaza, sin orden ni concierto. En uno de ellos se venden, según reza el cartel "bolsas de fruta y carne seca variadas".
+
+> ex puesto de fruta
+
+El hombre del puesto vende bolsas donde mete varias piezas de fruta y otras tantas de carne que tiene pinta de estar muy muy seca.
+
+> comprar carne
+
+Compras la carne.
+
+> comprar fruta
+
+> ex bolsa
+Te quedan 20 monedas de oro.
+
+> entrar a Plaza del castillo
+> sur a Puerta sur
+> e a Calle al este de la plaza
+> ne
+
+Calle al noreste de la plaza
+Te encuentras en una calle muy familiar. 
+¡Efectivamente!, ahí está tu casa. Hacia el norte, se encuentra una de las puertas de la villa. Hacia el este puedes ver la muralla del pueblo.
+
+> entra a Casa de Ulfius
+> s a Calle al este de la plaza
+> n a Puerta norte
+
+Puerta sur
+Esta vía abandona el pueblo hacia el sur. Sin embargo, no te interesa ir en esa dirección, puesto que sabes que Merlín vive en el bosque situado al norte.
+> n a Plaza del castillo
+> s
+
+Campos de cultivo
+Los campos de cultivo sustenta a los habitantes de la villa. Magníficos, en tiempo de siembra, se extienden hacia el este y sur aparentemente sin fin. Pronto brotará el trigo.
+
+> coger cuchillo
+Cogido.
+> ex cuchillo
+Es un pequeño cuchillo para cortar el trigo una vez llega el tiempo de cosechar.
+> n a Puerta sur
+
+Calle al este de la plaza
+Esta calle es el extremo del pueblo amurallado. En esta zona es donde suelen vivir los campesinos.
+
+> coger peonza
+Cogida.
+> ex peonza
+La peonza se puede lanzar para jugar con ella, si bien para eso te haría falta su pequeña
+cuerda.
+
+> o a Plaza del castillo
+> n a Calle al noreste de la plaza
+
+Casa de Ulfius
+Tu casa es pequeña pero acogedora. No tiene varias estancias como las más modernas, pero es suficiente, sobre todo considerando el tiempo que realmente pasas en ella.
+[Aquí tiene que encontrar sus cosas, entre ellas, un par de armaduras, la de cuero y la de combate, más pesada. Será interesante programar una ciénaga en el bosque donde, si portas la armadura de combate, te hundas irremediablemente]
+
+> coger armadura de acero
+Cogida.
+> coger armadura de cuero
+Cogida.
+> coger espada
+Cogida.
+>ponte la armadura de cuero
+Puesta.
+>ponte la armadura de acero
+Puesta.
+> ex espada
+Es tu espada de combate de caballero. Un poco pesada, aunque es muy manejable a dos manos.
+> ex armadura de cuero
+Tu armadura de cuero. No protege demasiado, pero por otra parte es mucho más manejable que la de combate.
+> ex armadura de acero
+La armadura de combate es la utilizada a la hora de cargar a caballo o en torneos. Es muy resistente.
+
+> salir a Calle al noreste de la plaza
+
+Puerta norte
+La puerta norte de la villa. Puedes ver los muros del castillo hacia el sur, sabes que rodeándolo se llega al mercado. Hacia el norte, vas al bosque.
+
+> s a Calle al noreste de la plaza
+> n
+
+Camino
+El camino ancho y cómodo lleva hacia el bosque, al norte. Al sur, puedes ver, cercana, la villa. Estás solo en este camino, que viene de la entrada del bosque, de donde la gente suele contar extraños (y escalofriantes) cuentos.
+
+> n
+
+Entrada del bosque
+La linde del bosque está aquí, con pasmosa frondosidad, con una pequeña división del camino. Desde aquí parte un camino hacia el sur, mientras otros caminos parten hacie el norte, el noreste y el noroeste.
+
+> no a Camino Noroeste
+> ne a Camino Noreste
+> n
+
+Camino Norte
+
+El camino se presenta tranquilo. Avanzas esperanzado de encontrar lo más pronto posible a Merlín. Todo está muy calmo. Tal vez las historias del bosque que escuchaste fueron solo obras de algún Caballero fabulador.
+
+>n
+
+Ciénaga
+El camino se ve interrumpido repentinamente por una gran ciénaga, para luego continuar hacia el norte. Si bien la ciénaga es relativamente estrecha en cuanto a lo largo, no puedes ver su final ni a derecha ni a izquierda.
+[Aquí estaría la ciénaga de la que hablabas, en caso de llevar puesta una armadura pesada ...]
+> n
+
+Claro del bosque
+El claro se abre justamente enfrente a una tosca, aunque fuerte, cabaña de madera. Unas pequeñas volutas de humo ascienden desde la chimenea hasta el cielo.
+Hacia el sur, parte un camino que resulta ser la única salida del claro.
+
+>entrar a Cabaña
+
+Cabaña
+El ambiente de la cabaña es casi lúgubre, y muy húmedo. Dos de las cuatro paredes están cubiertas de estanterías, mientras que las otras dos se dividen entre una pequeña zona de estar y una cocina.
+Bastones, escudos, lanzas, estantes con hierbas y varios frascos están distribuidos por todo el lugar.
+Un anciano, sentado en su mecedora, te mira con interés.
+
+>hablar
+
+"Buen día, anciano, tal vez puedas ayudarme en mi búsqueda. Soy Sir Ulfius de la Corte del Rey Arturo ¿Tú quien eres?"
+
+"Me llaman Mirlo, en que puedo ayudarle?
+
+"Busco a Merlín. Según la información que manejo, este hombre vive en en bosque"
+
+"¿Merlín? ... mmm ... No creo haber oído de él, lamento no poder ayudarle.
+Pero sí puedo ofrecerle alguna medicina.
+Nadie puede aventurarse a atravesar este bosque pensando que no
+correrá peligro alguno"
+- continúa hablándote mientras rebusca en una de sus estanterías -
+"Este le será de mucha utilidad. Es contra... digamos ... todos los males"
+- Concluye esbozando una mueca un tanto sarcástica. Te alcanza una poción
+y después vuelve a sentarse en su mecedora. -
+
+"Buena suerte en su misión, Sir Ulfius.
+Le deseo la mejor de las suertes".
+
+>salir a Claro del bosque
+
+Camino Noroeste
+El camino se interna en el denso bosque hacia el norte, mientras aparentemente sale hacia alguna parte al sureste.
+> se a Entrada del bosque
+> n
+
+Pozo
+El camino se abre tímidamente en una pequeña pradera. Sin embargo, no parece haber ninguna vivienda por aquí, aunque sí hay un pozo. Junto al pozo, en un pequeño charco pace tranquilamente un caballo.  Puedes ver a un caballero junto al caballo.
+[Transitas atentamente, ya que recuerdas las palabras del anciano de la cabaña: "Nadie puede aventurarse a atravesar este bosque pensando que no correrá peligro alguno". El caballero negro luchará contra ti en cuanto intentes abandonar la localidad por el norte o le provoques lo suficiente. Al beber la pócima vendría lo que sugeriste sobre un límite de su efecto. Ponle que surta efecto ... mmm... uno o dos turnos. De modo que si el jugador se pone a examinar algo o escriba un comando distinto a 'NORTE' (que es por donde sigue el camino), Sir Ulfius se corporeice una vez más aumentado la ira del Caballero Negro, quien viéndose burlado logra matarlo al fin, se terminaría aquí el juego. Ahora sí, si el jugador escribe 'NORTE', escaparía de esta situación, llegando más delante a la Taberna]
+
+> ex charco
+Un pequeño charco, sin importancia por sí mismo.
+
+>ex caballo
+
+Es un caballo ataviado con armadura de combate.
+Toda su armadura es completamente negra.
+
+>ex fuente
+
+El agua cristalina que vierte en ella calmará un poco tu sed.
+Junto a la fuente, en el otro extremo ... un hombre que por su vestimenta aparenta ser un Caballero.
+
+> ex caballero
+El caballero viste una armadura completamente negra.
+Repentinamente, con gesto amenazador, posa su mano en el puño de su espada y exclama "¡Dejad de mirarme así!".
+
+> hablar con caballero
+"Buen día, Caballero. Soy Ulfius de la Corte del Rey Arturo,
+tal vez Usted pueda ayudarme. Busco a un hombre llamado Merlín."
+
+"No conozco a nadie con ese nombre" - responde hoscamente.
+
+> hablar con caballero
+
+"Dejadme. Vuestra conversación me aburre."
+
+Ni bien hiciste algunos pasos, el Caballero se interpone en tu camino, mientras
+desenvaina su espada. Entonces, dice:
+
+"De igual manera, lamento informarle 'Sir Ulfius',
+que hasta aquí llegó tu recorrido,
+al menos que quieras hacer valer tu derecho" - se
+dirige a ti con cierta soberbia en su tono, mientras desenvaina su espada
+
+> hablar con caballero
+"¡Luchad o morid, caballerucho"
+
+"No he venido buscando contienda, ¡pero me has retado y debo aceptar!".
+
+>luchar con caballero negro
+
+El Caballero retador se abalanza sobre ti, cual cazador a su presa.
+La lucha se torna encarnizada por ambas partes.
+Tratas de defenderte, pero este Caballero es muy hábil con la espada y logra herirte profundamente [falta más descripción]
+Caes débil, malherido, pues has derramado demasiada sangre.
+
+>hablar
+
+"Sir Ulfius, te he vencido"
+Casi sin aliento, respondes: "Es verdad. Al menos dime a quien le debo mi muerte"
+
+"Soy el Caballero Negro, es todo lo que necesitas saber".
+
+Sientes el frío recorrer tu cuerpo.
+
+El Caballero Negro estaba en lo cierto, hasta aquí llegó tu recorrido.
+
+-HAS MUERTO-
+
+> luchar (con pocion, armadura (ligera o no) y espada en tu poder)
+
+Rápidamente tomas el frasco con la medicina que obtuviste en la Cabaña.
+
+Sientes un leve mareo...
+
+Cuando recuperas la compostura observas al Caballero retador un poco desconcertado, mirando hacia todos lados. Claro pues!... si te has vuelto... ¡¿invisible?! :D
+
+> n
+
+Colina
+El camino asciende hacia el noreste, donde el túnel arbóreo parece terminar en una mágica luz, donde ves que los árboles se espacian, dejando claros entre ellos.
+El túnel desciende hacia el sur, donde los árboles parecen formar una bóveda sólo atravesada por tenues alfilerazgos de luz proyectados en el suelo.
+No es posible pasar por este lugar sin apreciar su mágica esencia.
+[Aquí podría funcionar "xyzzy". En ese caso, podrías tener una visión de Merlín, por ejemplo.]
+> ne a Taberna
+
+Camino Noreste
+El camino se interna en el bosque húmedo, hacia el norte, mientras hacia el suroeste parece abrirse en un claro. La maleza es húmeda, y hace frío aquí. Los árboles, robles todos ellos, apenas dejan pasar la luz.
+>so a Entrada del bosque
+> n
+
+Continuación del camino
+[Aquí estan los bandidos. Siempre te quitan parte del dinero y de la comida]
+El camino sigue de sur a norte. La sensación de húmedad es cierta aquí. Los árboles comienzan a formar una tupida bóveda aquí, mientras la luminosidad desciende.
+Escuchas ruidos entre los árboles ... tal vez sea el viento.
+
+>ex árbol
+
+Todos ellos son muy frondosos, por cierto... y de gran altura...
+Los ruidos continúan ... las ramas se sacuden levemente.
+
+>ex árboles
+
+Muy frondosos, por cierto... y de gran altura...
+Los ruidos continúan ... las ramas se sacuden levemente.
+
+Te detienes poniendo tu máxima atención, algo que dice que no estás solo....
+
+De repente te ves rodeado de hombres que se descuelgan de los árboles.
+
+"¡Estás perdido, caballero!"
+
+> luchar
+
+Luchas valientemente, aunque te superan en número.
+El forcejeo es interminable, hasta que al fin, alguien te golpea en la nuca y
+caes al suelo.
+Como en la lejanía, sientes que te están despojando de tus pertenencias.
+Al cabo de un tiempo que no podrías precisar, recuperas la consciencia.
+
+>salidas
+
+El camino discurre de norte a sur.
+
+> n
+Lago
+El camino desemboca en una amplia zona sin árboles, donde puedes ver también un lago. A pesar de estar bastante alejados, sobre ti el cielo es casi indiscernible.
+El lago, al este, parece transformar el bosque en un pantano. La humedad es casi palpable aquí, mientras que la escasa luz que se filtra entre las hojas se refleja en la superficie del lago, y, a la vez, se ve proyectada en la bóveda arbórea. Es imposible pasar por aquí sin detenerse a apreciar tan mágico efecto.
+[aquí podría funcionar xyzzy, proporcionándote una vision de Merlín o algo]
+
+> no
+
+Taberna
+En medio de la pradera, puedes ver un taberna. La gran casa se ve reconfortada por los rayos del sol, que debe calentarla agradablemente entre tanta humedad del bosque.
+De la pradera parten varios caminos: hacia el sureste y suroeste se internan en el bosque, mientras que al norte parte un camino que lleva hacia las montañas.
+
+>ex taberna
+Es una edificación sólida, de fuerte madera, aparentemente amplia y confortable.
+
+> so a Colina
+> se a Lago
+> n a Camino de las montañas
+> entrar
+
+Interior de la Taberna
+Abres la puerta sin dificultad y entras en el interior de la Taberna. En este momento el lugar no está demasiado animado; sólo el cantinero, detrás del mostrador (aparentemente muy ocupado en sus quehaceres), y un hombre muy joven con aspecto de haberse bebido todo el licor a la venta, apoyado en el otro extremo del mostrador.
+
+>hablar con borracho
+
+"¿Qué te trajo por estos lares?"
+- interrogas al borrachín, buscando conversación -
+
+"El rey Uther me encomendó una misión. Pero he fracasado. No sé ni hacia dónde
+ir ahora. ¿Qué haré con lo que me queda de vida?. No puedo presentarme así ante
+el Rey.".
+- El borrachín solloza un poco y enjuaga unas lágrimas -
+
+- ¿Quién sois? - comentas, intrigado
+"Soy ... era ... Tristán, caballero del rey Uther".
+
+"¿Cuál era esa misión?" - Preguntas, intrigado.
+
+- El borracho parece recuperar la compostura por primera vez en toda la
+conversación. Te mira fijamente mientras se incorpora levemente
+- "Encontrar al mago Merlín".
+
+"Comprendo. ¿Lo encontrásteis?". - Preguntas, adivinando la respuesta.
+
+"¡Si! ¡Y me ha convertido en lo que soy ahora!"
+ - Te responde, tratando de parece gracioso e irónico a la vez, si bien su
+ respuesta parece más bien histérica.
+
+Y luego repara, con un poco más de seriedad:
+"No hay manera de encontrarlo." - comenta con un dejo de frustración en su voz.
+"Un caballero amigo me entregó esto, dijo que me facilitaría la búsqueda,
+temo que se equivocó o me jugó una broma"
+- continúa hablando mientras arroja un pergamino sobre el mostrador.
+
+> coger pergamino
+
+Bruscamente impone su mano sobre el pergamino, impidiendo que lo tomes.
+"Este mapa es tuyo ... si me dás algo a cambio.
+Comida o dinero para mí está bien. Debo buscarme una nueva vida. No puedo ...
+no quiero volver a ser caballero del Rey. Quizás me vaya ... sí, eso es, lejos."
+
+> dar comida (o dar dinero)
+
+Le entregas a cambio un poco de comida/dinero que llevas en tu bolsa.
+
+> coger mapa
+
+Tomas el mapa
+
+>ex mapa
+
+Lo abres y observas el recorrido de un laberinto.
+El recorrido no se vé muy complicado. Te indica seguir, desde la entrada, norte, este, oeste, norte, norte.
+Al parecer está rodeando una pequeña y solitaria montaña.
+
+>hablar con tristan
+
+"¿A que distancia se encuentra este laberinto?"
+
+- Tristán solloza momentáneamente y comienza a explicar -
+"Tomad el camino que lleva hacia el norte, te guiará por entre las montañas.
+Dicen que al final del camino de la montaña se observa el dichoso laberinto."
+- Tristán irrumpe en una risa histérica ...
+"Pero no es posible ... ¿lo entendéis? ... nunca llegaréis tan lejos ... nunca
+pasaréis el abismo."
+Tristán se yergue como puede, y se marcha. Secretamente, esperas que encuentre
+la paz que tan desesperadamente necesita en otros menesteres.
+
+El cantinero te observa atentamente, en silencio.
+
+>hablar con cantinero
+
+"¿Usted vió alguna vez a Merlín?"
+
+"Merlín... siempre está rondando algunos lugares,
+pero solo lo encontrarás si él quiere ser encontrado"
+- comenta mientras repasa algunas copas ubicándolas
+ordenadamente sobre el mostrador -
+
+>hablar con cantinero
+
+- El cantinero esboza una irónica sonrisa. -
+"Tomad esta comida. Es cuanto puedo hacer por vos.
+Yo que tú partiría lo antes posible".
+
+El cantinero deja un mendrugo de pan sobre el mostrador.
+De repente la mirada del cantinero parece posarse fíjamente en tí. En sus
+ojos puedes apreciar un extraño brillo.
+
+>hablar con cantinero
+
+"Por favor, idos, iba a cerrar ya."
+
+> coger mendrugo
+Coges el mendrugo.
+> ex mendrugo
+¡Valiente ayuda! ... un pequeño, raquítico, y aparentemente seco pedazo de pan.
+[ Al salir, el cantinero cierra la cantina ]
+> salir a Taberna
+
+Camino de las montañas
+Tomas el camino, que al poco se torna en pedregoso. La tierra es amarilla aquí y los árboles abandonan poco a poco la escena.
+Este camino asciende hacia las montañas, al norte, mientras al sur, en el valle, puedes ver la taberna.
+> s a Taberna
+> n
+
+Camino entre desfiladeros
+De a poco avanzas por el camino que serpentea hacia las montañas. Continúa hacia el este, mientras que al sur desciende hacia el valle. El camino es rocoso, abierto por un lado, la escarpada pendiente por el otro.
+El sol cae lentamente, mientras las primeras estrellas comienzan a dejar ver su brillo, anunciando que la noche no llegará mucho más tarde.
+[Desde aquí hasta entrar en la cueva, tienes un número de turnos restringido]
+> e
+
+Abismo
+El camino termina aquí abruptamente. El suelo, que hasta ahora era pedregoso, es extrañamente arenoso aquí.
+Ante tí, hacia el norte, puedes ver lo que parece ser otra montaña, desgraciadamente demasiado lejos como para saltar. Hacia arriba, puedes ver una pared de roca, tan lisa que no es posible escalarla.
+A tus pies, un pronunciado desfiladero se abre amenazador.
+> ex pared de roca
+Demasiado lisa como para subir por ella.
+Te fijas, repentinamente, en unos colgantes de la pared.
+> ex colgantes
+Son unos cables que parecen estar atados a agujeros hechos en la roca ...
+sin embargo, las cables que parten de las ataduras están tensos y no colgando ...
+como debiera ser, puesto que delante de ti no hay nada.
+> ex suelo
+Hay un montón de arena a tus pies.
+También ves una pequeñísima seta.
+> coger arena
+Coges un poco de arena.
+> ex arena
+Fina arena.
+> Lanzar arena
+La arena se ve lanzada y esparcida en el aire por la acción del viento que sopla
+por el estrecho desfiladero.
+> coger seta
+> ex seta
+Es un pequeñísimo hongo. ¿Tendrá efectos alucinógenos?.
+> comer mendrugo / seta
+Al comer aquello, notas un pequeño mareo ... tu sorpresa es mayúscula al ver
+aparecer un puente colgante delante de ti. Un extraño y repentino sabor
+a cacahuetes parece inundar tu boca.
+> n
+
+Entrada a la cueva
+El camino avanza sinuoso, rodeando esta nueva montaña. Siempre, a cada uno de tus lados, encuentras el abismo y la escarpada pared de roca.
+La senda parece finalizar, de nuevo abruptamente, en una pequeña explanada.
+Puedes ver, hacia el este, una abertura en la pared.
+[De noche, la salida al norte no se verá, de día sí]
+
+>ex abertura
+Observas una entrada en la montaña, tal vez sea una cueva.
+
+> n a Pie de la montaña
+> e a Cueva
+>entrar
+
+Cueva
+[Aquí descansarás durante la noche. Si llevas comida, podrás continuar ... en otro caso, tendrás que volver a la taberna]
+Entras. Efectivamente es una cueva, un tanto pequeña, pero suficiente como para albergarte y guarecerte.
+El día termina de desvanecerse, gradualmente, entre las montañas, como el agua que se retira con la marea. Ya no se puede ver nada.
+
+>dormir
+Te entregas al descanso...
+La noche ha terminado su curso.
+Un rayo de luz que se cuela por la entrada de la cueva consigue despertarte ...
+ya amaneció.
+> o a Entrada a la cueva
+
+Espacio entre los arbustos
+Un pequeño espacio entre los arbustos, apenas suficiente para poder mantenerse de pie.
+[Aquí hay como diez objetos, inservibles excepto para mapear el laberinto]
+> o a Pie de la montaña
+
+Pie de la montaña
+Estás sobre el pié de la montaña ... a lo lejos observas una enorme roca.
+La montaña no es ya abrupta, puedes apreciar algo de vegetación por aquí. Justo delante de ti, ves un muro y una entrada en el mismo.
+Hacia el este, puedes ver unos tupidos arbustos.
+
+> s a Entrada a la cueva
+
+>ex roca lejana
+Es inmensa, de color gris oscuro, emana un brillo especial ... será por la luz el sol.
+Su forma es un tanto extraña, por su ondulación y retorcimiento cualquiera podría asimilarla con la figura de una serpiente.
+
+>ex muro
+Totalmente construido en piedra. Es bastante más alto que tú.
+Observas una entrada. Sobre la entrada, ves tallada una serpiente.
+
+> ex entrada
+Una extraña serpiente, sin detalles como ojos o boca, figura tallada sobre el
+ dintel de la entrada.
+
+> ex arbustos
+Son muy tupidos, aunque puedes ver un espacio a través de ellos.
+
+> cortar arbustos
+Cortas los arbustos con tu espada, dejando una vía libre al este.
+
+> e a Espacio entre los arbustos
+>entrar
+
+Entrada al laberinto
+Ante ti un largo callejón de altos muros, te lleva hacia el norte.
+>n
+
+Cruce en el laberinto 1
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.
+
+> n a Cruce en el laberinto 3
+> e a Cruce en el laberinto 1
+> o
+
+Callejón
+Un callejón sin salida sólo te permite ir hacia el este. Lo cierto es que no puedes garantizar que este sea el este, estás ya muy desorientado.
+
+> e a Cruce en el laberinto 1
+
+Cruce en el laberinto 3
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.
+> o a Cruce en el laberinto 3
+> n a Callejón
+> e a Cruce en el laberinto 4
+> s a Cruce en el laberinto 1
+
+Cruce en el laberinto 4
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.
+> o a Cruce en el laberinto 2
+> n a Cruce en el laberinto 1
+> e a Callejón
+> s a Cruce en el laberinto 3
+
+Cruce en el laberinto 2
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.
+
+> o a Callejón
+> e a Cruce en el laberinto 4
+> s a Cruce en el laberinto 1
+
+
+>ex muro del pasaje
+Del mismo material que la muralla de la entrada.
+
+> n
+
+Callejón 2
+Un callejón que sólo permite la salida hacia el sur. Si es que es el sur, claro, pues a estas alturas estás ya muy desorientado.
+
+>ex pared del callejón
+Todas las paredes están vacías, menos la norte, donde puedes ver como las enredaderas se tejen sobre la pared de roca, que no llega a verse.
+
+>ex paredes del callejón
+Todas las paredes están vacías, menos la norte, donde puedes ver como las enredaderas se tejen sobre la pared de roca, que no llega a verse.
+
+>ex enredadera
+Muy tupida...
+
+>cortar enredadera con la espada
+Tomas tu espada y cortas la enredadera.
+De pronto la luz comienza a atravesar la enredadera.
+Efectivamente, la abertura estaba bloqueada por la vegetación.
+
+>n
+
+Callejón de la puerta
+Un camino recto se abre hacia el norte. Al final, puedes ver una puerta.
+La única salida, al margen de la puerta, se abre al este. Esta enorme puerta altera el aspecto del laberinto.
+[Si abres esta puerta, te verás devuelto a la primera intersección]
+
+>ex puerta de hierro
+Alta... muy alta, casi como las murallas de este laberinto. Está construida de hierro y madera. En el dintel de la puerta puedes ver una extraña figura que se corresponde con una serpiente, en la que puedes distinguir claramente ojos y una gran lengua bífida.
+
+>abrir puerta
+Está cerrada con llave
+
+>ex pared
+De piedra.
+
+>e
+
+Callejón de la fuente
+Al final del corredor, observas una fuente con agua. El laberinto es igual de desolado aquí que en el resto de las estancias.
+
+> ex fuente del corredor
+El agua emerge de la pared del laberinto, dando vida a un pequeño manantial.
+En el fondo de la fuente observas un objeto brillante ... ¡es una llave!
+
+> ex agua
+Cristalina, fresca
+
+>coger llave
+Recoges una llave de oro del fondo de la fuente.
+
+>ex llave
+Es una llave de oro, cuya forma en un extremo captura la figura de una serpiente.
+En el momento de coger la llave, se materializa una puerta al norte.
+
+>ex puerta alta
+Alta... muy alta, casi como las murallas de este laberinto.
+Está construida de hierro y madera. En el dintel de la puerta puedes ver
+una extraña figura alada ... es una extraña serpiente, sin marcas que puedan
+corresponderse con ojos o boca.
+
+>abrir puerta con llave
+Colocas la llave por al cerradura y le das un par de vueltas.
+La puerta se abre por si sola de par en par.
+
+>entrar
+
+Túnel
+Por lo que observas esto tiene más aspecto de ser una cueva alargada, un tosco túnel que contrasta con la suave perfección del laberinto.
+Tus pasos hacen eco en el lugar ... ves una luz al final del túnel, hacia el norte, y también hay claridad hacia el sur.
+> s a Callejón de la fuente
+> n
+
+Explanada de la roca
+Una amplia explanada empedrada, tiene como centro la roca que se veía desde la entrada del laberinto, con forma de serpiente, retorcida y sinuosa.
+[Añadamos un toque de humor: habrá un felpudito, y bajo él, la llave de la puerta]
+
+> ex felpudo
+Es un felpudo muy tosco, de fuerte lana y cuero.
+
+> levanta el felpudo
+Hay una llave. La sacas de debajo del felpudo.
+
+> coge la llave pequeña
+> ex llave pequeña
+Es una pequeña llave, nada más.
+
+> ex la roca
+En la base de la roca hay una puerta simple.
+
+> ex la puerta simple
+En el dintel de la puerta ves una serpiente como las anteriores,
+tallada en hierro.
+
+> entra
+
+Guarida de Merlín
+[Se me ocurre que Merlín le pida a Ulfius cerrar con llave la puerta, a la salida. Si el jugador lo hace, las paredes del laberinto de bajan/desaparecen ... allanándose el camino, viendo solo de esta manera el camino de la montaña que lo llevará de regreso al bosque.]
+La guarida no es más que una cueva; sin embargo, algún tipo de luz cuyo origen desconoces parece brotar de las paredes, proveyendo de una agradable semi-penumbra.
+La puerta de acceso, a tu espalda, es la única posible salida, pues no hay otras estancias o escaleras.
+Puedes ver una mesa, un viejo sillón, una biblioteca con innumerables volúmenes, y finalmente una chimenea. Se antoja demasiado escueto, incluso para un druída.
+
+> ex los libros
+Libros de magia. Mejor no tocarlos, no sea que Merlín se enfade.
+
+>ex la mesa
+De madera. Sobre ella frascos, hierbas, etc...
+
+>ex los frascos
+Hay bastante de ellos, de distinto tamaño en cuyo interior resguarda liquidos de colores varios.
+
+>coge el frasco
+Mejor no tocar los frascos, no sea que Merlín se enfade.
+
+>coge el frasco
+Mejor no tocarlos, no sea que Merlín se enfade.
+
+>ex las hierbas
+Sí, hierbas y huelen un poco fuertes.
+
+> ex chimenea
+Un caldero se encuentra colgado sobre las llamas.
+En su interior, sólo agua tibia.
+
+PUFF ...
+Una pequeña nube de humo y un anciano se encuentra delante de ti.
+Lleva una túnica, ajustada mediante un cinto, una sandalias,
+y un bastón por toda vestimenta.
+Su mirada denota inteligencia, y te mira entre divertido y curioso.
+
+"Veo que encontraste el camino"- se adelanta, comentando muy relajado. Su mirada
+se posa en ti, mientras crees ver un extrañ brillo en sus ojos.
+
+> hablar con anciano
+"¿Eres Merlín?"
+"Yo soy".
+- No puedes evitar sentir algo de emoción y alivio -
+"El rey Uther me envía, una gran pena reside en su alma ..."
+"Uther... claro que sí. Pero es conveniente que vengas a hablar conmigo en persona".
+"¿En persona?"
+"Me encuentro ante ti sólo en espíritu.
+Mi verdadero hogar es el bosque cercano a la villa del rey. Una pequeña cabaña
+al norte de la entrada del bosque."
+"Pero yo no te he encontrado ..."
+"Me encontrarás, me encontrarás ... esta vez me encontrarás.
+Acude a mi y hablaremos."
+
+PUFF ...
+
+El anciano ha desaparecido.
+
+"Ah! Algo más..." - escuchas una voz.
+"Llévate el frasco con líquido verde.
+Es una pócima muy efectiva contra 'Caballeros Negros'
+y 'uno que otro bandido',
+pero por supuesto que ya sabes de eso"
+- te aconseja el anciano, quien no puede reprmir un callada carcajada.
+
+> hablar con Merlín
+Merlín ya no está aquí ... si es que estuvo alguna vez, claro ...
+
+> salir a Explanada de la roca
+
+! El encuentro con Merlín en la cabaña
+! "Uther me envía. Necesita tu ayuda para ..."
+! "Lo sé"
+! "¿Lo sabes? .. pero ¿por ..."
+! "Todo a su tiempo, noble Ulfus. Cada tarea tiene un orden en el universo de las cosas. Tu tarea debía durar lo que duró".
+! "El rey Uther le espera en el castillo, ..."
+! "Esta bien, comunícale que allí estaré".
+! "... a la mayor brevedad."
+! "Partid, Ulfus, estaré allí."
+
+! > hablar con merlin
+! Merlín hace un gesto con la mano.
+! "Partid, Ulfus, estaré allí."
+! Ulfius vuelve a Palacio
+! > hablar con rey
+! "Señor, he encontrado a Metlín."
+! "Gratas noticias, Ulfus."
+! "Gracias señor".
+! "¿Dónde está?"
+! "Aquí mismo, Rey Uther".
+! De alguna, forma, Merlín acaba de aparecer entrando por la puerta, con su túnica y su bastón, como siempre. Te retiras discretamente hacia un lado.
+! "Sé de el mal que te embarga. Puedo ayudarte, pero todo tiene su precio y tú, aún siendo Rey deberás pagarlo. Te garantizo que en cualquier caso, nada de lo que haga será en perjuicio hacia tu persona."
+! "Juro que cumpliré el precio".
+! "Vayamos pues, a un lugar más reservado".
+! "Ulfius, acompañadnos."
+! [Ulfus sigue al Rey y al mago, que se pasean por el castillo hasta llegar a la alcobar del Rey].
+! Merlín se dirige a Uther.
+! "Quieres a Lady Ingraine y la tendrás. Esta misma noche concebirás un hijo con esa mujer. Pero cuando se produzca el alumbramiento tu primogénito me deberá ser entregado en brazos, sin nombre ni bautizo. Me encargaré de protegerlo, y tu habrás obtenido tu deseo."
+! "Así se hará".
+
+! Y así, bajo artimañas y magia Merlín, Uther y la complicidad de Sir Ulfius dieron inicio a lo pactado.
+! Merlín mistificó la imagen física de Uther para poder hacerlo yacer finalmente con Lady Ingraine. La imagen de Uther preparada por Merlín que revela ante los ojos de la bella dama la falsa presencia del Duque de Cornualles.
+! Sin embargo, a las afuera del Castillo de Tintagel, la suerte del Duque estaba muy distante de su alcoba, al encontrar la muerte horas antes en manos de los mismos cómplices que con artificios intentan cumplir los deseos de el Rey.
+
+! "Ulfus, acompañadnos al castillo del Duque de Cornualles".
+
+Carruaje
+Los caballos tiran del lujoso carruaje. A tu lado, Merlín y Uther viajan silenciosos. Uther parece emocionado y apesadumbrado a la vez. Merlín te devuelve la mirada cuando te fijas en él, incluso cuando está aparentemente dormitando abre los ojos y posa su mirada en ti, con ese extraño brillo en sus ojos.
+[Viaje en carruaje. Narración. Merlín viaja con ellos.]
+> espera
+> baja a Suroeste del castillo
+> salir
+
+!Castillo de Cornualles
+!===========================================================================
+!El castillo se alza imponente. Al este, está la entrada al mismo, ya
+!que habéis parado en un lateral para evitar ser vistos.
+!
+! Ulfius acompaña a Uther, le escolta hasta el castillo, y espera a que vuelva. 
+! Para hacerlo más interesante, probablemente sea mejor que haya que colarse 
+! en el castillo y que la imagen mística se consiga mediante una pócima que 
+! el rey debe beberse. Esta pócima debería tener un tiempo de acción muy limitado.
+
+
+Suroeste del castillo
+El castillo de Cornualles se alza imponente al noreste. El camino principal corre de este a oeste.
+Al este, está la entrada al mismo, ya que habéis parado en un lateral del rastrillo, protegidos por unos arbustos, para evitar ser vistos.
+Lo que parece ser un pequeño camino de ronda parte hacia el norte.
+> e a Rastrillo de entrada
+> n
+
+Camino de ronda oeste
+El camino de ronda aún avanza más hacia el norte, rodeando el castillo. A los lados, encuentras el camino cerrado por el mar y por el casi liso muro del castillo. El camino atraviesa el profundo foso del castillo mediante una endeble pasarela de madera, que podría eliminarse rápidamente en caso de asedio.
+> baja al Foso oeste
+> n
+
+Rompiente oeste
+Hacia el noreste, el camino termina abruptamente, ya que el espacio se reduce y el muro exterior del castillo cae directamente sobre el mar. La única salida posible es volver hacia el sur. Un pequeño pontón se encuentra hacia el oeste.
+[Aquí se producirá el encuentro, anunciado por Merlín, con un traidor (o lo que sea). Vendrá remando en un bote y que le explicará al jugador cómo entrar en el castillo. Sería interesante montar un pequeño puzzle con la forma de avisar al remero para que se aproxime]
+.finLoc
+
+Foso oeste
+No puedes casi mantenerte en pie. Te asientas sobre una gran piedra que se mantiene por encima del nivel del agua. El mar embravecido transmite sus envites por el foso, que corre de este a oeste. Podrías trepar por la pared del foso.
+> arriba a Camino de ronda oeste
+> e
+
+Foso este
+De alguna forma, te mantienes en pie, bien en una piedra o bien en un trozo de tierra que se establece como saliente sobre el foso.
+Podrías trepar por la pared del foso.
+> arriba a Camino de Ronda Este
+
+Rastrillo de entrada
+Al este y al oeste continúa el camino principal que permite al castillo comunicarse y comerciar con el resto del valle, que domina y protege. Al norte se encuentra la puerta de entrada principal del castillo, a través del rastrillo.
+> o a Suroeste del castillo
+> n a Hall
+> e
+
+Sureste del castillo
+El camino principal, que pasa por delante del castillo, corre de este a oeste. Hacia el norte parte lo que parece ser un camino de ronda.
+> o a Rastrillo de entrada
+> n
+
+Camino de Ronda Este
+El camino de ronda aún avanza más hacia el norte, rodeando el castillo. A los lados, encuentras el camino cerrado por el mar y por el casi liso muro del castillo. El camino atraviesa el profundo foso del castillo mediante una endeble pasarela de madera, que podría eliminarse rápidamente en caso de asedio.
+> abajo a Foso este
+> n
+
+Esquina noreste del castillo
+El camino de ronda rodea la esquina noreste del castillo. Sólo puedes avanzar por el camino, al norte y al sur, ya que las otras direcciones está cortadas por el mar y por el muro del castillo. Hacia el noroeste, el camino se vé bloqueado por unas rocas.
+> no
+
+Muro trasero del castillo
+El muro de la parte trasera del castillo es tan liso como cualquiera de los vistos anteriormente. El mar rompe peligrosamente en las rocas hacia el norte, y sus salpicaduras llegan a caer sobre ti de vez en cuando. Toda esta parte de la superficie de ronda del castillo es muy rocosa, acumulándose las rocas especialmente hacia el sureste y el suroeste.
+[Aquí se debe poder encontrar un túnel que conducirá a un portillo de acceso al castillo]
+> entra
+
+Túnel de escape
+El túnel es pedregoso y húmedo. Por su estrechez y baja altura, debes arrastrarte por el suelo, que resbala peligrosamente. Sería posible salir del túnel, aunque después de arrastrarte unos metros encuentras un pequeño portillo de acceso.
+[Deberá utilizarse una antorcha como fuente de luz, escondida en la entrada del túnel.La antorcha se encenderá con unas piedras de pedernal. Si la enciendes en la parte de fuera, entonces te descubrirán y estarán esperándote al entrar en el castillo, por la cocina. Por supuesto, necesitas la llave del portillo que te ha dado el traidor de la barca.]
+> entra
+
+Final del pasadizo de escape
+El portillo abre el acceso a un pasadizo del castillo, tenuemente iluminado por unas rendijas entre las piedras del muro exterior del castillo. Las paredes son absolutamente lisas aquí. El muro exterior se ve manchado por la humedad aquí y allí, especialmente en su parte baja. El pasadizo continúa hacia el este.
+> e
+
+Pasadizo de escape
+El pasadizo de escape corre de este a oeste. La luz de luna ilumina tenuemente el pasadizo.
+> e
+
+Comienzo del pasadizo de escape
+El pasadizo de escape comienza aquí desde las dependencias del castillo, mediante un portillo de acceso, hacia su exterior, al oeste. Bajo el portillo se cuela una rendija de luz, que contrasta con la semioscuridad en la que te mueves.
+> s a Cocinas
+> entra
+
+Cocinas
+Las cocinas del castillo permiten salir hacia el norte, mediante un pequeño portillo disimulado entre dos estanterías, y hacia el sur mediante la puerta principal. Innumerables estanterías contienen multitud de frascos, potas y cubiertos de todo tipo. Una gran chimenea tiene una pota al fuego.
+[Debe haber alguna forma de poder saber si los soldados están fuera en ese momento o no]
+> s
+
+Pasillo noreste
+Hacia el norte están las cocinas, mientras que se puede caminar hacia el oeste. Una pared bloquea el paso hacia el sur.
+Varias antorchas, situadas demasiado alto como para alcanzarlas, iluminan el corredor.
+[Habrá guardias circulando de este a oeste, del pasillo noroeste al noreste]
+> o
+
+Pasillo norte
+El pasillo permite acceder al pasillo noreste y noroeste, al este y al oeste, respectivamente.
+También es posible acceder a sendas puertas al norte y al sur.
+Varias antorchas, situadas demasiado alto como para alcanzarlas, iluminan el corredor.
+> o a Pasillo noroeste
+> n a Almacenes
+> s
+
+Bodega
+Multitud de barriles se acumulan contra las cuatro paredes, en una estancia que se alarga de este a oeste. Sólo la puerta de acceso se encuentra libre. En un soporte del centro, puedes ver varias botellas colocadas cuidadosamente.
+.finloc
+
+
+Almacenes
+Multitud de objetos y ropajes se acumulan en esta estancia, amueblada tan solo con estanterías del suelo al techo.
+[Aquí se podrán encontrar dos uniformes de guardia]
+> s a Pasillo norte
+
+Pasillo noroeste
+El pasillo realiza un giro de noventa grados. Es posible ir hacia el este, al pasillo norte, o, hacia el sur, al pasillo suroeste. Una suntuosa puerta conduce hacia el norte.
+> sur a Pasillo suroeste
+> n
+
+Dormitorios reales
+La estancia resulta ser, sin duda, la de los dormitorios reales. Una gran cama se sitúa contra la pared norte, mientras todo tipo de rico mobiliario se encuentra a tu alrededor. El escudo del duque de cornualles está situado sobre la cama.
+[Si entras aquí, Lady Ingrain da la voz de alarma]
+.finLoc
+
+Pasillo suroeste
+El pasillo realiza un giro de noventa grados, pudiendo acceder al pasillo noroeste hacia el norte, y hacia el pasillo principal hacia el este.
+> n a Pasillo noroeste
+> e
+
+Hall
+El pasillo principal del castillo da acceso al rastrillo, y por él, al exterior del castillo, así como a la sala del trono, al norte. Al este se encuentra el pasillo sureste.
+> e a Pasillo sureste
+> s a Rastrillo de entrada
+> n
+
+Sala de gobierno
+La sala de gobierno está medio en penumbra. Puedes ver los tronos del Duque de Cornualles y de su esposa, Lady Ingrain. Algún personal (incluyendo soldados y personal de servicio) presta su servicio aún a estas horas.
+[Si entras aquí, te pillan, si no llevas puesto el uniforme]
+.finLoc
+
+Pasillo sureste
+El pasillo sureste permite el acceso a la planta superior del castillo, mediante unas escaleras de piedra.
+> o a Hall
+> arriba
+
+Pasillo de servicio
+Un estrecho pasillo de servicio da acceso a las dos únicas estancias de la planta superior: una armería (deduces que lo es, puesto que desde aquí se ven multitud de armas), al norte, una estancia con la puerta cerrada al oeste. Unas escaleras de piedra permiten volver al nivel de la planta baja.
+> n a Armería
+> o
+
+Despacho del oficial de guardia
+Una estancia muy amplia sirve de despacho para el oficial de guardia, sentado en una mesa en el centro de la misma. Ahora que el castillo está asedidado por las tropas del Rey, hay bastante actividad en el lugar, con otros oficiales discutiendo separadamente en otra mesa.
+[Aquí consigues la llave maestra]
+.finLoc
+
+Armería
+La armería es una gran estancia con todo tipo de armas, apiladas en montones contra la pared o en soportes especiales, especialmente las ballestas, lanzas y lombardas. Otras armas que puedes ver aquí son espadas, cascos y escudos de todo tipo.
+> s a Pasillo de servicio
+
+
+! Narración final
+! Lo anunciado por Merlín se cumplió, y la historia cambió su rumbo. El
+! Rey e Ingraine no solo concibieron un hijo, sino que también la
+! convirtió en su Reina.
+! Pasaron 9 lunas desde aquella noche. Se aproximaba el momento en que
+! Uther debía cumplir su parte del Pacto.
+! Y al tiempo que marca la naturaleza, el alumbramiento se había llevado
+! a cabo. El recien nacido fue entregado en manos a Merlín conforme lo
+! acordado.
+! Ulfius se retiró, cansado de tanta lucha poco fructífera.
+! El epílogo consistirá en Ulfius en su casa, probablemente casado con una mujer,
+! y entonces entrará Merlín para entregarle la custodia del niño.
+
+

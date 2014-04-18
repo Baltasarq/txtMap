@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<Mapa >
+
+<Locs >
+
+<Loc >
+<Nombre>Abismo</Nombre>
+<Desc>
+El camino termina aquí abruptamente. El suelo, que hasta ahora era pedregoso, es extrañamente arenoso aquí.
+Ante tí, hacia el norte, puedes ver lo que parece ser otra montaña, desgraciadamente demasiado lejos como para saltar. Hacia arriba, puedes ver una pared de roca, tan lisa que no es posible escalarla.
+A tus pies, un pronunciado desfiladero se abre amenazador.</Desc>
+<NORTE>Entrada a la cueva</NORTE>
+<OESTE>Camino entre desfiladeros</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Almacenes</Nombre>
+<Desc>
+Multitud de objetos y ropajes se acumulan en esta estancia, amueblada tan solo con estanterías del suelo al techo.
+</Desc>
+<Com>Aquí se podrán encontrar dos uniformes de guardia</Com>
+<SUR>Pasillo norte</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Almenar</Nombre>
+<Desc>
+Desde aquí se ve la pequeña villa de Westmorland, protegida por la muralla exterior, a los pies de este castillo.
+Hacia el sur, se encuentran los campos de cultivo que sustentan a las gentes del lugar, mientras que hacia el norte un corto espacio dedicado a campos antecede al bosque, para terminar en las lejanas montañas. En ese terreno no se puede ir a caballo.
+Aquí está Lucius.</Desc>
+<ABAJO>Patio de armas</ABAJO>
+</Loc>
+
+
+<Loc >
+<Nombre>Armería</Nombre>
+<Desc>
+La armería es una gran estancia con todo tipo de armas, apiladas en montones contra la pared o en soportes especiales, especialmente las ballestas, lanzas y lombardas. Otras armas que puedes ver aquí son espadas, cascos y escudos de todo tipo.</Desc>
+<SUR>Pasillo de servicio</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Bodega</Nombre>
+<Desc>
+Multitud de barriles se acumulan contra las cuatro paredes, en una estancia que se alarga de este a oeste. Sólo la puerta de acceso se encuentra libre. En un soporte del centro, puedes ver varias botellas colocadas cuidadosamente.</Desc>
+<NORTE>Pasillo norte</NORTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Cabaña</Nombre>
+<Desc>
+El ambiente de la cabaña es casi lúgubre, y muy húmedo. Dos de las cuatro paredes están cubiertas de estanterías, mientras que las otras dos se dividen entre una pequeña zona de estar y una cocina.
+Bastones, escudos, lanzas, estantes con hierbas y varios frascos están distribuidos por todo el lugar.
+Un anciano, sentado en su mecedora, te mira con interés.</Desc>
+<AFUERA>Claro del bosque</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Calle al este de la plaza</Nombre>
+<Desc>
+Esta calle es el extremo del pueblo amurallado. En esta zona es donde suelen vivir los campesinos.</Desc>
+<NORTE>Calle al noreste de la plaza</NORTE>
+<OESTE>Plaza del castillo</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Calle al noreste de la plaza</Nombre>
+<Desc>
+Te encuentras en una calle muy familiar. 
+¡Efectivamente!, ahí está tu casa. Hacia el norte, se encuentra una de las puertas de la villa. Hacia el este puedes ver la muralla del pueblo.</Desc>
+<NORTE>Puerta norte</NORTE>
+<SUR>Calle al este de la plaza</SUR>
+<SUDOESTE>Plaza del castillo</SUDOESTE>
+<ADENTRO>Casa de Ulfius</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Callejón</Nombre>
+<Desc>
+Un callejón sin salida sólo te permite ir hacia el este. Lo cierto es que no puedes garantizar que este sea el este, estás ya muy desorientado.</Desc>
+<ESTE>Cruce en el laberinto 1</ESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Callejón 2</Nombre>
+<Desc>
+Un callejón que sólo permite la salida hacia el sur. Si es que es el sur, claro, pues a estas alturas estás ya muy desorientado.</Desc>
+<NORTE>Callejón de la puerta</NORTE>
+<SUR>Cruce en el laberinto 2</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Callejón de la fuente</Nombre>
+<Desc>
+Al final del corredor, observas una fuente con agua. El laberinto es igual de desolado aquí que en el resto de las estancias.</Desc>
+<OESTE>Callejón de la puerta</OESTE>
+<ADENTRO>Túnel</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Callejón de la puerta</Nombre>
+<Desc>
+Un camino recto se abre hacia el norte. Al final, puedes ver una puerta.
+La única salida, al margen de la puerta, se abre al este. Esta enorme puerta altera el aspecto del laberinto.
+</Desc>
+<Com>Si abres esta puerta, te verás devuelto a la primera intersección</Com>
+<SUR>Callejón 2</SUR>
+<ESTE>Callejón de la fuente</ESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino</Nombre>
+<Desc>
+El camino ancho y cómodo lleva hacia el bosque, al norte. Al sur, puedes ver, cercana, la villa. Estás solo en este camino, que viene de la entrada del bosque, de donde la gente suele contar extraños (y escalofriantes) cuentos.</Desc>
+<NORTE>Entrada del bosque</NORTE>
+<SUR>Puerta norte</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino Noreste</Nombre>
+<Desc>
+El camino se interna en el bosque húmedo, hacia el norte, mientras hacia el suroeste parece abrirse en un claro. La maleza es húmeda, y hace frío aquí. Los árboles, robles todos ellos, apenas dejan pasar la luz.</Desc>
+<NORTE>Continuación del camino</NORTE>
+<SUDOESTE>Entrada del bosque</SUDOESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino Noroeste</Nombre>
+<Desc>
+El camino se interna en el denso bosque hacia el norte, mientras aparentemente sale hacia alguna parte al sureste.</Desc>
+<NORTE>Pozo</NORTE>
+<SUDESTE>Entrada del bosque</SUDESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino Norte</Nombre>
+<Desc>
+El camino se presenta tranquilo. Avanzas esperanzado de encontrar lo más pronto posible a Merlín. Todo está muy calmo. Tal vez las historias del bosque que escuchaste fueron solo obras de algún Caballero fabulador.</Desc>
+<NORTE>Ciénaga</NORTE>
+<SUR>Entrada del bosque</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino de Ronda Este</Nombre>
+<Desc>
+El camino de ronda aún avanza más hacia el norte, rodeando el castillo. A los lados, encuentras el camino cerrado por el mar y por el casi liso muro del castillo. El camino atraviesa el profundo foso del castillo mediante una endeble pasarela de madera, que podría eliminarse rápidamente en caso de asedio.</Desc>
+<NORTE>Esquina noreste del castillo</NORTE>
+<SUR>Sureste del castillo</SUR>
+<ABAJO>Foso este</ABAJO>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino de las montañas</Nombre>
+<Desc>
+Tomas el camino, que al poco se torna en pedregoso. La tierra es amarilla aquí y los árboles abandonan poco a poco la escena.
+Este camino asciende hacia las montañas, al norte, mientras al sur, en el valle, puedes ver la taberna.</Desc>
+<NORTE>Camino entre desfiladeros</NORTE>
+<SUR>Taberna</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino de ronda oeste</Nombre>
+<Desc>
+El camino de ronda aún avanza más hacia el norte, rodeando el castillo. A los lados, encuentras el camino cerrado por el mar y por el casi liso muro del castillo. El camino atraviesa el profundo foso del castillo mediante una endeble pasarela de madera, que podría eliminarse rápidamente en caso de asedio.</Desc>
+<NORTE>Rompiente oeste</NORTE>
+<SUR>Suroeste del castillo</SUR>
+<ABAJO>Foso oeste</ABAJO>
+</Loc>
+
+
+<Loc >
+<Nombre>Camino entre desfiladeros</Nombre>
+<Desc>
+De a poco avanzas por el camino que serpentea hacia las montañas. Continúa hacia el este, mientras que al sur desciende hacia el valle. El camino es rocoso, abierto por un lado, la escarpada pendiente por el otro.
+El sol cae lentamente, mientras las primeras estrellas comienzan a dejar ver su brillo, anunciando que la noche no llegará mucho más tarde.
+</Desc>
+<Com>Desde aquí hasta entrar en la cueva, tienes un número de turnos restringido</Com>
+<SUR>Camino de las montañas</SUR>
+<ESTE>Abismo</ESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Campos de cultivo</Nombre>
+<Desc>
+Los campos de cultivo sustenta a los habitantes de la villa. Magníficos, en tiempo de siembra, se extienden hacia el este y sur aparentemente sin fin. Pronto brotará el trigo.</Desc>
+<NORTE>Puerta sur</NORTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Carruaje</Nombre>
+<Desc>
+Los caballos tiran del lujoso carruaje. A tu lado, Merlín y Uther viajan silenciosos. Uther parece emocionado y apesadumbrado a la vez. Merlín te devuelve la mirada cuando te fijas en él, incluso cuando está aparentemente dormitando abre los ojos y posa su mirada en ti, con ese extraño brillo en sus ojos.
+</Desc>
+<Com>Viaje en carruaje. Narración. Merlín viaja con ellos.</Com>
+<ABAJO>Suroeste del castillo</ABAJO>
+<AFUERA>Suroeste del castillo</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Casa de Ulfius</Nombre>
+<Desc>
+Tu casa es pequeña pero acogedora. No tiene varias estancias como las más modernas, pero es suficiente, sobre todo considerando el tiempo que realmente pasas en ella.
+</Desc>
+<Com>Aquí tiene que encontrar sus cosas, entre ellas, un par de armaduras, la de cuero y la de combate, más pesada. Será interesante programar una ciénaga en el bosque donde, si portas la armadura de combate, te hundas irremediablemente</Com>
+<AFUERA>Calle al noreste de la plaza</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Ciénaga</Nombre>
+<Desc>
+El camino se ve interrumpido repentinamente por una gran ciénaga, para luego continuar hacia el norte. Si bien la ciénaga es relativamente estrecha en cuanto a lo largo, no puedes ver su final ni a derecha ni a izquierda.
+</Desc>
+<Com>Aquí estaría la ciénaga de la que hablabas, en caso de llevar puesta una armadura pesada ...</Com>
+<NORTE>Claro del bosque</NORTE>
+<SUR>Camino Norte</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Claro del bosque</Nombre>
+<Desc>
+El claro se abre justamente enfrente a una tosca, aunque fuerte, cabaña de madera. Unas pequeñas volutas de humo ascienden desde la chimenea hasta el cielo.
+Hacia el sur, parte un camino que resulta ser la única salida del claro.</Desc>
+<SUR>Ciénaga</SUR>
+<ADENTRO>Cabaña</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Cocinas</Nombre>
+<Desc>
+Las cocinas del castillo permiten salir hacia el norte, mediante un pequeño portillo disimulado entre dos estanterías, y hacia el sur mediante la puerta principal. Innumerables estanterías contienen multitud de frascos, potas y cubiertos de todo tipo. Una gran chimenea tiene una pota al fuego.
+</Desc>
+<Com>Debe haber alguna forma de poder saber si los soldados están fuera en ese momento o no</Com>
+<SUR>Pasillo noreste</SUR>
+<AFUERA>Comienzo del pasadizo de escape</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Colina</Nombre>
+<Desc>
+El camino asciende hacia el noreste, donde el túnel arbóreo parece terminar en una mágica luz, donde ves que los árboles se espacian, dejando claros entre ellos.
+El túnel desciende hacia el sur, donde los árboles parecen formar una bóveda sólo atravesada por tenues alfilerazgos de luz proyectados en el suelo.
+No es posible pasar por este lugar sin apreciar su mágica esencia.
+</Desc>
+<Com>Aquí podría funcionar "xyzzy". En ese caso, podrías tener una visión de Merlín, por ejemplo.</Com>
+<SUR>Pozo</SUR>
+<NORDESTE>Taberna</NORDESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Comienzo del pasadizo de escape</Nombre>
+<Desc>
+El pasadizo de escape comienza aquí desde las dependencias del castillo, mediante un portillo de acceso, hacia su exterior, al oeste. Bajo el portillo se cuela una rendija de luz, que contrasta con la semioscuridad en la que te mueves.</Desc>
+<SUR>Cocinas</SUR>
+<OESTE>Pasadizo de escape</OESTE>
+<ADENTRO>Cocinas</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Continuación del camino</Nombre>
+<Desc>
+
+El camino sigue de sur a norte. La sensación de húmedad es cierta aquí. Los árboles comienzan a formar una tupida bóveda aquí, mientras la luminosidad desciende.
+Escuchas ruidos entre los árboles ... tal vez sea el viento.</Desc>
+<Com>Aquí estan los bandidos. Siempre te quitan parte del dinero y de la comida</Com>
+<NORTE>Lago</NORTE>
+<SUR>Camino Noreste</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Cruce en el laberinto 1</Nombre>
+<Desc>
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.</Desc>
+<NORTE>Cruce en el laberinto 3</NORTE>
+<SUR>Entrada al laberinto</SUR>
+<ESTE>Cruce en el laberinto 1</ESTE>
+<OESTE>Callejón</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Cruce en el laberinto 2</Nombre>
+<Desc>
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.</Desc>
+<NORTE>Callejón 2</NORTE>
+<SUR>Cruce en el laberinto 1</SUR>
+<ESTE>Cruce en el laberinto 4</ESTE>
+<OESTE>Callejón</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Cruce en el laberinto 3</Nombre>
+<Desc>
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.</Desc>
+<NORTE>Callejón</NORTE>
+<SUR>Cruce en el laberinto 1</SUR>
+<ESTE>Cruce en el laberinto 4</ESTE>
+<OESTE>Cruce en el laberinto 3</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Cruce en el laberinto 4</Nombre>
+<Desc>
+Aquí se entrecruzan varios caminos. Los altos muros permiten salidas al norte, este, oeste y sur.</Desc>
+<NORTE>Cruce en el laberinto 1</NORTE>
+<SUR>Cruce en el laberinto 3</SUR>
+<ESTE>Callejón</ESTE>
+<OESTE>Cruce en el laberinto 2</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Cueva</Nombre>
+<Desc>
+
+Entras. Efectivamente es una cueva, un tanto pequeña, pero suficiente como para albergarte y guarecerte.
+El día termina de desvanecerse, gradualmente, entre las montañas, como el agua que se retira con la marea. Ya no se puede ver nada.</Desc>
+<Com>Aquí descansarás durante la noche. Si llevas comida, podrás continuar ... en otro caso, tendrás que volver a la taberna</Com>
+<OESTE>Entrada a la cueva</OESTE>
+<AFUERA>Entrada a la cueva</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Despacho del oficial de guardia</Nombre>
+<Desc>
+Una estancia muy amplia sirve de despacho para el oficial de guardia, sentado en una mesa en el centro de la misma. Ahora que el castillo está asedidado por las tropas del Rey, hay bastante actividad en el lugar, con otros oficiales discutiendo separadamente en otra mesa.
+</Desc>
+<Com>Aquí consigues la llave maestra</Com>
+<ESTE>Pasillo de servicio</ESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Dormitorios reales</Nombre>
+<Desc>
+La estancia resulta ser, sin duda, la de los dormitorios reales. Una gran cama se sitúa contra la pared norte, mientras todo tipo de rico mobiliario se encuentra a tu alrededor. El escudo del duque de cornualles está situado sobre la cama.
+</Desc>
+<Com>Si entras aquí, Lady Ingrain da la voz de alarma</Com>
+<SUR>Pasillo noroeste</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Entrada a la cueva</Nombre>
+<Desc>
+El camino avanza sinuoso, rodeando esta nueva montaña. Siempre, a cada uno de tus lados, encuentras el abismo y la escarpada pared de roca.
+La senda parece finalizar, de nuevo abruptamente, en una pequeña explanada.
+Puedes ver, hacia el este, una abertura en la pared.
+</Desc>
+<Com>De noche, la salida al norte no se verá, de día sí</Com>
+<NORTE>Pie de la montaña</NORTE>
+<SUR>Abismo</SUR>
+<ESTE>Cueva</ESTE>
+<ADENTRO>Cueva</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Entrada al laberinto</Nombre>
+<Desc>
+Ante ti un largo callejón de altos muros, te lleva hacia el norte.</Desc>
+<NORTE>Cruce en el laberinto 1</NORTE>
+<AFUERA>Pie de la montaña</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Entrada del bosque</Nombre>
+<Desc>
+La linde del bosque está aquí, con pasmosa frondosidad, con una pequeña división del camino. Desde aquí parte un camino hacia el sur, mientras otros caminos parten hacie el norte, el noreste y el noroeste.</Desc>
+<NORTE>Camino Norte</NORTE>
+<SUR>Camino</SUR>
+<NORDESTE>Camino Noreste</NORDESTE>
+<NOROESTE>Camino Noroeste</NOROESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Espacio entre los arbustos</Nombre>
+<Desc>
+Un pequeño espacio entre los arbustos, apenas suficiente para poder mantenerse de pie.
+</Desc>
+<Com>Aquí hay como diez objetos, inservibles excepto para mapear el laberinto</Com>
+<OESTE>Pie de la montaña</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Esquina noreste del castillo</Nombre>
+<Desc>
+El camino de ronda rodea la esquina noreste del castillo. Sólo puedes avanzar por el camino, al norte y al sur, ya que las otras direcciones está cortadas por el mar y por el muro del castillo. Hacia el noroeste, el camino se vé bloqueado por unas rocas.</Desc>
+<SUR>Camino de Ronda Este</SUR>
+<NOROESTE>Muro trasero del castillo</NOROESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Explanada de la roca</Nombre>
+<Desc>
+Una amplia explanada empedrada, tiene como centro la roca que se veía desde la entrada del laberinto, con forma de serpiente, retorcida y sinuosa.
+</Desc>
+<Com>Añadamos un toque de humor: habrá un felpudito, y bajo él, la llave de la puerta</Com>
+<SUR>Túnel</SUR>
+<ADENTRO>Guarida de Merlín</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Final del pasadizo de escape</Nombre>
+<Desc>
+El portillo abre el acceso a un pasadizo del castillo, tenuemente iluminado por unas rendijas entre las piedras del muro exterior del castillo. Las paredes son absolutamente lisas aquí. El muro exterior se ve manchado por la humedad aquí y allí, especialmente en su parte baja. El pasadizo continúa hacia el este.</Desc>
+<ESTE>Pasadizo de escape</ESTE>
+<AFUERA>Túnel de escape</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Foso este</Nombre>
+<Desc>
+De alguna forma, te mantienes en pie, bien en una piedra o bien en un trozo de tierra que se establece como saliente sobre el foso.
+Podrías trepar por la pared del foso.</Desc>
+<OESTE>Foso oeste</OESTE>
+<ARRIBA>Camino de Ronda Este</ARRIBA>
+</Loc>
+
+
+<Loc >
+<Nombre>Foso oeste</Nombre>
+<Desc>
+No puedes casi mantenerte en pie. Te asientas sobre una gran piedra que se mantiene por encima del nivel del agua. El mar embravecido transmite sus envites por el foso, que corre de este a oeste. Podrías trepar por la pared del foso.</Desc>
+<ESTE>Foso este</ESTE>
+<ARRIBA>Camino de ronda oeste</ARRIBA>
+</Loc>
+
+
+<Loc >
+<Nombre>Guarida de Merlín</Nombre>
+<Desc>
+
+La guarida no es más que una cueva; sin embargo, algún tipo de luz cuyo origen desconoces parece brotar de las paredes, proveyendo de una agradable semi-penumbra.
+La puerta de acceso, a tu espalda, es la única posible salida, pues no hay otras estancias o escaleras.
+Puedes ver una mesa, un viejo sillón, una biblioteca con innumerables volúmenes, y finalmente una chimenea. Se antoja demasiado escueto, incluso para un druída.</Desc>
+<Com>Se me ocurre que Merlín le pida a Ulfius cerrar con llave la puerta, a la salida. Si el jugador lo hace, las paredes del laberinto de bajan/desaparecen ... allanándose el camino, viendo solo de esta manera el camino de la montaña que lo llevará de regreso al bosque.</Com>
+<AFUERA>Explanada de la roca</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Hall</Nombre>
+<Desc>
+El pasillo principal del castillo da acceso al rastrillo, y por él, al exterior del castillo, así como a la sala del trono, al norte. Al este se encuentra el pasillo sureste.</Desc>
+<NORTE>Sala de gobierno</NORTE>
+<SUR>Rastrillo de entrada</SUR>
+<ESTE>Pasillo sureste</ESTE>
+<OESTE>Pasillo suroeste</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Interior de la Taberna</Nombre>
+<Desc>
+Abres la puerta sin dificultad y entras en el interior de la Taberna. En este momento el lugar no está demasiado animado; sólo el cantinero, detrás del mostrador (aparentemente muy ocupado en sus quehaceres), y un hombre muy joven con aspecto de haberse bebido todo el licor a la venta, apoyado en el otro extremo del mostrador.</Desc>
+<AFUERA>Taberna</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Lago</Nombre>
+<Desc>
+El camino desemboca en una amplia zona sin árboles, donde puedes ver también un lago. A pesar de estar bastante alejados, sobre ti el cielo es casi indiscernible.
+El lago, al este, parece transformar el bosque en un pantano. La humedad es casi palpable aquí, mientras que la escasa luz que se filtra entre las hojas se refleja en la superficie del lago, y, a la vez, se ve proyectada en la bóveda arbórea. Es imposible pasar por aquí sin detenerse a apreciar tan mágico efecto.
+</Desc>
+<Com>aquí podría funcionar xyzzy, proporcionándote una vision de Merlín o algo</Com>
+<SUR>Continuación del camino</SUR>
+<NOROESTE>Taberna</NOROESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Muro trasero del castillo</Nombre>
+<Desc>
+El muro de la parte trasera del castillo es tan liso como cualquiera de los vistos anteriormente. El mar rompe peligrosamente en las rocas hacia el norte, y sus salpicaduras llegan a caer sobre ti de vez en cuando. Toda esta parte de la superficie de ronda del castillo es muy rocosa, acumulándose las rocas especialmente hacia el sureste y el suroeste.
+</Desc>
+<Com>Aquí se debe poder encontrar un túnel que conducirá a un portillo de acceso al castillo</Com>
+<SUDESTE>Esquina noreste del castillo</SUDESTE>
+<ADENTRO>Túnel de escape</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasadizo de escape</Nombre>
+<Desc>
+El pasadizo de escape corre de este a oeste. La luz de luna ilumina tenuemente el pasadizo.</Desc>
+<ESTE>Comienzo del pasadizo de escape</ESTE>
+<OESTE>Final del pasadizo de escape</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo Principal</Nombre>
+<Desc>
+El pasillo principal de palacio, cuya puerta principal, al norte, permite acceder a la sala del trono, mientras al sur se encuentra el patio de armas. Hay otras salidas al este, y al oeste.
+</Desc>
+<Com>Al intentar ir a otras salidas se le responde que no se puede deambular libremente por palacio</Com>
+<NORTE>Sala del Trono</NORTE>
+<SUR>Patio de armas</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo de servicio</Nombre>
+<Desc>
+Un estrecho pasillo de servicio da acceso a las dos únicas estancias de la planta superior: una armería (deduces que lo es, puesto que desde aquí se ven multitud de armas), al norte, una estancia con la puerta cerrada al oeste. Unas escaleras de piedra permiten volver al nivel de la planta baja.</Desc>
+<NORTE>Armería</NORTE>
+<OESTE>Despacho del oficial de guardia</OESTE>
+<ABAJO>Pasillo sureste</ABAJO>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo noreste</Nombre>
+<Desc>
+Hacia el norte están las cocinas, mientras que se puede caminar hacia el oeste. Una pared bloquea el paso hacia el sur.
+Varias antorchas, situadas demasiado alto como para alcanzarlas, iluminan el corredor.
+</Desc>
+<Com>Habrá guardias circulando de este a oeste, del pasillo noroeste al noreste</Com>
+<NORTE>Cocinas</NORTE>
+<OESTE>Pasillo norte</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo noroeste</Nombre>
+<Desc>
+El pasillo realiza un giro de noventa grados. Es posible ir hacia el este, al pasillo norte, o, hacia el sur, al pasillo suroeste. Una suntuosa puerta conduce hacia el norte.</Desc>
+<NORTE>Dormitorios reales</NORTE>
+<SUR>Pasillo suroeste</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo norte</Nombre>
+<Desc>
+El pasillo permite acceder al pasillo noreste y noroeste, al este y al oeste, respectivamente.
+También es posible acceder a sendas puertas al norte y al sur.
+Varias antorchas, situadas demasiado alto como para alcanzarlas, iluminan el corredor.</Desc>
+<NORTE>Almacenes</NORTE>
+<SUR>Bodega</SUR>
+<ESTE>Pasillo noreste</ESTE>
+<OESTE>Pasillo noroeste</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo sureste</Nombre>
+<Desc>
+El pasillo sureste permite el acceso a la planta superior del castillo, mediante unas escaleras de piedra.</Desc>
+<OESTE>Hall</OESTE>
+<ARRIBA>Pasillo de servicio</ARRIBA>
+</Loc>
+
+
+<Loc >
+<Nombre>Pasillo suroeste</Nombre>
+<Desc>
+El pasillo realiza un giro de noventa grados, pudiendo acceder al pasillo noroeste hacia el norte, y hacia el pasillo principal hacia el este.</Desc>
+<NORTE>Pasillo noroeste</NORTE>
+<ESTE>Hall</ESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Patio de armas</Nombre>
+<Desc>
+En el patio de armas se entrenan y forman los otros caballeros del rey, tus compañeros. Se puede salir del castillo por la puerta principal.
+También se puede acceder a las almenas por las escaleras para realizar vigilancia.</Desc>
+<NORTE>Pasillo Principal</NORTE>
+<ARRIBA>Almenar</ARRIBA>
+<ADENTRO>Carruaje</ADENTRO>
+<AFUERA>Plaza del castillo</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Pie de la montaña</Nombre>
+<Desc>
+Estás sobre el pié de la montaña ... a lo lejos observas una enorme roca.
+La montaña no es ya abrupta, puedes apreciar algo de vegetación por aquí. Justo delante de ti, ves un muro y una entrada en el mismo.
+Hacia el este, puedes ver unos tupidos arbustos.</Desc>
+<SUR>Entrada a la cueva</SUR>
+<ESTE>Espacio entre los arbustos</ESTE>
+<ADENTRO>Entrada al laberinto</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Plaza del castillo</Nombre>
+<Desc>
+La villa bulle de actividad. El rastrillo del castillo desemboca en una amplísima plaza, donde se celebra siempre el mercado. Desde aquí parten calles hacia el noreste, este y el sur ... en el resto de direcciones la muralla del pueblo bloquea el paso.
+Sabes que tu casa se encuentra hacia la salida norte del pueblo, al noreste.</Desc>
+<SUR>Puerta sur</SUR>
+<ESTE>Calle al este de la plaza</ESTE>
+<NORDESTE>Calle al noreste de la plaza</NORDESTE>
+<ADENTRO>Plaza del castillo</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Pozo</Nombre>
+<Desc>
+El camino se abre tímidamente en una pequeña pradera. Sin embargo, no parece haber ninguna vivienda por aquí, aunque sí hay un pozo. Junto al pozo, en un pequeño charco pace tranquilamente un caballo.  Puedes ver a un caballero junto al caballo.
+</Desc>
+<Com>Transitas atentamente, ya que recuerdas las palabras del anciano de la cabaña: "Nadie puede aventurarse a atravesar este bosque pensando que no correrá peligro alguno". El caballero negro luchará contra ti en cuanto intentes abandonar la localidad por el norte o le provoques lo suficiente. Al beber la pócima vendría lo que sugeriste sobre un límite de su efecto. Ponle que surta efecto ... mmm... uno o dos turnos. De modo que si el jugador se pone a examinar algo o escriba un comando distinto a 'NORTE' (que es por donde sigue el camino), Sir Ulfius se corporeice una vez más aumentado la ira del Caballero Negro, quien viéndose burlado logra matarlo al fin, se terminaría aquí el juego. Ahora sí, si el jugador escribe 'NORTE', escaparía de esta situación, llegando más delante a la Taberna</Com>
+<NORTE>Colina</NORTE>
+<SUR>Camino Noroeste</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Puerta norte</Nombre>
+<Desc>
+La puerta norte de la villa. Puedes ver los muros del castillo hacia el sur, sabes que rodeándolo se llega al mercado. Hacia el norte, vas al bosque.</Desc>
+<NORTE>Camino</NORTE>
+<SUR>Calle al noreste de la plaza</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Puerta sur</Nombre>
+<Desc>
+Esta vía abandona el pueblo hacia el sur. Sin embargo, no te interesa ir en esa dirección, puesto que sabes que Merlín vive en el bosque situado al norte.</Desc>
+<NORTE>Plaza del castillo</NORTE>
+<SUR>Campos de cultivo</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Rastrillo de entrada</Nombre>
+<Desc>
+Al este y al oeste continúa el camino principal que permite al castillo comunicarse y comerciar con el resto del valle, que domina y protege. Al norte se encuentra la puerta de entrada principal del castillo, a través del rastrillo.</Desc>
+<NORTE>Hall</NORTE>
+<ESTE>Sureste del castillo</ESTE>
+<OESTE>Suroeste del castillo</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Rompiente oeste</Nombre>
+<Desc>
+Hacia el noreste, el camino termina abruptamente, ya que el espacio se reduce y el muro exterior del castillo cae directamente sobre el mar. La única salida posible es volver hacia el sur. Un pequeño pontón se encuentra hacia el oeste.
+</Desc>
+<Com>Aquí se producirá el encuentro, anunciado por Merlín, con un traidor (o lo que sea). Vendrá remando en un bote y que le explicará al jugador cómo entrar en el castillo. Sería interesante montar un pequeño puzzle con la forma de avisar al remero para que se aproxime</Com>
+<SUR>Camino de ronda oeste</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Sala de gobierno</Nombre>
+<Desc>
+La sala de gobierno está medio en penumbra. Puedes ver los tronos del Duque de Cornualles y de su esposa, Lady Ingrain. Algún personal (incluyendo soldados y personal de servicio) presta su servicio aún a estas horas.
+</Desc>
+<Com>Si entras aquí, te pillan, si no llevas puesto el uniforme</Com>
+<SUR>Hall</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Sala del Trono</Nombre>
+<Desc>
+La sala del trono es abrumadoramente espaciosa. El trono se sitúa en el centro de la pared norte, mientras las paredes laterales se cubren con ricos tapices rememorando antiguas batallas ganadas por el rey. En el suelo, una alfombra roja conduce hasta el rey (si bien nadie se atrevería a llegar hasta él), y a los lados se sitúan los cortesanos.
+Delante de ti, se encuentra el rey Uther. Estás aquí por requerimiento suyo.</Desc>
+<SUR>Pasillo Principal</SUR>
+</Loc>
+
+
+<Loc >
+<Nombre>Sureste del castillo</Nombre>
+<Desc>
+El camino principal, que pasa por delante del castillo, corre de este a oeste. Hacia el norte parte lo que parece ser un camino de ronda.</Desc>
+<NORTE>Camino de Ronda Este</NORTE>
+<OESTE>Rastrillo de entrada</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Suroeste del castillo</Nombre>
+<Desc>
+El castillo de Cornualles se alza imponente al noreste. El camino principal corre de este a oeste.
+Al este, está la entrada al mismo, ya que habéis parado en un lateral del rastrillo, protegidos por unos arbustos, para evitar ser vistos.
+Lo que parece ser un pequeño camino de ronda parte hacia el norte.</Desc>
+<NORTE>Camino de ronda oeste</NORTE>
+<ESTE>Rastrillo de entrada</ESTE>
+<ADENTRO>Carruaje</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Taberna</Nombre>
+<Desc>
+En medio de la pradera, puedes ver un taberna. La gran casa se ve reconfortada por los rayos del sol, que debe calentarla agradablemente entre tanta humedad del bosque.
+De la pradera parten varios caminos: hacia el sureste y suroeste se internan en el bosque, mientras que al norte parte un camino que lleva hacia las montañas.</Desc>
+<NORTE>Camino de las montañas</NORTE>
+<SUDOESTE>Colina</SUDOESTE>
+<SUDESTE>Lago</SUDESTE>
+<ADENTRO>Interior de la Taberna</ADENTRO>
+</Loc>
+
+
+<Loc >
+<Nombre>Túnel</Nombre>
+<Desc>
+Por lo que observas esto tiene más aspecto de ser una cueva alargada, un tosco túnel que contrasta con la suave perfección del laberinto.
+Tus pasos hacen eco en el lugar ... ves una luz al final del túnel, hacia el norte, y también hay claridad hacia el sur.</Desc>
+<NORTE>Explanada de la roca</NORTE>
+<SUR>Callejón de la fuente</SUR>
+<AFUERA>Callejón de la fuente</AFUERA>
+</Loc>
+
+
+<Loc >
+<Nombre>Túnel de escape</Nombre>
+<Desc>
+El túnel es pedregoso y húmedo. Por su estrechez y baja altura, debes arrastrarte por el suelo, que resbala peligrosamente. Sería posible salir del túnel, aunque después de arrastrarte unos metros encuentras un pequeño portillo de acceso.
+</Desc>
+<Com>Deberá utilizarse una antorcha como fuente de luz, escondida en la entrada del túnel.La antorcha se encenderá con unas piedras de pedernal. Si la enciendes en la parte de fuera, entonces te descubrirán y estarán esperándote al entrar en el castillo, por la cocina. Por supuesto, necesitas la llave del portillo que te ha dado el traidor de la barca.</Com>
+<ADENTRO>Final del pasadizo de escape</ADENTRO>
+<AFUERA>Muro trasero del castillo</AFUERA>
+</Loc>
+
+</Locs>
+
+</Mapa>
+

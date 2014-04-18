@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Mapa >
+<LocInic>Cocina</LocInic>
+<Locs >
+<Loc >
+<Nombre>Cocina</Nombre>
+<Desc>
+Los platos se alinean en las alacenas.</Desc>
+<SUR>Salón</SUR>
+</Loc>
+
+<Loc >
+<Nombre>Salón</Nombre>
+<Desc>
+Tiene dos sofás y una tele. Decoración minimalista.</Desc>
+<NORTE>Cocina</NORTE>
+</Loc>
+
+</Locs>
+
+<Objs >
+<Obj >
+<Nombre>alacenas</Nombre>
+<Desc>Son de color crema.</Desc>
+<estaEn>Cocina</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+<Obj >
+<Nombre>sofá</Nombre>
+<Desc>Son verdes. Están como deshilachados.</Desc>
+<estaEn>Salón</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+</Objs>
+
+</Mapa>
+

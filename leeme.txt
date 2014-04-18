@@ -1,0 +1,55 @@
+! txtMap
+! Una sencilla herramienta para ayudar en la creación de aventuras
+! (c) Baltasar, Bajo licencia LGPL
+
+
+Introduccion
+Es una herramienta que sirve para crear aventuras a partir de la aventura
+escrita en un archivo plano, como si se estuviera jugando.
+[Este archivo de texto puede compilarse con txtmap --PL=html leeme.txt,
+y se puede ver con cualquier navegador de html. Así, este leeme.txt es a la
+vez un tutorial de cómo manejar la herramienta.]
+> s a Colabora
+> e a Compilar
+> o a Plugins
+> n
+
+
+Autor
+Baltasar
+Puedes enviar tus comentarios a baltasarq en yahoo de es.
+Esta pequeña herramienta se distribuye bajo licencia LGPL
+
+> se
+
+Compilar
+La herramienta puede compilarse en *nix con la siguiente orden:
+$ g++ txtmap.cpp plugin.cpp persistente.cpp stringman.cpp -otxtmap
+Esta misma orden puede escribirse en Windows si se dispone de MINGW.
+En Windows, con Borland C++ Builder (gratuíto):
+c:> bcc32 txtmap.cpp plugin.cpp persistente.cpp stringman.cpp
+
+> o a Introduccion
+> so
+
+Colabora
+Pueden escribirse nuevos plugins para esta herramienta que realicen otras tareas,
+por ejemplo para otros parsers.
+Mándame tus plugins y los incluiré en el paquete principal.
+
+> n a Introduccion
+> no
+
+Plugins
+Un listado total de plugins puede obtenerse con esta sencilla orden:
+$ txtmap --PL? leeme.txt
+Los plugins aceptados son:
+src  - Genera un archivo como el de entrada
+html - Genera un conjunto de páginas web, una por localidad.
+superglus - Genera un archivo compilable por Superglús
+informate - Genera un archivo compilable por inform con librería española
+inform - Genera un archivo compilable por inform con librería inglesa
+paws - Genera un fichero SCE Paws.
+
+> e a Introduccion
+> ne a Autor

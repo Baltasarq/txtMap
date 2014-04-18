@@ -1,0 +1,40 @@
+! Extensión de Remakorp
+! baltasarq@yahoo.es
+
+El templo
+
+El templo tiene un pilón central, rematado por una argolla. Extrañas inscripciones llenan la parte media de las paredes.
+! El proceso de la cuerda abriría una compuerta oculta el este
+
+> e
+
+Cripta de los Reyes
+
+La cripta se ilumina vagamente gracias a la poca luz que entra por la compuerta abierta, y a la que sale de unos respiraderos disimulados en la pared del templo. En el suelo, un pequeño canal semicircular conduce un líquido marrón en una secuencia que se adivina continúa por la pared del templo para aparecer en el otro lado. En el interior del semicírculo, sobre un pedestal, lo que aparentan ser estatuas te observan desde su imponente altura.
+
+> ex respiraderos
+Unos respiraderos con formato vertical, de manera que quedan sin duda ocultos desde el exterior del templo.
+
+> ex pedestal
+Sobre el pedestal se sitúan tres estatuas. Bajo ellas, puedes ver varios recipientes.
+
+> ex estatuas
+Las estatuas son de piedra, y no son monolíticas, sino que una estrecha ranura las recorre por la totalidad de los costados. Se puede adivinar que son momias, y dada la pinta de la estatua y el territorio en el que se encuentra el templo, son con seguridad momias y'nharr.
+
+> ex canal
+El pequeño canal (de apenas el fondo de la suela de un zapato, y el ancho de un pie), rodea las estatuas, como si del foso de un castillo se tratara. Un líquido marrón corre por todo el canal, como si fuera un circuíto cerrado.
+
+> ex líquido
+Un líquido de parda apariencia corre contínuamente por el canal. Su olor es nauseabundo. Puede que los Y'nharr creyeran en este líquido como en una forma de alejar a los malos espíritus de sus reyes.
+
+> ex recipientes
+A los pies de las estatuas hay varios recipientes. A pesar de estar medio carcomidos por el paso del tiempo, puedes identificar un frasco entre todos ellos.
+
+> ex frasco
+El interior del frasco está vacío. Si alguna vez hubo algo en su interior, se ha evaporado con el paso del tiempo.
+
+> coge frasco
+Cogido.
+
+!> llena el frasco
+!Llenas el frasco con el líquido nauseabundo.

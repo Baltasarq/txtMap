@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!-- generado por AGE@txtMap, v0.1/ v0.4 20060605
+! Sat Jun 10 21:37:49 2006
+-->
+
+
+
+<World worldName="aventura aetheria" moduleName="txtMap_ac" date="Sat Jun 10 21:37:49 2006
+" type="ac" version="0.1" author="AGE@txtMap" >
+<PlayerGeneration>
+<Template id="20000000" name="Nuestro Héroe" extends="0" clones="0" type="null" properName="true" hp="100" mp="0" maxhp="100" maxmp="0" gender="true">
+<PropertyList>
+<PropertyEntry name="state" value="1" timeUnitsLeft="1" />
+</PropertyList>
+<CurrentRoom id="Cocina"/>
+<LastRoom id="Cocina"/>
+<DescriptionList><Description>Vienes a ser tú.</Description></DescriptionList>
+<SingularNames><Description>Jugador</Description></SingularNames>
+<PluralNames><Description>Jugadores</Description></PluralNames>
+<SingularReferenceNames><Name>Jugador</Name></SingularReferenceNames>
+<PluralReferenceNames><Name>Jugadores</Name></PluralReferenceNames>
+<Inventory/>
+<Parts><Inventory/></Parts>
+</Template>
+</PlayerGeneration>
+
+
+<Rooms >
+
+<Room name="Cocina" >
+
+<DescriptionList >
+<Description>
+Los platos se alinean en las alacenas.</Description>
+</DescriptionList>
+
+
+<PathList >
+
+<Path destination="Salón" direction="SUR" >
+</Path>
+
+</PathList>
+
+
+<ExtraDescriptionList >
+
+<ExtraDescription >
+<Name>alacenas</Name>
+
+<DescriptionList >
+<Description>Son de color crema.</Description>
+</DescriptionList>
+
+</ExtraDescription>
+
+</ExtraDescriptionList>
+
+</Room>
+
+
+<Room name="Salón" >
+
+<DescriptionList >
+<Description>
+Tiene dos sofás y una tele. Decoración minimalista.</Description>
+</DescriptionList>
+
+
+<PathList >
+
+<Path destination="Cocina" direction="NORTE" >
+</Path>
+
+</PathList>
+
+
+<ExtraDescriptionList >
+
+<ExtraDescription >
+<Name>sofá</Name>
+
+<DescriptionList >
+<Description>Son verdes. Están como deshilachados.</Description>
+</DescriptionList>
+
+</ExtraDescription>
+
+</ExtraDescriptionList>
+
+</Room>
+
+</Rooms>
+
+<Items />
+<Mobiles />
+</World>
+

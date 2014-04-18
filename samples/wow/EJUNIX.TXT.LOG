@@ -1,0 +1,15 @@
+      0 txtMap v0.50 20100103
+      0 entrada: ..\..\wow\ejUnix.txt
+      0 ========================
+      1 nueva localidad 'Cocina'
+      2 tomando descripción
+      3 tomando desc. objeto
+      3 Aceptando descripción de objeto 
+      3 Objeto alacenas
+      6 nueva localidad 'Salón'
+      6 'Cocina' por SUR a 'Salón'
+      6 'Salón' por [inversa]  NORTE a 'Cocina'
+      7 tomando descripción
+      8 tomando desc. objeto
+      8 Aceptando descripción de objeto 
+      8 Objeto sofá

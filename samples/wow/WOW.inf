@@ -1,0 +1,76 @@
+! generado por INFORMATE@txtMap, v0.2/ v0.4 20060605
+! Mon Jun 05 18:00:48 2006
+
+
+
+
+Constant ADMITIR_COMANDO_SALIDAS;
+
+Include "EParser";
+Include "Acciones";
+Include "Gramatica";
+
+object limbo "Limbo"
+	with descripcion "limbo"
+;
+
+class Localidad
+has luz;
+
+
+
+class Objeto;
+
+class ObjetoEstatico
+class Objeto
+has escenario;
+
+
+[ inicializar;
+	localizacion = IN_FRONT_OF_A_BRICK_BUILDING;
+];
+
+! ================= LOCALIDADES ===============
+
+
+Localidad CRAMHOLLOW_DALE "Cramhollow Dale"
+with
+	descripcion "^A tall man who looks like a lot of the other tall men around here has a question mark over his head.",
+
+;
+
+Localidad IN_FRONT_OF_A_BRICK_BUILDING "In front of a Brick Building"
+with
+	descripcion "^Welcome to World of Warcraft: The Text Adventure.^You are standing at the end of a road before a small brick building. Around you is a forest. A small stream flows out of the building and down a gully. There is an elf with an exclamation point above her head here.",
+	al_e CRAMHOLLOW_DALE,
+	al_ne RAMSHACKLE_HOUSE,
+
+;
+
+Localidad RAMSHACKLE_HOUSE "Ramshackle House"
+with
+	descripcion "^A small ramshackle house sits atop a hill, apparently abandoned. At the foot of the hill is a large field.",
+	al_so IN_FRONT_OF_A_BRICK_BUILDING,
+
+;
+
+! ================= OBJETOS ===============
+
+
+Objeto DAGGER "dagger" RAMSHACKLE_HOUSE
+with
+	nombre 'dagger',
+	descripcion "It's a noxious, poorly-balanced piece of crap, but it's better than the weapon you have right now."
+has  ;
+
+ObjetoEstatico FIELD "field" RAMSHACKLE_HOUSE
+with
+	nombre 'field',
+	descripcion "The field is swarming with kobolds, their tails swinging seductively in the breeze."
+has  ;
+
+ObjetoEstatico KOBOLDS "kobolds" RAMSHACKLE_HOUSE
+with
+	nombre 'kobolds',
+	descripcion "Their tails swing seductively in the breeze."
+has  nombreplural;

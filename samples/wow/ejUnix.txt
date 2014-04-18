@@ -1,0 +1,10 @@
+Cocina
+Los platos se alinean en las alacenas.
+> ex alacenas
+Son de color crema.
+> s
+Salón
+Tiene dos sofás y una tele. Decoración minimalista.
+> ex sofá
+Son verdes. Están como deshilachados.
+>

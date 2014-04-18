@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+
+</head>
+
+
+<body>
+
+<br>
+
+<big style="font-weight: bold;"><big>The txtMap tool</big></big><br>
+
+<br>
+
+<div style="margin-left: 320px;"><span style="font-style: italic;">Hereby the txtMap tool is
+presented. txtMap allows to create inform adventures (among other
+systems) from text files in which an adventure is (more or less)
+"played". Its advantages are that it creates a skeleton for an IF game
+which comes without errors, rooms and objects can be easily defined,
+and therefore only the processes carried out by the NPC's (and, maybe,
+some objects), must be completed in the source file.</span><br>
+
+</div>
+
+<br>
+
+<br>
+
+<big style="font-weight: bold;"><big>Introduction</big></big><br>
+
+<br>
+
+<a href="#txtMap">txtMap</a> accepts a text file as
+input, and is able to ouput an IF game's
+source file for a number of systems (many of them, however, only
+relevant in Spain). The main output of txtMap is inform source game
+files. This file can be compiled and executed directly, without any
+intermediate state, generating a clean IF piece.<br>
+
+<br>
+
+Follows an example of a suitable file for input:<br>
+
+<p>
+<code>Grassy Area<br>
+
+<br>
+
+The grass on which I stand is neatly trimmed.&nbsp; To the North is
+a path and bench while to the West is an ornamental pond.<br>
+
+<br>
+
+&gt; examine lead<br>
+
+Nothing special. No, really.<br>
+
+<br>
+
+&gt; take lead<br>
+
+taken.<br>
+
+<br>
+
+&gt;look grass<br>
+
+The grass on which I stand is neatly trimmed.<br>
+
+<br>
+
+&gt;w<br>
+
+<br>
+
+Ornamental Pond<br>
+
+<br>
+
+The sun glitters on the surface of the ornamental pond, whose waters
+ripple in the gentle breeze.&nbsp; A path runs North towards a
+large tree, while to the East is a grassy area.<br>
+
+</code>
+</p>
+
+<p>In this example, two rooms are created: "<span style="text-decoration: underline;">Grassy Area</span>",
+and "<span style="text-decoration: underline;">Ornamental
+Pod</span>". In this rooms, the title and main descriptions are
+provided.
+Follow the scenary and plain objects. In the first room, a <span style="text-decoration: underline;">lead</span> (plain
+object) and the <span style="text-decoration: underline;">grass</span>
+(scenary object) are created, providing a
+description for both of them. The lead can be taken, so it is a plain
+object; the grass is only examined, so it is an scenary object. This
+"commands", also include the possiblity to mark an object as clothing,
+for example.<br>
+
+<br>
+
+Links among rooms are created by simply moving into them or by
+signaling the possible movement (this will be shown later). In the
+example, there is a connection from the west (the Grassy Area) to the
+Pond, and viceversa.<br>
+
+</p>
+
+<p>It is also possible to do an inventory (each object separated
+by commas). All the objects listed
+are included in the player character.</p>
+
+<p>
+<code>&gt; i<br>
+
+sandwich,<br>
+
+bag,<br>
+
+apple<br>
+
+</code>
+</p>
+
+<p>These objects must have been examined elsewhere, but they are
+not
+needed to be taken: they are plain objects as soon as they appear in an
+inventory.</p>
+
+<p style="font-weight: bold;"><big><big>Choosing
+an interesting example</big></big></p>
+
+<p>The most famous example adventure is "Ticket", the example
+that came with the PAWS as a demonstration adventure. I was interested
+in using that adventure, but I was not willing to type the whole input
+file for it. So I decided to download the code from the <a href="#PAWS">Yeandle</a>'s web page, and took the
+source code of Ticket, ticket.sce, and modified it slightly just in
+order for Superglus to understand it. <a href="#Superglus">Superglus</a>
+is just an extended PAWS compiler, and I only modified the /OBJ section
+and created a new entry (transcript) just in order to allow me to save
+the game as I played it.</p>
+
+<p style="text-align: center;"><img style="width: 521px; height: 660px;" alt="superglus compiled ticket game" src="superglus-ticket.png"></p>
+
+<p>So I just compiled Ticket with Superglus and executed it with
+Zag. It still had a couple of errors, but they were not very relevant
+for me. I just run through all rooms and examined all objects, as well
+as doing an inventory.</p>
+
+<p>The next step was to modify the text file obtained so I could
+use it as input for txtMap. I only had to: a) add a title to each room;
+b) add a "take" command for all plain objects, and c), avoid loops in
+visiting some rooms (for example, one room allows the player to go "up"
+and reach a branch of the tree, and then go "down" and reach the
+original room). Each room should only be "visited" once, so the code
+should be arranged this way:</p>
+
+<code>
+Large Tree<br>
+
+<br>
+
+The path curves South and East here beside a large tree.<br>
+
+<br>
+
+&gt;examine tree<br>
+
+It's big.<br>
+
+<br>
+
+&gt;e to Gravel Path<br>
+
+&gt;up to Branch of the Tree<br>
+
+<br>
+
+Branch of the Tree<br>
+
+I am sitting on a branch in a broad leaved tree, the park is spread out
+before me, to the East I can see the bus stop through the gate in the
+railings.<br>
+
+<br>
+
+&gt;examine branch<br>
+
+It is strong, hopefully.<br>
+
+<br>
+
+&gt;down to Large Tree<br>
+
+</code>
+<p>Connections can be signaled this way, without, say, "taking"
+them. This avoids visiting a room twice, which is not allowed, with the
+only drawback the reverse connections must be signaled explicitly.</p>
+
+<p>The resulting input text can be found <a href="ticket_eng.txt">here</a>.</p>
+
+<p>This can be compiled with txtMap. The command should be the
+following one:</p>
+
+<p><code>$ txtmap --PL=inform ticket_eng.txt</code></p>
+
+<p>This tells txtMap to output an Inform&nbsp;source file.
+There are other plugins, which can be listed with the --PL=?
+option.&nbsp;</p>
+
+<p><code>$ inform ticket_eng.inf</code></p>
+
+<p>Which creates the game file.</p>
+
+<p></p>
+
+<div style="text-align: center;"><img style="width: 530px; height: 569px;" alt="Ticket game ported to Inform" src="inform-ticket.png"><br>
+
+</div>
+
+<p>Another interesting plugin is the one that generates a group
+of html
+files that are linked following the directions of &nbsp;room's
+links.</p>
+
+<p><code>$ txtmap --PL=html ticket_eng.txt</code></p>
+
+<p>
+Which generates an html file such as the following one:<br>
+
+</p>
+
+<div style="text-align: center;"><img style="width: 564px; height: 712px;" alt="html web page for Ticket" src="ticket-html.png"><br>
+
+<br>
+
+<div style="text-align: justify;">This can be used to
+easily test whether the connections among rooms are correctly set.</div>
+
+</div>
+
+<p><big style="font-weight: bold;"><big>Links</big></big><br>
+
+<br>
+
+<a name="Superglus"></a>Superglus:
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; <a href="http://www.caad.es/superglus/">http://www.caad.es/superglus/</a><br>
+
+<a name="PAWS"></a>PAWS home page:
+&nbsp;&nbsp;&nbsp; <a href="http://www.yeandle.plus.com/advent/">http://www.yeandle.plus.com/advent/</a><br>
+
+<a name="txtMap"></a>txtMap:&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp; &nbsp; <a href="http://caad.es/baltasarq/download">http://caad.es/baltasarq/download</a>
+</p>
+
+</body>
+</html>

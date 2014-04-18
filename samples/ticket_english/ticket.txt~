@@ -1,0 +1,101 @@
+
+Bus Stop
+
+I'm standing by a bus stop, on a road which runs North to South.  To the West a park gate set in iron railings stands open.
+
+>i
+sandwich,
+apple,
+anorak,
+unlit torch
+
+
+> look anorak
+Yeah, your favourite.
+
+> wear anorak
+Worn
+
+> look sandwich
+It's a cheese and pickle sandwich.
+
+> ex unlit torch
+It could provide light.
+
+> ex apple
+The apple is crisp and green.
+
+>examine bag
+Just a simple bag.
+
+>take bag
+I now have the A bag.
+
+> examine dog
+The dog's bright eyes stare at me with mindless love.
+
+>w
+Gravel Path
+I am on a gravel path running East to West, by a park bench, to the South is a grassy area while to the North I can see a bandstand.
+
+> look bench
+The bench is firmly screwed to a concrete base.
+
+>w to Large Tree
+>n to Bandstand
+>s to Grassy Area
+
+Bandstand
+I am standing on the bandstand which appears to be made of ornate cast iron painted white.  To the South is a path.
+
+> look bandstand
+Is made of ornate cast iron, painted white.
+
+> s to Gravel Path
+
+Grassy Area
+
+The grass on which I stand is neatly trimmed.  To the North is a path and bench while to the West is an ornamental pond.
+
+> examine lead
+Nothing special. No, really.
+
+> take lead
+taken.
+
+>look grass
+The grass on which I stand is neatly trimmed.
+
+>w
+
+Ornamental Pond
+
+The sun glitters on the surface of the ornamental pond, whose waters ripple in the gentle breeze.  A path runs North towards a large tree, while to the East is a grassy area.
+The dog follows me wagging his tail.
+
+>look pond
+The sun glitters on the surface of the ornamental pond, whose waters ripple in the gentle breeze.
+
+>examine water
+The waters ripple in the gentle breeze.
+
+>n
+
+Large Tree
+
+The path curves South and East here beside a large tree.
+
+>examine tree
+It's big.
+
+>e to Gravel Path
+>up to Branch of the Tree
+
+Branch of the Tree
+I am sitting on a branch in a broad leaved tree, the park is spread out before me, to the East I can see the bus stop through the gate in the railings.
+
+>examine branch
+It is strong, hopefully.
+
+>down to Large Tree
+

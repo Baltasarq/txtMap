@@ -1,0 +1,114 @@
+! El ticket
+! Esta mini aventura apareció originalmente como demostración
+! de uso del PAWS
+! (c) Baltasar 2006
+
+Parada del bus
+
+Por culpa de un golpe de aire, he perdido el ticket del autobús, y ... ¡está al llegar!. ¿Podré encontrarlo?
+
+La parada del bus, en la acera de una solitaria calle que corre de este a oeste, está desierta.
+Hacia el oeste, se abre la verja de un parque.
+
+> ex verja
+Es de hierro forjado, la pintura verde empieza a desprenderse debido al inexorable paso del tiempo.
+
+> ex parada
+La típica marquesina. Nada de relevancia.
+
+> ex calle
+Corre de norte a sur. A estas horas de la mañana de un domingo, está desierta.
+
+> o
+
+Camino de gravilla
+
+El camino corre de este a oeste, pasando frente a un banco, con sus innumerables partículas de gravilla crujiendo bajo tus pies. Al sur se distingue un lugar con mucho césped, mientras al norte hay un palco.
+
+> ex banco
+Es el típico banco de parque, hecho de listones de madera.
+
+> n a Palco
+
+> o
+
+Gran árbol
+
+El camino gira hacia el sur, justo al pasar por un enorme árbol de fuertes ramas.
+
+> arriba a Sobre el árbol
+
+> ex árbol
+Es un árbol muy alto, con ramas bajas y fuertes.
+
+> ex perro
+Un perro se encuentra aquí, sentado plácidamente y mirándote con curiosidad. Una correa cuelga de su cuello.
+
+> s
+
+El estanque
+
+El agua del estanque centellea bajo la luz de un tímido sol, mientras, a la vez, sus aguas se agitan debido a una agradable brisa. El camino parte hacia el norte a un árbol milenario, mientras al este hay una gran extensión de césped.
+
+> ex estanque
+El estanque está llena de agua calma.
+
+> ex agua
+El agua es plácidamente translúcida.
+
+> e
+
+Pradera
+
+Una gran pradera se extiende hasta los límites de tu vista. El césped está agradablemente cortado. Al norte se ve un camino que pasa frente a un banco, mientras al oeste hay un estanque.
+
+> ex césped
+
+El cesped es fresco y agradable, recién cortado y mullido bajo tus pies. A cierta distancia, puedes ver lo que parece un bocata cuidadosamente envuelto.
+
+> coger bocata
+Cogido.
+
+> ex bocata
+¡Sí, es un bocata!, como puedes ver tras retirar un poco el envoltorio.
+
+> n a Camino de gravilla
+.finloc
+
+Palco
+
+El palco es de piedra con una barandilla y decoraciones en hierro. Está pintado de blanco, pulido y agradable al tacto. En la parte inferior puedes ver una puerta. Hacia el sur ves la entrada del parque y el camino.
+
+> ex palco
+El palco es de piedra y hierro, pintado de blanco.
+
+> s a Camino de gravilla
+> entrar
+
+Interior del palco
+
+El interior del palco está realmente en penumbra. Apenas puedes ver. Varios utensilios de cuidado del parque se agolpan contra las paredes del reducido recinto. El techo se sitúa a un escaso metro y medio.
+
+> ex instrumentos
+Palas, rastrillos, ... ese tipo de cosas.
+
+> ex techo
+Es muy bajo.
+
+>
+.finloc
+
+Sobre el árbol
+
+Sentado en una de las ramas más altas del árbol, el parque se extiende hacia el este. Más allá, puedes ver la entrada del parque con su verja de hierro. Al norte el palco, al sur el estanque y al sureste la pradera de hierba.
+
+> ex rama
+Una fuerte y gruesa rama, con musgo pegado sobre sí.
+
+> ex pájaro
+El pájaro lleva el ticket en su pico. Te mira alerta, preparado para volar en cuanto te muevas.
+
+> ex hojas
+Verdes y lejanas desde donde estás.
+
+> abajo a Gran árbol

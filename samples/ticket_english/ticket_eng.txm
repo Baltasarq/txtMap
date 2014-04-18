@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<Mapa >
+<Locs >
+<Loc >
+<Nombre>Bandstand</Nombre>
+<Desc>
+I am standing on the bandstand which appears to be made of ornate cast iron painted white.  To the South is a path.</Desc>
+<SUR>Gravel Path</SUR>
+</Loc>
+
+<Loc >
+<Nombre>Branch of the Tree</Nombre>
+<Desc>
+I am sitting on a branch in a broad leaved tree, the park is spread out before me, to the East I can see the bus stop through the gate in the railings.</Desc>
+<ABAJO>Large Tree</ABAJO>
+</Loc>
+
+<Loc >
+<Nombre>Bus Stop</Nombre>
+<Desc>
+I'm standing by a bus stop, on a road which runs North to South.  To the West a park gate set in iron railings stands open.</Desc>
+<OESTE>Gravel Path</OESTE>
+</Loc>
+
+<Loc >
+<Nombre>Grassy Area</Nombre>
+<Desc>
+The grass on which I stand is neatly trimmed.  To the North is a path and bench while to the West is an ornamental pond.</Desc>
+<OESTE>Ornamental Pond</OESTE>
+</Loc>
+
+<Loc >
+<Nombre>Gravel Path</Nombre>
+<Desc>
+I am on a gravel path running East to West, by a park bench, to the South is a grassy area while to the North I can see a bandstand.</Desc>
+<NORTE>Bandstand</NORTE>
+<SUR>Grassy Area</SUR>
+<ESTE>Bus Stop</ESTE>
+<OESTE>Large Tree</OESTE>
+</Loc>
+
+<Loc >
+<Nombre>Large Tree</Nombre>
+<Desc>
+The path curves South and East here beside a large tree.</Desc>
+<SUR>Ornamental Pond</SUR>
+<ESTE>Gravel Path</ESTE>
+<ARRIBA>Branch of the Tree</ARRIBA>
+</Loc>
+
+<Loc >
+<Nombre>Ornamental Pond</Nombre>
+<Desc>
+The sun glitters on the surface of the ornamental pond, whose waters ripple in the gentle breeze.  A path runs North towards a large tree, while to the East is a grassy area.</Desc>
+<NORTE>Large Tree</NORTE>
+<ESTE>Grassy Area</ESTE>
+</Loc>
+
+</Locs>
+
+</Mapa>
+

@@ -1,0 +1,200 @@
+!% -SD
+
+! generado por INFORM@txtMap, v0.2/ v0.44 20080208
+! Tue May 13 13:55:31 2008
+
+
+
+Constant Story "Ticket";
+Constant Headline "^An interactive fiction piece.^^";
+
+
+
+Include "Parser";
+Include "VerbLib";
+Include "Grammar";
+
+object limbo "Limbo"
+	with descripcion "limbo"
+;
+
+class Localidad
+has light;
+
+
+
+class Objeto;
+
+class ObjetoEstatico
+class Objeto
+has scenery;
+
+
+[ initialise;
+	location = PARADA_DEL_BUS;
+];
+
+! ================= LOCALIDADES ===============
+
+
+Localidad CAMINO_DE_GRAVILLA "Camino de gravilla"
+with
+	description "^El camino corre de este a oeste, pasando frente a un banco, con sus innumerables partículas de gravilla crujiendo bajo tus pies. Al sur se distingue un lugar con mucho césped, mientras al norte hay un palco.",
+	n_to PALCO,
+	e_to PARADA_DEL_BUS,
+	w_to GRAN_ARBOL,
+
+;
+
+Localidad EL_ESTANQUE "El estanque"
+with
+	description "^El agua del estanque centellea bajo la luz de un tímido sol, mientras, a la vez, sus aguas se agitan debido a una agradable brisa. El camino parte hacia el norte a un árbol milenario, mientras al este hay una gran extensión de césped.",
+	n_to GRAN_ARBOL,
+	e_to PRADERA,
+
+;
+
+Localidad GRAN_ARBOL "Gran árbol"
+with
+	description "^El camino gira hacia el sur, justo al pasar por un enorme árbol de fuertes ramas.",
+	s_to EL_ESTANQUE,
+	e_to CAMINO_DE_GRAVILLA,
+	u_to SOBRE_EL_ARBOL,
+
+;
+
+Localidad INTERIOR_DEL_PALCO "Interior del palco"
+with
+	description "^El interior del palco está realmente en penumbra. Apenas puedes ver. Varios utensilios de cuidado del parque se agolpan contra las paredes del reducido recinto. El techo se sitúa a un escaso metro y medio.",
+	out_to PALCO,
+
+;
+
+Localidad PALCO "Palco"
+with
+	description "^El palco es de piedra con una barandilla y decoraciones en hierro. Está pintado de blanco, pulido y agradable al tacto. En la parte inferior puedes ver una puerta. Hacia el sur ves la entrada del parque y el camino.",
+	s_to CAMINO_DE_GRAVILLA,
+	in_to INTERIOR_DEL_PALCO,
+
+;
+
+Localidad PARADA_DEL_BUS "Parada del bus"
+with
+	description "^Por culpa de un golpe de aire, he perdido el ticket del autobús, y ... ¡está al llegar!. ¿Podré encontrarlo?^La parada del bus, en la acera de una solitaria calle que corre de este a oeste, está desierta.^Hacia el oeste, se abre la verja de un parque.",
+	w_to CAMINO_DE_GRAVILLA,
+
+;
+
+Localidad PRADERA "Pradera"
+with
+	description "^Una gran pradera se extiende hasta los límites de tu vista. El césped está agradablemente cortado. Al norte se ve un camino que pasa frente a un banco, mientras al oeste hay un estanque.",
+	n_to CAMINO_DE_GRAVILLA,
+	w_to EL_ESTANQUE,
+
+;
+
+Localidad SOBRE_EL_ARBOL "Sobre el árbol"
+with
+	description "^Sentado en una de las ramas más altas del árbol, el parque se extiende hacia el este. Más allá, puedes ver la entrada del parque con su verja de hierro. Al norte el palco, al sur el estanque y al sureste la pradera de hierba.",
+	d_to GRAN_ARBOL,
+
+;
+
+! ================= OBJETOS ===============
+
+
+ObjetoEstatico OBJ_AGUA "agua" EL_ESTANQUE
+with
+	name 'AGUA',
+	description "El agua es plácidamente translúcida."
+has   ;
+
+ObjetoEstatico OBJ_BANCO "banco" CAMINO_DE_GRAVILLA
+with
+	name 'BANCO',
+	description "Es el típico banco de parque, hecho de listones de madera."
+has   ;
+
+Objeto OBJ_BOCATA "bocata" PRADERA
+with
+	name 'BOCATA',
+	description "¡Sí, es un bocata!, como puedes ver tras retirar un poco el envoltorio."
+has   ;
+
+ObjetoEstatico OBJ_CALLE "calle" PARADA_DEL_BUS
+with
+	name 'CALLE',
+	description "Corre de norte a sur. A estas horas de la mañana de un domingo, está desierta."
+has   ;
+
+ObjetoEstatico OBJ_CESPED "césped" PRADERA
+with
+	name 'CESPED',
+	description "El cesped es fresco y agradable, recién cortado y mullido bajo tus pies. A cierta distancia, puedes ver lo que parece un bocata cuidadosamente envuelto."
+has   ;
+
+ObjetoEstatico OBJ_ESTANQUE "estanque" EL_ESTANQUE
+with
+	name 'ESTANQUE',
+	description "El estanque está llena de agua calma."
+has   ;
+
+ObjetoEstatico OBJ_HOJAS "hojas" SOBRE_EL_ARBOL
+with
+	name 'HOJAS',
+	description "Verdes y lejanas desde donde estás."
+has   ;
+
+ObjetoEstatico OBJ_INSTRUMENTOS "instrumentos" INTERIOR_DEL_PALCO
+with
+	name 'INSTRUMENTOS',
+	description "Palas, rastrillos, ... ese tipo de cosas."
+has   ;
+
+ObjetoEstatico OBJ_PALCO "palco" PALCO
+with
+	name 'PALCO',
+	description "El palco es de piedra y hierro, pintado de blanco."
+has   ;
+
+ObjetoEstatico OBJ_PARADA "parada" PARADA_DEL_BUS
+with
+	name 'PARADA',
+	description "La típica marquesina. Nada de relevancia."
+has   ;
+
+ObjetoEstatico OBJ_PERRO "perro" GRAN_ARBOL
+with
+	name 'PERRO',
+	description "Un perro se encuentra aquí, sentado plácidamente y mirándote con curiosidad. Una correa cuelga de su cuello."
+has   ;
+
+ObjetoEstatico OBJ_PAJARO "pájaro" SOBRE_EL_ARBOL
+with
+	name 'PAJARO',
+	description "El pájaro lleva el ticket en su pico. Te mira alerta, preparado para volar en cuanto te muevas."
+has   ;
+
+ObjetoEstatico OBJ_RAMA "rama" SOBRE_EL_ARBOL
+with
+	name 'RAMA',
+	description "Una fuerte y gruesa rama, con musgo pegado sobre sí."
+has   ;
+
+ObjetoEstatico OBJ_TECHO "techo" INTERIOR_DEL_PALCO
+with
+	name 'TECHO',
+	description "Es muy bajo."
+has   ;
+
+ObjetoEstatico OBJ_VERJA "verja" PARADA_DEL_BUS
+with
+	name 'VERJA',
+	description "Es de hierro forjado, la pintura verde empieza a desprenderse debido al inexorable paso del tiempo."
+has   ;
+
+ObjetoEstatico OBJ_ARBOL "árbol" GRAN_ARBOL
+with
+	name 'ARBOL',
+	description "Es un árbol muy alto, con ramas bajas y fuertes."
+has   ;

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<Mapa >
+
+<Locs >
+
+<Loc >
+<Nombre>Cramhollow Dale</Nombre>
+<Desc>
+A tall man who looks like a lot of the other tall men around here has a question mark over his head.</Desc>
+<OESTE>In front of a Brick Building</OESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>In front of a Brick Building</Nombre>
+<Desc>
+Welcome to World of Warcraft: The Text Adventure.
+You are standing at the end of a road before a small brick building. Around you is a forest. A small stream flows out of the building and down a gully. There is an elf with an exclamation point above her head here.</Desc>
+<ESTE>Cramhollow Dale</ESTE>
+<NORDESTE>Ramshackle House</NORDESTE>
+</Loc>
+
+
+<Loc >
+<Nombre>Ramshackle House</Nombre>
+<Desc>
+A small ramshackle house sits atop a hill, apparently abandoned. At the foot of the hill is a large field.</Desc>
+<SUDOESTE>In front of a Brick Building</SUDOESTE>
+</Loc>
+
+</Locs>
+
+</Mapa>
+

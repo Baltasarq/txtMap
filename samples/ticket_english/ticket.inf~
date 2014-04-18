@@ -1,0 +1,156 @@
+! generado por INFORM@txtMap, v0.2/ v0.4 20061010
+! Wed May 16 18:01:46 2007
+
+
+
+
+Include "Parser";
+Include "VerbLib";
+Include "Grammar";
+
+object limbo "Limbo"
+	with descripcion "limbo"
+;
+
+class Localidad
+has light;
+
+
+
+class Objeto;
+
+class ObjetoEstatico
+class Objeto
+has scenery;
+
+
+[ initialise;
+	location = BUS_STOP;
+
+	! Objetos de inventario
+
+
+	move OBJ_SANDWICH to jugador;
+	move OBJ_APPLE to jugador;
+	move OBJ_ANORAK to jugador;
+	move OBJ_UNLIT_TORCH to jugador;
+];
+
+! ================= LOCALIDADES ===============
+
+
+Localidad BANDSTAND "Bandstand"
+with
+	description "^I am standing on the bandstand which appears to be made of ornate cast iron painted white.  To the South is a path.",
+	s_to GRAVEL_PATH,
+
+;
+
+Localidad BRANCH_OF_THE_TREE "Branch of the Tree"
+with
+	description "^I am sitting on a branch in a broad leaved tree, the park is spread out before me, to the East I can see the bus stop through the gate in the railings.",
+	d_to LARGE_TREE,
+
+;
+
+Localidad BUS_STOP "Bus Stop"
+with
+	description "^I'm standing by a bus stop, on a road which runs North to South.  To the West a park gate set in iron railings stands open.",
+	w_to GRAVEL_PATH,
+
+;
+
+Localidad GRASSY_AREA "Grassy Area"
+with
+	description "^The grass on which I stand is neatly trimmed.  To the North is a path and bench while to the West is an ornamental pond.",
+	w_to ORNAMENTAL_POND,
+
+;
+
+Localidad GRAVEL_PATH "Gravel Path"
+with
+	description "^I am on a gravel path running East to West, by a park bench, to the South is a grassy area while to the North I can see a bandstand.",
+	n_to BANDSTAND,
+	s_to GRASSY_AREA,
+	e_to BUS_STOP,
+
+;
+
+Localidad LARGE_TREE "Large Tree"
+with
+	description "^The path curves South and East here beside a large tree.",
+	s_to ORNAMENTAL_POND,
+	u_to BRANCH_OF_THE_TREE,
+
+;
+
+Localidad ORNAMENTAL_POND "Ornamental Pond"
+with
+	description "^The sun glitters on the surface of the ornamental pond, whose waters ripple in the gentle breeze.  A path runs North towards a large tree, while to the East is a grassy area.^The dog follows me wagging his tail.",
+	n_to LARGE_TREE,
+	e_to GRASSY_AREA,
+
+;
+
+! ================= OBJETOS ===============
+
+
+Objeto OBJ_ANORAK "anorak" BUS_STOP
+with
+	name 'ANORAK',
+	description "Yeah, your favourite."
+has   clothing;
+
+Objeto OBJ_APPLE "apple" BUS_STOP
+with
+	name 'APPLE',
+	description "The apple is crisp and green."
+has   ;
+
+Objeto OBJ_BAG "bag" BUS_STOP
+with
+	name 'BAG',
+	description ""
+has   ;
+
+ObjetoEstatico OBJ_BANDSTAND "bandstand" BANDSTAND
+with
+	name 'BANDSTAND',
+	description "Is made of ornate cast iron, painted white."
+has   ;
+
+ObjetoEstatico OBJ_BENCH "bench" GRAVEL_PATH
+with
+	name 'BENCH',
+	description "The bench is firmly screwed to a concrete base."
+has   ;
+
+ObjetoEstatico OBJ_GRASS "grass" GRASSY_AREA
+with
+	name 'GRASS',
+	description "The grass on which I stand is neatly trimmed."
+has   ;
+
+Objeto OBJ_LEAD "lead" GRASSY_AREA
+with
+	name 'LEAD',
+	description ""
+has   ;
+
+ObjetoEstatico OBJ_POND "pond" ORNAMENTAL_POND
+with
+	name 'POND',
+	description "The sun glitters on the surface of the ornamental pond, whose waters ripple in the gentle breeze."
+has   ;
+
+Objeto OBJ_SANDWICH "sandwich" BUS_STOP
+with
+	name 'SANDWICH',
+	description "It's a cheese and pickle sandwich."
+has   ;
+
+Objeto OBJ_UNLIT_TORCH "unlit torch" BUS_STOP
+with
+	name 'UNLIT',
+	description "It could provide light."
+has   ;
