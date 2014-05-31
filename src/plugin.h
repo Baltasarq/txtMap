@@ -403,5 +403,14 @@ public:
         static StdCPlugin *creaStdCPlugin();
 };
 
+class FiJsPlugin : public Plugin {
+protected:
+        FiJsPlugin(const std::string &, const std::string &,
+                   const std::string &, const std::string &);
+public:
+        void procesar(TDS *);
+        static FiJsPlugin *creaFiJsPlugin();
+};
+
 
 #endif

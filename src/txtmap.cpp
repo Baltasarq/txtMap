@@ -21,7 +21,7 @@
 #define __TEXT__UI
 
 const std::string nombre     = "txtMap";
-const std::string version    = " v0.51 20140418";
+const std::string version    = " v0.52 20140531";
 
 const std::string opQuiet    = "QUIET";
 const std::string opLanguage = "LANG=";

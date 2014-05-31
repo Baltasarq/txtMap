@@ -112,6 +112,7 @@ void Plugin::iniciaListaPlugins()
         insertaEnListaPlugins( I7GbPlugin::creaI7GbPlugin() );
         insertaEnListaPlugins( BasPlugin::creaBasPlugin() );
         insertaEnListaPlugins( StdCPlugin::creaStdCPlugin() );
+        insertaEnListaPlugins( FiJsPlugin::creaFiJsPlugin() );
 }
 
 
@@ -2618,6 +2619,154 @@ StdCPlugin * StdCPlugin::creaStdCPlugin()
 
         if ( toret == NULL ) {
                 throw ErrorInterno( "Sin memoria, creando plugin stdC" );
+        }
+
+        return toret;
+}
+
+// ================================================================== FiJsPlugin
+FiJsPlugin::FiJsPlugin(const std::string &a, const std::string &n,
+                       const std::string &v, const std::string &h)
+        : Plugin(a, n, v, h)
+{
+}
+
+void FiJsPlugin::procesar(TDS *tds)
+{
+        Localidad * loc;
+        Objeto *obj;
+        int numLoc = 0;
+        time_t currentTime = time( NULL );
+        std::string hora = StringMan::toString( currentTime );
+        std::tm * fecha = std::localtime( &currentTime );
+
+        // Abrir la salida
+        StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".js" );
+        FILE * f = fopen( nomFichSal.c_str(), "wt" );
+
+        if ( f == NULL ) {
+                throw ErrorES( "imposible abrir " + nomFichSal );
+        }
+
+        // Guardar la cabecera
+        fprintf( f, "/*\n\tgenerado por %s@%s, %s/%s\n\t%s\n*/\n\n",
+                    getNombre().c_str(),
+                    nombre.c_str(),
+                    getVersion().c_str(),
+                    version.c_str(),
+                    hora.c_str()
+        );
+
+        // Info de la aventura
+        // Titulo & intro
+        fprintf( f, "ctrl.ponTitulo( \"%s\" );\n", tds->nombreAventura.c_str() );
+        fprintf( f, "ctrl.ponIntro( \"<p>Empieza la aventura...</p>\" );\n" );
+        fprintf( f, "// ctrl.ponImg( \"res/portada.jpg\" );\n" );
+        fprintf( f, "ctrl.ponAutor( \"txtmap@caad.es\" );\n" );
+        fprintf( f, "ctrl.ponVersion( \"%04d%02d%02d\" );\n",
+                fecha->tm_year + 1900, fecha->tm_mon + 1, fecha->tm_mday );
+
+        // Localidades
+        fprintf( f, "\n// *** Locs --\n" );
+
+        for(loc = tds->getPriLoc(); !tds->esLocalidadFinal(); loc = tds->getSigLoc()) {
+            std::string title = StringMan::cambiarCadenas( loc->getId(), '\n', "\\n" );
+            StringMan::cambiarCadenasCnvt( title, '"', "\\\"" );
+
+            std::string desc = StringMan::cambiarCadenas( loc->getDesc(), '\n', "\\n" );
+            StringMan::cambiarCadenasCnvt( desc, '"', "\\\"" );
+
+            fprintf( f, "\nvar %s = ctrl.lugares.creaLoc(\n", loc->getIdUnico().c_str() );
+            fprintf( f, "\t\"%s\",\n", title.c_str() );
+            fprintf( f, "\t[ \"%s\" ],\n", loc->getId().c_str() );
+            fprintf( f, "\t\"%s\"\n);\n", desc.c_str() );
+
+            if ( !( loc->nombreRecGrafico.empty()) ) {
+                fprintf( f, "%s.pic = \"%s\";\n",
+                        loc->getIdUnico().c_str(),
+                        loc->nombreRecGrafico.c_str() );
+            }
+
+            if ( !( loc->nombreRecMusica.empty()) ) {
+                fprintf( f, "%s.audio.src = \"%s\";\n",
+                        loc->getIdUnico().c_str(),
+                        loc->nombreRecMusica.c_str() );
+            }
+
+            loc->numId = numLoc++;
+        }
+
+        fprintf( f, "\n// *** Compas --\n\n" );
+        loc = tds->getPriLoc();
+        while( !tds->esLocalidadFinal() )
+        {
+            fprintf( f, "\n// -- %s\n", loc->getIdUnico().c_str() );
+
+            for(size_t i = 0; i < Localidad::NumDirecciones; ++i)
+            {
+                const std::string &salida = ( loc->getSalidas() )[i];
+
+                if ( !salida.empty() ) {
+                    Localidad * locDest = tds->buscaLoc( salida );
+
+                    if ( locDest != NULL ) {
+                            fprintf( f, "%s.ponSalida( \"%s\", %s );\n",
+                                    loc->getIdUnico().c_str(),
+                                    StringMan::mins( Localidad::strDireccion[ i ] ).c_str(),
+                                    locDest->getIdUnico().c_str() );
+                    }
+                }
+            }
+
+            loc = tds->getSigLoc();
+        }
+
+        fprintf( f, "\n\n// *** Objs --\n" );
+        for(obj = tds->getPriObj(); !tds->esObjetoFinal(); obj = tds->getSigObj()) {
+            std::string desc = StringMan::cambiarCadenas( obj->getDesc(), '\n', "\\n" );
+            StringMan::cambiarCadenasCnvt( desc, '"', "\\\"" );
+
+            std::string nombre = StringMan::cambiarCadenas( obj->getId(), '\n', "\\n" );
+            StringMan::cambiarCadenasCnvt( nombre, '"', "\\\"" );
+
+            std::string voc = StringMan::mins( obj->getNomVoc() );
+            fprintf( f, "\nvar %s = ctrl.creaObj(\n", obj->getIdUnico().c_str() );
+            fprintf( f, "\t\"%s\",\n", nombre.c_str() );
+            fprintf( f, "\t[ \"%s\" ],\n", voc.c_str() );
+            fprintf( f, "\t\"%s\",\n", desc.c_str() );
+            fprintf( f, "\t%s,\n", obj->getContinente()->getIdUnico().c_str() );
+
+            if ( obj->esEscenario() ) {
+                fprintf( f, "\tEnt.Escenario\n" );
+            } else {
+                fprintf( f, "\tEnt.Portable\n" );
+            }
+
+            fprintf( f, ");\n" );
+
+            if ( obj->esPonible() ) {
+                fprintf( f, "%s.ponPrenda();\n", obj->getIdUnico().c_str() );
+            }
+        }
+
+        fprintf( f, "\n\nctrl.lugares.ponInicio( %s );\n\n",
+                tds->getPriLoc()->getIdUnico().c_str()
+        );
+
+        fclose( f );
+}
+
+FiJsPlugin * FiJsPlugin::creaFiJsPlugin()
+{
+        FiJsPlugin * toret = new(std::nothrow) FiJsPlugin (
+                                "Baltasar", "fi.js", "v0.1",
+                                "Este plugin genera un archivo preparado "
+                                "para ser utilizado como parte de un programa "
+                                "hecho con HTML y fi.js."
+        );
+
+        if ( toret == NULL ) {
+                throw ErrorInterno( "Sin memoria, creando plugin fi.js" );
         }
 
         return toret;
