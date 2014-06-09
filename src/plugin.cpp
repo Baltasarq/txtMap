@@ -2678,7 +2678,7 @@ void FiJsPlugin::procesar(TDS *tds)
 
             fprintf( f, "\nvar %s = ctrl.lugares.creaLoc(\n", loc->getIdUnico().c_str() );
             fprintf( f, "\t\"%s\",\n", title.c_str() );
-            fprintf( f, "\t[ \"%s\" ],\n", loc->getId().c_str() );
+            fprintf( f, "\t[ \"%s\" ],\n", StringMan::mins( loc->getId() ).c_str() );
             fprintf( f, "\t\"%s\"\n);\n", desc.c_str() );
 
             if ( !( loc->nombreRecGrafico.empty()) ) {
