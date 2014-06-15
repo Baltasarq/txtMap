@@ -113,6 +113,7 @@ void Plugin::iniciaListaPlugins()
         insertaEnListaPlugins( BasPlugin::creaBasPlugin() );
         insertaEnListaPlugins( StdCPlugin::creaStdCPlugin() );
         insertaEnListaPlugins( FiJsPlugin::creaFiJsPlugin() );
+        insertaEnListaPlugins( InPawsPlugin::creaInPawsPlugin() );
 }
 
 
@@ -2635,7 +2636,6 @@ void FiJsPlugin::procesar(TDS *tds)
 {
         Localidad * loc;
         Objeto *obj;
-        int numLoc = 0;
         time_t currentTime = time( NULL );
         std::string hora = StringMan::toString( currentTime );
         std::tm * fecha = std::localtime( &currentTime );
@@ -2692,8 +2692,6 @@ void FiJsPlugin::procesar(TDS *tds)
                         loc->getIdUnico().c_str(),
                         loc->nombreRecMusica.c_str() );
             }
-
-            loc->numId = numLoc++;
         }
 
         fprintf( f, "\n// *** Compas --\n\n" );
@@ -2750,7 +2748,7 @@ void FiJsPlugin::procesar(TDS *tds)
         }
 
         fprintf( f, "\n\nctrl.lugares.ponInicio( %s );\n\n",
-                tds->getPriLoc()->getIdUnico().c_str()
+                tds->locComienzo->getIdUnico().c_str()
         );
 
         fclose( f );
@@ -2767,6 +2765,215 @@ FiJsPlugin * FiJsPlugin::creaFiJsPlugin()
 
         if ( toret == NULL ) {
                 throw ErrorInterno( "Sin memoria, creando plugin fi.js" );
+        }
+
+        return toret;
+}
+
+// ================================================================== InPawsPlugin
+InPawsPlugin::InPawsPlugin(const std::string &a, const std::string &n,
+                       const std::string &v, const std::string &h)
+        : Plugin(a, n, v, h)
+{
+}
+
+void InPawsPlugin::procesar(TDS *tds)
+{
+        size_t num;
+        Localidad * loc;
+        Objeto *obj;
+        time_t currentTime = time( NULL );
+        std::string hora = StringMan::toString( currentTime );
+        std::tm * fecha = std::localtime( &currentTime );
+
+        // Abrir la salida
+        StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".paw" );
+        FILE * f = fopen( nomFichSal.c_str(), "wt" );
+
+        if ( f == NULL ) {
+                throw ErrorES( "imposible abrir " + nomFichSal );
+        }
+
+        // Guardar la cabecera
+        fprintf( f, "// generado por %s@%s, %s/%s\n// %s\n\n",
+                    getNombre().c_str(),
+                    nombre.c_str(),
+                    getVersion().c_str(),
+                    version.c_str(),
+                    hora.c_str()
+        );
+
+        fprintf( f, "#include \"LibPAW.h\";\n\n");
+
+        fprintf( f, "\n// *** Crs intl --\n\n" );
+        fprintf( f, "#ifdef PAWSPECTRUM\n" );
+        fprintf( f, "SUBCHAR \"¿\" \"{146}\";\n" );
+        fprintf( f, "SUBCHAR \"á\" \"{144}\";\n" );
+        fprintf( f, "SUBCHAR \"é\" \"{148}\";\n" );
+        fprintf( f, "SUBCHAR \"í\" \"{152}\";\n" );
+        fprintf( f, "SUBCHAR \"ó\" \"{158}\";\n" );
+        fprintf( f, "SUBCHAR \"ú\" \"{159}\";\n" );
+        fprintf( f, "SUBCHAR \"¡\" \"{147}\";\n" );
+        fprintf( f, "SUBCHAR \"ñ\" \"{149}\";\n" );
+        fprintf( f, "SUBCHAR \"Ñ\" \"{150}\";\n" );
+        fprintf( f, "SUBCHAR \"ü\" \"{151}\";\n" );
+        fprintf( f, "#endif\n\n" );
+
+        // Localidades
+        fprintf( f, "\n// *** Locs --\n\n" );
+
+        // Info de la aventura
+        // Titulo & intro
+        fprintf( f, "LOCATION ElInicio 0 {\n" );
+        fprintf( f, "\t\"%s v%04d%02d%02d^\n",
+                tds->nombreAventura.c_str(),
+                fecha->tm_year + 1900, fecha->tm_mon + 1, fecha->tm_mday );
+        fprintf( f, "Empieza la aventura...\";\n}\n\n" );
+
+        num = 1;
+        for(loc = tds->getPriLoc(); !tds->esLocalidadFinal(); loc = tds->getSigLoc()) {
+            std::string desc = StringMan::cambiarCadenas( loc->getDesc(), '\n', "^" );
+            StringMan::cambiarCadenasCnvt( desc, '"', "\\\"" );
+
+            fprintf( f, "LOCATION %s %d {\n", loc->getIdUnico().c_str(), num );
+
+            if ( !( loc->nombreRecGrafico.empty()) ) {
+                fprintf( f, "\t// .grf %s\n",
+                        loc->nombreRecGrafico.c_str() );
+            }
+
+            if ( !( loc->nombreRecMusica.empty()) ) {
+                fprintf( f, "\t// .msc %s\n",
+                        loc->nombreRecMusica.c_str() );
+            }
+
+            fprintf( f, "\t\"%s^\n", loc->getId().c_str() );
+            fprintf( f, "\t\%s\";\n", desc.c_str() );
+            fprintf( f, "\tCONNECTIONS {\n" );
+
+            for(size_t i = 0; i < Localidad::NumDirecciones; ++i)
+            {
+                const std::string &salida = ( loc->getSalidas() )[i];
+
+                if ( !salida.empty() ) {
+                    Localidad * locDest = tds->buscaLoc( salida );
+
+                    if ( locDest != NULL ) {
+                            fprintf( f, "\t\t%s to %s\n",
+                                    StringMan::mays( Localidad::strDireccion[ i ] ).c_str(),
+                                    locDest->getIdUnico().c_str() );
+                    }
+                }
+            }
+
+            fprintf( f, "\t};\n};\n\n" );
+            ++num;
+        }
+
+        num = 1;
+        fprintf( f, "\n// *** Objs --\n\n" );
+        for(obj = tds->getPriObj(); !tds->esObjetoFinal(); obj = tds->getSigObj()) {
+            std::string voc = StringMan::mins( obj->getNomVoc() );
+            std::string desc = StringMan::cambiarCadenas( obj->getDesc(), '\n', "^" );
+            StringMan::cambiarCadenasCnvt( desc, '"', "\\\"" );
+
+            std::string continent;
+            if ( obj->esLlevado() ) {
+                if ( obj->esPonible() )
+                        continent = "WORN";
+                else    continent = "CARRIED";
+            }
+            else {
+                continent = obj->getContinente()->getIdUnico();
+            }
+
+            fprintf( f, "OBJECT %s %d {\n",
+                        obj->getIdUnico().c_str(), num );
+            fprintf( f, "\t\"%s\";\n", desc.c_str() );
+            fprintf( f, "\tWEIGHT 1;\n" );
+            fprintf( f, "\tWORDS %s _;\n", voc.c_str() );
+            fprintf( f, "\tINITIALLYAT %s;\n", continent.c_str() );
+
+            if ( obj->esPonible() ) {
+                fprintf( f, "PROPERTY CLOTHING;\n" );
+            }
+
+            fprintf( f, "};\tVOCABULARY { Noun: \"%s\"; };", voc.c_str() );
+
+            if ( obj->esEscenario() ) {
+                fprintf( f, "\n\nRESPONSE {\n\tCOGE %s: AT %s "
+                            "MESSAGE \"No es algo que puedas coger.\" DONE;\n};",
+                         voc.c_str(),
+                         continent.c_str() );
+            }
+
+            fprintf( f, "\n\n" );
+            ++num;
+        }
+
+        // Start loc
+        fprintf( f, "\n// *** Boot --\n\n" );
+        fprintf( f, "PROCESS 1\n{\n" );
+        fprintf( f, "\t* _: AT ElInicio PROMPT 2 ANYKEY GOTO %s DESC;\n",
+                    tds->locComienzo->getIdUnico().c_str() );
+        fprintf( f, "\t_ _: NEWLINE PROCESS Salidas;\n};\n" );
+
+        // Chars
+        fprintf( f, "CHARACTERS {\n" );
+        fprintf( f, "\t8, 16, 56, 4, 60, 68, 60, 0,\n" );
+        fprintf( f, "\t0, 0, 0, 0, 0, 0, 0, 0,\n" );
+        fprintf( f, "\t0, 16, 0, 16, 32, 66, 60, 0,\n" );
+        fprintf( f, "\t0, 8, 0, 8, 8, 8, 8, 0,\n" );
+        fprintf( f, "\t8, 16, 56, 68, 120, 64, 60, 0,\n" );
+        fprintf( f, "\t56, 0, 120, 68, 68, 68, 68, 0,\n" );
+        fprintf( f, "\t24, 66, 98, 82, 74, 70, 66, 0,\n" );
+        fprintf( f, "\t40, 0, 68, 68, 68, 68, 56, 0,\n" );
+        fprintf( f, "\t8, 16, 0, 48, 16, 16, 56, 0,\n" );
+        fprintf( f, "\t0, 0, 0, 15, 8, 8, 8, 8,\n" );
+        fprintf( f, "\t0, 0, 0, 248, 8, 8, 8, 8,\n" );
+        fprintf( f, "\t8, 8, 8, 15, 0, 0, 0, 0,\n" );
+        fprintf( f, "\t8, 8, 8, 248, 0, 0, 0, 0,\n" );
+        fprintf( f, "\t8, 8, 8, 8, 8, 8, 8, 8,\n" );
+        fprintf( f, "\t8, 16, 56, 68, 68, 68, 56, 0,\n" );
+        fprintf( f, "\t8, 16, 68, 68, 68, 68, 56, 0,\n" );
+        fprintf( f, "\t16, 8, 16, 8, 16, 8, 16, 8,\n" );
+        fprintf( f, "\t170, 85, 170, 85, 170, 85, 170, 85,\n" );
+        fprintf( f, "\t255, 255, 255, 255, 255, 255, 255, 255,\n" );
+        fprintf( f, "\t170, 85, 170, 85, 170, 85, 170, 85,\n" );
+        fprintf( f, "\t204, 51, 204, 51, 204, 51, 204, 51,\n" );
+        fprintf( f, "\t170, 170, 85, 85, 170, 170, 85, 85,\n" );
+        fprintf( f, "\t136, 0, 2, 0, 136, 0, 32, 0,\n" );
+        fprintf( f, "\t0, 0, 32, 0, 0, 0, 2, 0,\n" );
+        fprintf( f, "\t16, 16, 16, 16, 16, 16, 16, 16,\n" );
+        fprintf( f, "\t0, 0, 0, 255, 0, 0, 0, 0,\n" );
+        fprintf( f, "\t68, 68, 68, 68, 68, 68, 68, 68,\n" );
+        fprintf( f, "\t0, 255, 0, 0, 0, 255, 0, 0,\n" );
+        fprintf( f, "\t128, 64, 32, 16, 8, 4, 2, 1,\n" );
+        fprintf( f, "\t1, 2, 4, 8, 16, 32, 64, 128,\n" );
+        fprintf( f, "\t34, 17, 136, 68, 34, 17, 136, 68,\n" );
+        fprintf( f, "\t68, 136, 17, 34, 68, 136, 17, 34,\n" );
+        fprintf( f, "\t195, 60, 195, 60, 195, 60, 195, 60,\n" );
+        fprintf( f, "\t4, 4, 255, 64, 64, 64, 255, 4,\n" );
+        fprintf( f, "\t1, 3, 6, 12, 24, 48, 96, 192, 0\n" );
+        fprintf( f, "};\n" );
+
+        // Include paw library
+        fprintf( f, "\n\n#include \"LibPAW.paw\";\n");
+        fclose( f );
+}
+
+InPawsPlugin * InPawsPlugin::creaInPawsPlugin()
+{
+        InPawsPlugin * toret = new(std::nothrow) InPawsPlugin (
+                                "Baltasar", "InPAWS", "v0.1",
+                                "Este plugin genera un archivo preparado "
+                                "para ser utilizado como parte de un programa "
+                                "hecho con InPAWS, para el PAWS del Spectrum,"
+                                "o SuperGlus/ngPAWS."
+        );
+
+        if ( toret == NULL ) {
+                throw ErrorInterno( "Sin memoria, creando plugin InPAWS" );
         }
 
         return toret;

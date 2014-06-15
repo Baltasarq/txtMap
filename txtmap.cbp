@@ -21,7 +21,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option parameters="--pl=html -osamples/htmlEjemplo/ -mkdir samples/ejemplo.txt" />
+				<Option parameters="--pl=inpaws samples/remakorp/remakorp.txt" />
 				<Compiler>
 					<Add option="-O2" />
 				</Compiler>

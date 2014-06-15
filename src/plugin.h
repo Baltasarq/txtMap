@@ -412,5 +412,13 @@ public:
         static FiJsPlugin *creaFiJsPlugin();
 };
 
+class InPawsPlugin : public Plugin {
+protected:
+        InPawsPlugin(const std::string &, const std::string &,
+                   const std::string &, const std::string &);
+public:
+        void procesar(TDS *);
+        static InPawsPlugin *creaInPawsPlugin();
+};
 
 #endif
