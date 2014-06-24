@@ -2870,12 +2870,6 @@ void InPawsPlugin::procesar(TDS *tds)
             ++num;
         }
 
-        const std::string DetIndefinidoMasculinoSingular = "un";
-        const std::string DetIndefinidoFemeninoSingular = "una";
-        const std::string DetIndefinidoMasculinoPlural = "unos";
-        const std::string DetIndefinidoFemeninoPlural = "unas";
-        const std::string * determinante = &DetIndefinidoMasculinoSingular;
-
         num = 1;
         fprintf( f, "\n// *** Objs --\n\n" );
         for(obj = tds->getPriObj(); !tds->esObjetoFinal(); obj = tds->getSigObj()) {
@@ -2894,23 +2888,19 @@ void InPawsPlugin::procesar(TDS *tds)
                 continent = obj->getContinente()->getIdUnico();
             }
 
-            // Decidir determinante
-            determinante = &DetIndefinidoMasculinoSingular;
-            if ( obj->esPlural() ) {
-                if ( obj->esFemenino() ) {
-                    determinante = &DetIndefinidoFemeninoPlural;
-                } else {
-                    determinante = &DetIndefinidoMasculinoPlural;
-                }
-            } else {
-                if ( obj->esFemenino() ) {
-                    determinante = &DetIndefinidoFemeninoSingular;
-                }
+            fprintf( f, "VOCABULARY { Noun: \"%s\"; };\n", voc.c_str() );
+
+            if ( obj->esEscenario() ) {
+                fprintf( f, "RESPONSE {\n" );
+                fprintf( f, "\tEX %s: AT %s MESSAGE \"%s\" DONE;\n",
+                    voc.c_str(), continent.c_str(), desc.c_str() );
+                fprintf( f, "};\n\n" );
+                continue;
             }
 
             fprintf( f, "OBJECT %s %d {\n",
                         obj->getIdUnico().c_str(), num );
-            fprintf( f, "\t\"%s %s\";\n", determinante->c_str(), voc.c_str() );
+            fprintf( f, "\t\"%s\";\n", voc.c_str() );
             fprintf( f, "\tWEIGHT 1;\n" );
             fprintf( f, "\tWORDS %s _;\n", voc.c_str() );
             fprintf( f, "\tINITIALLYAT %s;\n", continent.c_str() );
@@ -2919,19 +2909,10 @@ void InPawsPlugin::procesar(TDS *tds)
                 fprintf( f, "PROPERTY CLOTHING;\n" );
             }
 
-            fprintf( f, "};\tVOCABULARY { Noun: \"%s\"; };", voc.c_str() );
-
             // Desc
-            fprintf( f, "\n\nRESPONSE {\n" );
+            fprintf( f, "};\n\nRESPONSE {\n" );
             fprintf( f, "\tEX %s: MESSAGE \"%s\" DONE;\n",
                     voc.c_str(), desc.c_str() );
-
-            if ( obj->esEscenario() ) {
-                fprintf( f, "\tCOGE %s: AT %s "
-                            "MESSAGE \"No es algo que puedas coger.\" DONE;\n",
-                         voc.c_str(),
-                         continent.c_str() );
-            }
 
             fprintf( f, "};\n\n" );
             ++num;
