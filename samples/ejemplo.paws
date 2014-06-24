@@ -1,0 +1,70 @@
+// samples/ejemplo.paws
+// generado por INPAWS@txtMap, v0.1/ v0.6 20140612
+// Fri Jun 13 17:33:53 2014
+
+
+// *** Crs intl --
+
+SUBCHAR "¿" "{146}";
+SUBCHAR "á" "{144}";
+SUBCHAR "é" "{148}";
+SUBCHAR "í" "{152}";
+SUBCHAR "ó" "{158}";
+SUBCHAR "ú" "{159}";
+SUBCHAR "¡" "{147}";
+SUBCHAR "ñ" "{149}";
+SUBCHAR "Ñ" "{150}";
+SUBCHAR "ü" "{151}";
+
+// *** Locs --
+
+LOCATION ElInicio 0 {
+	"Ejemplo v20140613^
+Empieza la aventura..."
+}
+
+LOCATION locBodega 2 {
+	"Bodega^
+	^Miles de botellas se alinean en una de las paredes, mientras que al este puedes^ver la puerta hacia la sala de la prensadora.^Unas escaleras conducen hacia la casa."
+	CONNECTIONS {
+		ESTE to locSalaDeLaPrensadora
+		ARRIBA to locSalN
+		ADENTRO to locSalaDeLaPrensadora
+	}
+}
+
+LOCATION locSalaDeLaPrensadora 3 {
+	// .grf kk.jpg
+	// .msc kk.mod
+	"Sala de la prensadora^
+	^Aquí es donde se prensaba el vino en la época en la que todavía prensabais^vino en vuestra familia.^Al este puedes ver una pequeña cueva de la que brota el suave murmullo del agua.^En el suelo hay una trampilla mágica.^ "
+	CONNECTIONS {
+		ESTE to locSalN
+		OESTE to locBodega
+		ABAJO to locBodega
+		AFUERA to locBodega
+	}
+}
+
+LOCATION locSalN 1 {
+	// .grf kk.jpg
+	"Salón^
+	^El salón de tu casa es particular, cuando llueve no se moja, como los demás.^Puedes ver una trampilla."
+	CONNECTIONS {
+		ABAJO to locBodega
+	}
+}
+
+
+
+// *** Objs --
+
+
+
+// *** Boot --
+
+PROCESS 1
+{
+	* _: AT ElInicio PROMPT 2 ANYKEY GOTO locSalN DESC
+	_ _: NEWLINE PROCESS Salidas
+}

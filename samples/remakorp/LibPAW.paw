@@ -1,0 +1,1834 @@
+//===================================oOOOOo===================================\\
+//                                                                            \\
+//                                   LibPAW                                   \\
+//                       (válida para todas las aventuras)                    \\
+//                                                                            \\
+//                                 Mastodon 2009                              \\
+//----------------------------------------------------------------------------\\
+//                                                                            \\
+//  Si vas a usar esta librería en tus proyectos, deberás tener en cuenta:    \\
+//  - Debes definir el género de todos los objetos, bien mediante su peso,    \\
+//    bien extendiendo el proceso ExtPropiedad (ver implementación más abajo) \\
+//  - Para los objetos contenedores, definir el género siempre extendiendo    \\
+//    ExtPropiedad, ya que el peso varía en función de los objetos que tenga  \\
+//  - La descripción de los objetos de la aventura deberá ser sin utilizar    \\
+//    artículos (ej: "cuerda"). La librería ya se encarga de ponerlos al      \\
+//    mostrarlos en pantalla.                                                 \\
+//  - No utilizar los condactos LISTOBJ ni LISTAT, utilizar en su lugar los   \\
+//    procesos que se han definido con el mismo nombre                        \\
+//    Igual para el inventario.                                               \\
+//  - Tienes a tu disposición procesos para mostrar el nombre del objeto en   \\
+//    el first noun o en el second con distintos tipos de artículos (determi  \\
+//    nado, indeterminado, del/de la, etc)                                     \\
+//----------------------------------------------------------------------------\\
+
+Process EsContainerSecond; // Devuelve si el second es contenedor
+Process LocSecond; // Devuelve la localizacion del objeto del second noun
+Process CodeSecond; // Devuelve el código del objeto del second noun
+Process GuardaFirst; // guarda todos los flags relacionados con el first noun-objeto actual
+Process RestauraFirst; // Inversa a la anterior, restaura a la situación inicial
+
+// Flags locales (no traspasan el ámbito de un proceso, y por tanto se reutilizan)
+FLAG tmpFlag1;
+FLAG tmpFlag2;
+
+// Flags para la invocacion de funciones
+FLAG flagPrm1; // primer parámetro
+FLAG flagPrm2; // Segundo parámetro
+FLAG flagRet;  // Valor de retorno
+FLAG flagRet2; // para funciones que retornan más datos
+FLAG flagRet3; // para funciones que retornan más datos
+
+SYSMESSAGES
+{
+	0: "{17}{7}{16}{0}{19}{1}ESTA MUY OSCURO PARA PODER VER{19}{1}{17}{7}{17}{0}{16}{7}";
+	1: "También puedes ver ";
+	2: "^"; // Mensaje que te invita a introducir texto
+	3: "^Haz algo.^";
+	4: "^¿Alguna otra idea?^";
+	5: "^Espero instrucciones.^";
+	6: "No pude entenderte. Usa otras palabras.^";
+	7: "No puedes ir en esa direccion.^";
+	8: "No sé como hacer eso. Intenta describirlo de otra forma.^";
+	9: "Tienes ";
+	10: "levas puest";
+    Sys_Inven: " Además, l"; // Parte del mensaje compuesto para elaborar el inventario
+    Sys_InvenNada: "Actualmente no tienes nada.";
+	11: "=<NADA>=^";
+	12: "¿Seguro?^";
+	13: "^{20}{1}   ¿ Quieres jugar de nuevo ?{6}{20}{0}^";
+	14: "Pues adiós...^";
+	15: "VALE.^";
+	16: "^{16}{3}-=PULSA UNA TECLA PARA SEGUIR=- ";
+	17: "Has hecho ";
+	18: " movida";
+	19: "s";
+	20: ".^";
+	21: "Tu puntuación es de ";
+	22: " sobre un total de 30.^";
+	23: "Yo no llevo eso puesto.^";
+	24: "No puedes dejar "; // No puedes dejarlo por que lo llevas puesto
+	25: "Ya tienes ";
+	26: "coger "; // Parte del mensaje "No hay nada que puedas coger..."
+	27: "No puedo llevar mas cosas.^";
+	28: "No tienes nada de eso.^";
+	29: "Ya tienes puest"; // Primera parte del mensaje al ponerse algo que ya está puesto (ver Sys_LlevasPuest)
+	30: "S";
+	31: "N";
+	32: "^Pulsa una tecla...";
+	33: "{16}{6}>{16}{7}";
+	34: ".";
+	35: "^El tiempo pasa...^";
+	36: "Coges ";
+	37: "Te pones ";
+	38: "Te quitas ";
+	39: ""; // no rellenar, es usado por el AUTOD de MeterSub y debe estar vacío
+	40: "¿Estás intentando ponerte ";
+	41: ""; // No se usa, en paw era:"No puedo quitarme _.^";
+	42: ""; // No se usa, en paw era: "No puedo quitarme _. Tengo las manos llenas.^";
+	43: ""; // No se usa, en paw era:"Me pesa demasiado _.^";
+	44: ""; // No se usa, en paw era:"Tienes _ en ";
+	45: ""; // No se usa, en paw era:"No tienes _ en ";
+	46: ", ";
+	47: " y ";
+	48: ".^";
+	49: "No tienes ";
+	50: "No "; // No lo tienes puesto -> comienzo del mensaje cuando intentas quitarte algo que no llevas puesto
+	51: ".^";
+	52: "No hay nada de eso en ";
+	53: "nada.^";
+	#ifdef PAWSPECTRUM
+	54: "Teclee el nombre del fichero:";
+    #endif
+    #ifndef PAWSPECTRUM
+    54: "Archivo no encontrado.";
+    55: "Archivo corrupto.";
+    56: "Error E/S!  Archivo no grabado!";
+    57: "Directorio lleno.";
+    58: "Disco lleno.";
+    59: "Error en el nombre del archivo.";
+    60: "Escriba el nombre del archivo. ";
+    #endif
+    Sys_Dejas: "Dejas ";
+	Sys_NoPuedes: "No puedes "; // Mensaje genérico, usado por varios procesos
+	Sys_NoHayNada: "No hay nada que puedas ";
+    Sys_CogerEstatico1: ", está"; // Parte de "está fijado al sitio"
+    Sys_CogerEstatico2: " fijad";
+    Sys_CogerEstatico3: " al sitio.^";
+	Sys_ConEseNombre: "con ese nombre. Quizás forme parte del escenario y no sea importante.^"; // Objeto de escenario (general)
+	Sys_TodoNo: "Sólo puedes usar \"TODO\" con los verbos COGER y DEJAR.^";
+	Sys_LlevasPuest: " llevas puest"; // 2ª parte del mensaje para dejar algo que está puesto, o quitarte algo que no llevas
+    Sys_CogerNo: "coger "; // Parte del mensaje "No puedes coger..."
+	Sys_ExaminaNo: "No observas nada que te llame la atención"; // Mensaje por defecto de ExaminaSub
+    Sys_ExaminaPers: "No le ves nada que te llame la atención "; // Igual que el anterior para personas
+	Sys_AbrirNo: "abrir "; // Parte del mensaje "No hay nada que puedas abrir..."
+    Sys_AbrirSi: "Abres "; // "Abres la caja."
+	Sys_CerrarNo: "cerrar "; // Parte del mensaje "No hay nada que puedas cerrar..."
+    Sys_CerrarSi: "Cierras "; // "Cierras la caja."
+    Sys_YaEsta: "Ya está"; // Primera parte de "Ya está abierto/cerrado"
+    Sys_Abierto: " abiert"; // 2ª parte de "Ya está abierto/cerrado"
+    Sys_Cerrado: " cerrad"; // 2ª parte de "Ya está abierto/cerrado"
+	Sys_MeterNo: "meter "; // Parte del mensaje "No hay nada que puedas meter"
+    Sys_SacarNo: "sacar "; // No hay nada que puedas sacar
+    Sys_MeterCosas: "cosas en ";     // "No puedes meter nada en .. mientras esté cerrado"
+    Sys_EstaCerrado1: " mientras esté";
+    Sys_SacarCosas: "cosas "; //Parte del mensaje No puedes sacar cosas de un ...
+    Sys_NoVeoSacarNiContenedor: "No veo qué quieres sacar ni de dónde.^";
+    Sys_DarNo: "dar "; // Parte del mensaje "No puedes dar..."
+    Sys_DarA: " a "; // Parte de los mensajes de error de darSub
+    Sys_Pertenece: ", pertenece "; // Parte de "No puedes dar xxx, pertenece a yyyy."
+    Sys_NoInteresa: " no parece interesar ";  // Parte de "El xxx no parece interesar a yyy."
+    Sys_AquienDar: "No veo a quién quieres darle ";
+    Sys_MostrarNo: "mostrar ";
+    Sys_AquienMostrar: "No veo a quién quieres mostrar ";
+    Sys_FormaParteDe1: ", forma";
+    Sys_FormaParteDe2:  " parte "; // No puedes sacar xxx (estático), forma parte del yyyy
+	Sys_NoEntendiMeter: "No veo dónde quieres meter ";
+    Sys_NoEntendiSacar: "No veo de dónde quieres sacar ";
+	Sys_NoPuedesMeterCosas: "No puedes meter cosas en ";
+	Sys_Metes: "Pones "; // Comienzo del mensaje de meter objetos
+	Sys_MetesEn: " en ";  // Continuación del mensaje de meter objetos
+    Sys_Sacas: "Sacas "; // Comienzo del mensaje de sacar objetos
+    Sys_MirarEn1: "En ";            // Mensajes usados por ListAtText
+    Sys_MirarEn2: " hay ";
+    Sys_MirarEn3: " no hay nada.^";
+    Sys_MirarEn4: "No hay nada.^"; // Mensaje cuando MiramosEn algo que no es un objeto
+    Sys_AccionPsi: "Dudo que obtengas su colaboración.^"; // Mensaje al intentar coger, abrir o meter personajes
+    Sys_SacarPsiNoTiene: " no parece tener nada de eso.^"; // Al intentar sacar o coger de un psi
+    Sys_SacarPsiTiene: "Es propiedad de ";
+    Sys_DejarPsi: "Nunca ha sido tuy"; // Mensaje al intentar dejar o quitarte un personaje (1ª parte)
+    Sys_DescEsta: " está";
+    Sys_DescTiene: ", y en su interior ves ";
+    Sys_DescNoTiene: ", pero está vacío.^";
+}
+
+
+VOCABULARY
+{
+	NOUN 2: "S", "SUR";
+	NOUN 3: "E", "ESTE";
+	NOUN 4: "O", "OESTE";
+	NOUN 5: "NE", "NORESTE", "NORDESTE";
+	NOUN 6: "NO", "NOROESTE";
+	NOUN 7: "SE", "SURESTE";
+	NOUN 8: "SO", "SUROESTE";
+	VERB 9: "SUBE", "SUBIR";
+	NOUN 9: "ARRIBA", "AR";
+	VERB 10: "BAJA", "BAJAR";
+	NOUN 10: "ABAJO", "AB";
+	VERB 11: "ENTRA", "METETE";
+	VERB 12: "SALIR", "SAL";
+	NOUN 13: "N", "NORTE";
+	NOUN 14: "I", "INVENTARIO";
+	VERB: "ABRE", "ABRIR";
+	VERB: "CIERRA", "CERRAR";
+	VERB 50: "COGE", "COGER", "AGARRA", "TOMA", "TOMAR" #ifdef PAWGLULX ,"AGARRAR" #endif;
+	VERB: "DEJA", "DEJAR", "SUELTA", "SOLTAR";
+	NOUN 51: "TODO";
+	VERB: "ENCIEDE", "ENCENDER";
+	VERB: "APAGA" #ifdef PAWGLULX ,"APAGAR" #endif;
+	VERB: "SAVE", "GRABA" #ifdef PAWGLULX ,"GRABAR" #endif;
+	VERB: "LOAD", "CARGA" #ifdef PAWGLULX ,"CARGAR" #endif;
+	VERB: "RS", "RAMSAVE";
+	VERB: "RL", "RAMLOAD";
+	VERB: "DI", "DECIR", "HABLA", "PREGUNTA";
+	CONJUNCTION: "Y", "ENTONCES", "LUEGO";
+	VERB: "M", "R", "MIRAR", "MIRA";
+    VERB: "EX", "EXAMINA" #ifdef PAWGLULX ,"EXAMINAR" #endif;
+	NOUN: "SI";
+	VERB: "PON", "PONER";
+	VERB: "METE", "METER";
+	VERB: "PONTE";
+	VERB 51: "QUITA", "SACA", "SACAR";
+	VERB: "SACATE";
+	VERB: "FIN", "RETIRARTE", "ABANDONA" #ifdef PAWGLULX ,"RETIRARSE", "ABANDONAR" #endif;
+    VERB: "DA", "DALE", "DAR", "DARLE";
+    VERB: "MUESTRA", "MOSTRAR", "ENSENA" #ifndef PAWPC ,"ENSEÑA" #endif #ifdef PAWGLULX ,"ENSENAR", "ENSEÑAR" #endif;
+    PREPOSITION: "EN", "DENTRO";
+}
+
+
+RESPONSE
+{
+	* TODO: NOTEQ 33 COGE NOTEQ 33 DEJA SYSMESS Sys_TodoNo DONE;
+    I _: PROCESS Inventario DONE;
+	I _: SYSMESS 9 LISTAT CARRIED SYSMESS 10 LISTAT WORN DONE; //INVEN;
+    COGE *: CLEAR 50; // Ponemos a cero el flag del DOALL
+	COGE *: EQ 34 TODO DOALL 255;
+    COGE *: NOTZERO 50 SYSMESS "_: "; // Anteponemos el nombre del objeto al coger todo
+	COGE _: NOUN2 _ PROCESS CogerSub DONE;
+    COGE _: PROCESS SacarSub DONE;
+    DEJA *: CLEAR 50;
+	DEJA *: EQ 34 TODO DOALL 254;
+    DEJA *: NOTZERO 50 SYSMESS "_: "; // Anteponemos el nombre del objeto al dejar todo
+	DEJA _: NOUN2 _ Process DejarSub DONE;
+    DEJA _: PROCESS MeterSub DONE;
+	SAVE _: SAVE;
+	LOAD _: LOAD;
+	RAMSAVE _: RAMSAVE SYSMESS "Juego guardado en memoria.";
+	RAMLOAD _: RAMLOAD 255 DESC;
+	PONTE _ : PROCESS PonerSub DONE;
+	PON _: NOUN2 _ PROCESS PonerSub DONE;
+	PON _: PROCESS MeterSub DONE;
+	METE _: PROCESS MeterSub DONE;
+	QUITA _: NOUN2 _ PROCESS QuitarSub DONE;
+	QUITA _: PROCESS SacarSub DONE;
+	SACATE _: PROCESS QuitarSub DONE;
+	FIN _: QUIT TURNS SCORE END;
+	EXAMINA _ : PROCESS ExaminarSub DONE;
+	ABRIR _ : PROCESS AbrirSub DONE;
+	CIERRA _: PROCESS CerrarSub DONE;
+    DA _: PROCESS DarSub DONE;
+    ENSENA _: PROCESS MostrarSub DONE;
+    MIRA _: PREP EN PROCESS MirarEnSub DONE;
+    MIRA _: NOTEQ 34 255 LET 33 EXAMINA;
+    MIRA _: DESC;
+}
+
+PROCESS 1
+{
+	* _: NEWLINE ZERO 0 ABSENT 0 PROCESS ListObj;
+	* _: PRESENT 0 PROCESS ListObj;
+}
+
+PROCESS 2
+{
+}
+
+//-----------------------------------------------------------
+// Process ExtPropiedad: extender para los objetos con ciertas
+// propiedades especiales. Hacer SET sobre los flags adecuados, 
+// o asignarles el valor que corresponda
+// Para extenderla, por ejemplo para el objeto "Armario", definir
+// junto a la definición del objeto:
+// PROCESS ExtPropiedad { * _: EQ 51 Armario SET PROP_NOLISTAR SET....; }
+// 
+// EXCEPCIONES:
+//   - Los objetos con PROP_NOLISTAR serán listados igual, si están
+//     en el inventario.
+//-----------------------------------------------------------
+
+Process ExtPropiedad
+{
+    *   *:  CLEAR PROP_NOLISTAR             // No listar el objeto, aunque esté presente
+            CLEAR PROP_ESTATICO             // No permitir coger
+            CLEAR PROP_ABRIBLE
+            CLEAR PROP_ABIERTO
+            CLEAR PROP_CONTENEDOR
+            CLEAR PROP_INCONTABLE
+            LET PROP_GENNUM GenNum_NODEF     // Genero y número del objeto
+            WHATO;
+         
+    _   _:  EQ PROP_GENNUM GenNum_NODEF
+            COPYFF 55 PROP_GENNUM;       // Si no se indica, se toma como base el peso
+    _   _:  EQ 56 128
+            SET PROP_CONTENEDOR
+            ZERO PROP_ABRIBLE            // Todo lo que no sea de abrir/cerrar
+            SET PROP_ABIERTO;            // se tratará como si estuviera abierto
+    _   _:  DONE;
+}
+
+Process DescPropiedad
+{
+    _   _ : PROCESS ExtPropiedad;
+    
+    _   _ : NOTZERO PROP_ABRIBLE
+            NOTZERO PROP_ABIERTO
+            Process PrintFirstArtDetMayusc
+            SYSMESS Sys_DescEsta
+            PROCESS TermGeneroVerbo
+            SYSMESS Sys_Abierto
+            PROCESS TermGenero
+            NOTZERO PROP_CONTENEDOR
+            COPYFF 51 flagPrm1
+            PROCESS ContarAt
+            ZERO flagRet
+            SYSMESS Sys_DescNoTiene
+            DONE;
+            
+    _   _ : PROCESS ExtPropiedad 
+            NOTZERO PROP_ABRIBLE
+            ZERO PROP_ABIERTO
+            Process PrintFirstArtDetMayusc
+            SYSMESS Sys_DescEsta
+            PROCESS TermGeneroVerbo
+            SYSMESS Sys_Cerrado
+            PROCESS TermGenero;
+    
+    _   _ : PROCESS ExtPropiedad
+            NOTZERO PROP_ABRIBLE
+            NOTZERO PROP_ABIERTO
+            NOTZERO PROP_CONTENEDOR
+            //SYSMESS Sys_DescTiene
+            SYSMESS ". "
+            PROCESS ListAtFirstNoun
+            NEWLINE
+            DONE;
+            
+    _   _ : ZERO PROP_ABRIBLE
+            NOTZERO PROP_CONTENEDOR
+            PROCESS ListAtFirstNoun
+            DONE;
+            
+    _   _ : SYSMESS ".^";
+}
+
+//------------------------------------------------------------
+// Fin de Process ExtPropiedad
+//------------------------------------------------------------
+
+PROCESS TermGenero
+{
+    _     _ :        PROCESS ExtPropiedad;
+                     
+	_     _ :        EQ            PROP_GENNUM   1 	// peso=1 MascSing
+	                 SYSMESS       "o"	// escribe 'o'
+	                 DONE;
+
+	_     _ :        EQ            PROP_GENNUM   2 	// peso=2 FemSing
+	                 SYSMESS       "a"	// escribe 'a'
+	                 DONE;
+
+	_     _ :        EQ            PROP_GENNUM   3 	// peso=3 MasPlu
+	                 SYSMESS       "os"	// escribe 'os'
+	                 DONE;
+
+	_     _ :        EQ            PROP_GENNUM   4 	// peso=4 FemPlu
+	                 SYSMESS       "as"	// escribe 'as'
+                 	 DONE;
+}
+
+PROCESS TermGeneroVerbo // Pinta 'n' si es plural
+{
+    _     _ :        PROCESS ExtPropiedad;
+                     
+	_     _ :        GT            PROP_GENNUM   2 	// ¿es plural?
+	                 SYSMESS       "n"	// escribe 'n', como en "Tienen ..."
+	                 DONE;
+}
+
+PROCESS ArtDet
+{
+	_     _ :PROCESS ExtPropiedad
+             EQ            PROP_GENNUM   1	  // peso=1 (masculino singular)?
+			 SYSMESS       "el"	  // escribe 'el'
+			 DONE;
+
+	_     _ :        SYSMESS       "l"	  // escribe 'l'
+			 PROCESS       TermGenero // llama proceso para escribir 'a' 'os' 'as'
+			 DONE;
+}
+
+PROCESS ArtDetMayusc
+{
+	_     _ :PROCESS ExtPropiedad
+             EQ            PROP_GENNUM   1	  // peso=1 (masculino singular)?
+			 SYSMESS       "El"	  // escribe 'el'
+			 DONE;
+
+	_     _ :        SYSMESS       "L"	  // escribe 'l'
+			 PROCESS       TermGenero // llama proceso para escribir 'a' 'os' 'as'
+			 DONE;
+}
+
+PROCESS ArtUndet
+{
+    _     _ : PROCESS ExtPropiedad
+              NOTZERO PROP_INCONTABLE
+              DONE;
+              
+	_     _ : SYSMESS       "un";	   // Escribir 'un'
+
+	_     _ : //PROCESS ExtPropiedad
+              NOTEQ         PROP_GENNUM   1      // si no es masculino singular
+			  PROCESS       TermGenero; // escribir terminación 'a' 'os' 'as'
+
+	_     _ : DONE ;
+}
+
+PROCESS ProAcusativo
+{
+	_     _ :	SYSMESS "l"
+			PROCESS TermGenero
+			DONE;
+}
+
+PROCESS ProDativo
+{
+	_     _ :	SYSMESS "le"
+            PROCESS ExtPropiedad
+			GT PROP_GENNUM 2
+			SYSMESS "s"
+			DONE;
+    _     _ : DONE;
+}
+
+Process PrintFirstArtDet
+{
+    _   _:  GT 34 49            // Si no es una persona
+            PROCESS ArtDet
+            SYSMESS " ";
+            
+    _   _:  SYSMESS "_"
+            DONE;
+}
+
+Process PrintFirstArtDetMayusc
+{
+    _   _:  GT 34 49            // Si no es una persona
+            PROCESS ArtDetMayusc
+            SYSMESS " ";
+            
+    _   _:  SYSMESS "_"
+            DONE;
+}
+
+Process PrintFirstArtUnDet
+{
+    _   _:  GT 34 49            // Si no es una persona
+            PROCESS ArtUnDet
+            PROCESS ExtPropiedad
+            ZERO PROP_INCONTABLE
+            SYSMESS " ";
+            
+    _   _:  SYSMESS "_"
+            DONE;
+}
+
+Process PrintSecond // Imprime el objeto representado por el 2º nombre
+{
+	_		_:	PROCESS GuardaFirst
+				COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+				SYSMESS "_"
+				PROCESS RestauraFirst
+				//WHATO
+                DONE;
+}
+
+Process PrintSecondArtDet
+{
+    _		_:	PROCESS GuardaFirst
+				COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+                PROCESS ArtDet
+				SYSMESS " _"
+				PROCESS RestauraFirst
+                DONE;
+}
+
+Process PrintSecondArtUnDet
+{
+    _		_:	PROCESS GuardaFirst
+				COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+                PROCESS ArtUnDet
+				SYSMESS " _"
+				PROCESS RestauraFirst
+                DONE;
+}
+
+Process PrintFirstDel
+{
+    _		_:	WHATO			// Volcamos a los flags
+                SYSMESS "d"
+                PROCESS ExtPropiedad
+                NOTEQ PROP_GENNUM GenNum_MS
+                SYSMESS "e ";
+                
+    _       _:  PROCESS ArtDet
+				SYSMESS " _"
+                DONE;
+}
+
+Process PrintFirstAl
+{
+    _		_:	WHATO			// Volcamos a los flags
+                SYSMESS "a"
+                PROCESS ExtPropiedad
+                EQ PROP_GENNUM GenNum_MS
+                SYSMESS "l";
+    _       _:  NOTEQ PROP_GENNUM GenNum_MS
+                SYSMESS " "
+                PROCESS ArtDet;
+                
+    _       _:  SYSMESS " _"
+                DONE;
+}
+
+Process PrintSecondDel
+{
+    _		_:	PROCESS GuardaFirst
+				COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                
+				//WHATO			// Y volcamos a los flags
+                //SYSMESS "d"
+                //PROCESS ExtPropiedad
+                //NOTEQ PROP_GENNUM GenNum_MS
+                //SYSMESS "e ";
+                PROCESS PrintFirstDel;
+                
+    _       _:  //PROCESS ArtDet
+	//			SYSMESS " _"
+				PROCESS RestauraFirst;
+    //            DONE;
+}
+
+PROCESS CogerSub
+{
+	*     * :       WHATO ; 
+
+    _     _ :        SAME 38 54 // Si está aquí
+                     LT 34 50   // Y es un nombre propio (personaje)
+                     SYSMESS Sys_AccionPsi
+                     DONE;
+    
+	_     _ :    	 EQ            54 CARRIED	// Si ya lo tienes
+	                 SYSMESS       25		// escribir "Ya tienes"
+                     PROCESS PrintFirstArtDet
+                     SYSMESS ".^"
+	                 NEWTEXT
+	                 DONE ;
+
+	_     _ :        EQ            54 WORN		// Si lo tienes puesto
+	                 SYSMESS       25		// escribe "Ya tienes"
+	                PROCESS PrintFirstArtDet
+                    SYSMESS ".^"
+			        NEWTEXT
+	                 DONE ;
+
+	_     _ :       SAME 54 38            // Si está aquí
+                    PROCESS ExtPropiedad
+                    NOTZERO PROP_ESTATICO // y es estático
+                    SYSMESS Sys_NoPuedes
+                    SYSMESS Sys_CogerNo
+                    PROCESS PrintFirstArtDet
+                    SYSMESS Sys_CogerEstatico1
+                    PROCESS TermGeneroVerbo
+                    SYSMESS Sys_CogerEstatico2
+                    PROCESS TermGenero
+                    SYSMESS Sys_CogerEstatico3
+                    NEWTEXT
+                    DONE;
+                    
+    _     _ :        SAME          54  38		// si el objeto esta aqui
+	                 SYSMESS       36		// escribe "Coges"
+	                PROCESS PrintFirstArtDet
+                    SYSMESS ".^"
+			        PUTO CARRIED
+	                 DONE ;
+
+	_     _ :   PROCESS Present
+                NOTZERO flagRet     // Si está en algún contenedor presente
+                COPYFF flagRet2 44  // Nombre del contenedor
+                COPYFF flagRet3 45  // Adjetivo del contenedor
+                PROCESS SacarSub    // Convertimos la accion en un SACA...
+                DONE;
+                
+                
+    _     _ :  SYSMESS       Sys_NoHayNada    // "No hay nada que puedas "
+               SYSMESS       26		// escribe "coger"
+               SYSMESS       Sys_ConEseNombre // " con ese nombre..."
+               NEWTEXT
+               DONE;
+}
+
+PROCESS DejarSub
+{
+	*     * :       WHATO;
+
+    _     _ :        SAME 38 54 // Si está aquí
+                     LT 34 50   // Y es un nombre propio (personaje)
+                     SYSMESS Sys_DejarPsi
+                     PROCESS TermGenero
+                     SYSMESS ".^"
+                     DONE;
+                     
+	_     _ :    	 EQ            54 CARRIED	// Si lo tienes
+	                 SYSMESS       Sys_Dejas	// escribir "Dejas"
+	                 PROCESS PrintFirstArtDet
+                     SYSMESS ".^"
+	                 PUTO	       255
+	                 DONE ;
+
+	_     _ :        EQ            54 WORN		// Si lo tienes puesto
+			 SYSMESS       24		// escribe "No puedes dejar "
+			 PROCESS       PrintFirstArtDet
+             SYSMESS       ", "
+			 PROCESS       ProAcusativo     // Escribir "lo", "la", etc
+			 SYSMESS       Sys_LlevasPuest
+			 PROCESS       TermGenero
+			 SYSMESS       ".^"		// escribir "." y retorno
+			 NEWTEXT
+			 DONE ;
+
+	_     _ :        SAME          54  38		// si el objeto esta aqui
+	                 SYSMESS       49		// escribe "No tienes"
+	                 PROCESS PrintFirstArtDet
+                     SYSMESS ".^"
+                     NEWTEXT
+	                 DONE ;
+
+	_     _ :        SYSMESS       28		// escribe "No tienes nada de eso"
+			 NEWTEXT
+                 	 DONE;
+}
+
+PROCESS PonerSub
+{
+	*     * :       WHATO;
+
+    _     _ :        SAME 38 54 // Si está aquí
+                     LT 34 50   // Y es un nombre propio (personaje)
+                     SYSMESS Sys_AccionPsi
+                     DONE;
+                     
+	_     _ :    	 EQ            54 CARRIED	// Si lo tienes
+			 EQ            57 128           // y te lo puedes poner
+	                 SYSMESS       37		// escribir "Te pones"
+	                 PROCESS PrintFirstArtDet
+                     SYSMESS ".^"
+	                 PUTO	       WORN
+	                 DONE ;
+
+	_     _ :        EQ            54 WORN		// Si ya está puesto
+			 SYSMESS       29		// escribe "Ya tienes puest"
+			 PROCESS       TermGenero	// escribir "a", "o", etc
+			 SYSMESS       " "		// Un espacio
+			 PROCESS PrintFirstArtDet
+             SYSMESS ".^"
+			 NEWTEXT
+			 DONE ;
+
+	_     _ :        EQ            54 CARRIED	// Si lo llevas
+			 SYSMESS       40		// escribe "¿Estás intentando ponerte "
+			 PROCESS       ArtUndet		// escribir articulo indeterminado
+			 SYSMESS       " _?^"    	// escribir nombre del objeto y cierra interrogacion
+			 NEWTEXT
+			 DONE ;
+
+	_     _ :        SAME          54  38		// si el objeto esta aqui
+	                 SYSMESS       49		// escribe "No tienes"
+	                 PROCESS PrintFirstArtDet
+                     SYSMESS ".^"
+                     NEWTEXT
+	                 DONE ;
+
+	_     _ :        SYSMESS       28		// escribe "No tienes nada de eso"
+			 NEWTEXT
+                 	 DONE;
+}
+
+PROCESS QuitarSub
+{
+	*     * :       WHATO;
+    
+    _     _ :        SAME 38 54 // Si está aquí
+                     LT 34 50   // Y es un nombre propio (personaje)
+                     SYSMESS Sys_DejarPsi
+                     PROCESS TermGenero
+                     SYSMESS ".^"
+                     DONE;
+
+	_     _ :	EQ            54 WORN		// Si ya está puesto
+				SYSMESS       38		// escribe "Te quitas"
+				PROCESS PrintFirstArtDet
+                SYSMESS ".^"
+				PUTO 	       CARRIED
+				DONE ;
+
+	_     _ :	EQ            54 CARRIED	// Si lo tienes
+				SYSMESS       50		// escribir "No "
+				PROCESS       ProAcusativo	// escribir "lo", "la", etc
+				SYSMESS       Sys_LlevasPuest
+				PROCESS       TermGenero
+				SYSMESS       ".^"
+				NEWTEXT
+				DONE ;
+
+	_     _ :	SAME          54  38		// si el objeto esta aqui
+				SYSMESS       49		// escribe "No tienes"
+				PROCESS PrintFirstArtDet
+                SYSMESS ".^"
+			 	NEWTEXT
+				DONE ;
+
+	_     _ :	SYSMESS       28		// escribe "No tienes nada de eso"
+				NEWTEXT
+				DONE;
+}
+
+PROCESS ExaminarSub
+{
+	*     * :       WHATO;
+
+	_     _ :	//NOTSAME		54 38           // Si no está en la localidad actual
+				//NOTEQ		54 CARRIED      // Ni lo tengo
+				//NOTEQ		54 WORN		    // Ni lo llevo puesto
+                PROCESS PRESENT
+                ZERO flagRet
+				SYSMESS		Sys_ExaminaNo   // Mensaje "No observas nada fuera de lo comun"
+				SYSMESS		".^"
+				DONE;
+	
+    _     _ :	PROCESS ExtPropiedad
+                ZERO PROP_ABRIBLE           // No es de abrir/cerrar
+                ZERO PROP_CONTENEDOR        // Ni un contenedor
+                GT 34 49                    // Y tampoco no es una persona
+                SYSMESS		Sys_ExaminaNo   // Mensaje "No observas nada fuera de lo comun"
+				SYSMESS		" en "
+				PROCESS 	PrintFirstArtDet
+                SYSMESS ".^"
+                DONE;
+                
+    _     _ :	PROCESS ExtPropiedad
+                LT 34 50                    // Es una persona
+                SYSMESS		Sys_ExaminaPers   // Mensaje "No nada fuera de lo comun"
+				SYSMESS		"_.^"
+                DONE;
+                
+    _     _ :   PROCESS DescPropiedad // Es contenedor o abrible
+                DONE;
+}
+
+PROCESS AbrirSub
+{
+	*     * :       WHATO;
+    
+    *     _ :   SAME 38 54 // Si está aquí
+                LT 34 50   // Y es un nombre propio (personaje)
+                SYSMESS Sys_AccionPsi
+                NEWTEXT
+                DONE;
+                     
+	*     _ :	NOTSAME		54 38           // Si no está en la localidad actual
+				NOTEQ		54 CARRIED      // Ni lo tengo
+				NOTEQ		54 WORN		// Ni lo llevo puesto
+				SYSMESS		Sys_NoHayNada   // Mensaje "No hay nada con ese nombre que puedas"
+				SYSMESS		Sys_AbrirNo     // "abrir"
+				SYSMESS		Sys_ConEseNombre
+                NEWTEXT
+				DONE;
+                
+    *     _ :   PROCESS ExtPropiedad
+                NOTZERO PROP_ABIERTO      // Si ya está abierto
+                SYSMESS Sys_YaEsta
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_Abierto
+                PROCESS TermGenero
+                SYSMESS ".^"
+                DONE;
+                
+	_     _ :	SYSMESS		Sys_NoPuedes
+				SYSMESS		Sys_AbrirNo
+				PROCESS 	ArtDet
+				SYSMESS		" _.^"
+                NEWTEXT
+				DONE;
+}
+
+Process AbrirText
+{
+    _   _:  SYSMESS Sys_AbrirSi
+            PROCESS PrintFirstArtDet
+            SYSMESS ".^"
+            DONE;
+}
+
+PROCESS CerrarSub
+{
+	*     * :       WHATO;
+
+    *     _ :   SAME 38 54 // Si está aquí
+                LT 34 50   // Y es un nombre propio (personaje)
+                SYSMESS Sys_AccionPsi
+                NEWTEXT
+                DONE;
+                     
+	*     _ :	NOTSAME		54 38           // Si no está en la localidad actual
+				NOTEQ		54 CARRIED      // Ni lo tengo
+				NOTEQ		54 WORN		// Ni lo llevo puesto
+				SYSMESS		Sys_NoHayNada   // Mensaje "No hay nada con ese nombre que puedas"
+				SYSMESS		Sys_CerrarNo     // "abrir"
+				SYSMESS		Sys_ConEseNombre
+                NEWTEXT
+				DONE;
+    
+    *     _ :   PROCESS ExtPropiedad
+                NOTZERO PROP_ABRIBLE   // Si es de abrir/cerrar
+                ZERO PROP_ABIERTO      // y ya está cerrado
+                SYSMESS Sys_YaEsta
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_Cerrado
+                PROCESS TermGenero
+                SYSMESS ".^"
+                DONE;
+    
+	_     _ :	SYSMESS		Sys_NoPuedes  // por defecto no se puede cerrar
+				SYSMESS		Sys_CerrarNo
+				PROCESS 	ArtDet
+				SYSMESS		" _.^"
+                NEWTEXT
+				DONE;
+}
+
+Process CerrarText
+{
+    _   _:  SYSMESS Sys_CerrarSi
+            PROCESS PrintFirstArtDet
+            SYSMESS ".^"
+            DONE;
+}
+
+Process MeterSub
+{
+	*		*:	WHATO;
+    	
+	_		_:	NOTSAME 38 54
+				NOTEQ 54 CARRIED
+				NOTEQ 54 WORN
+				SYSMESS       Sys_NoHayNada    // "No hay nada que puedas "
+				SYSMESS       Sys_MeterNo		// escribe "meter "
+				SYSMESS       Sys_ConEseNombre // " con ese nombre..."
+				NEWTEXT
+				DONE;
+           
+    _		_:	EQ 54 WORN  // El objeto que quiero meter lo llevo puesto
+				SYSMESS       Sys_NoPuedes		// escribe "No puedes "
+				SYSMESS		  Sys_MeterNo
+				PROCESS       printFirstArtDet  // escribo el nombre
+				SYSMESS       ", "    	
+				PROCESS       ProAcusativo     // Escribir "lo", "la", etc
+				SYSMESS       Sys_LlevasPuest
+				PROCESS       TermGenero
+				SYSMESS       ".^"		// escribir "." y retorno
+				NEWTEXT
+				DONE ;
+                
+	_		_:  SAME        54  38		// si el objeto esta aqui
+                LT          34 50       // y es una persona
+                SYSMESS     Sys_AccionPSI
+                NEWTEXT
+                DONE;
+
+    _       _:  SAME        54  38		// si el objeto esta aqui
+				SYSMESS      49			// escribe "No tienes"
+				PROCESS       PrintFirstArtDet		// escribir Objeto
+				SYSMESS       ".^"		// "." y retorno
+				NEWTEXT
+				DONE ;
+
+	_ 		_:	NOUN2 _
+				EQ 54 CARRIED
+				SYSMESS Sys_NoEntendiMeter
+				PROCESS PrintFirstArtDet
+				SYSMESS		".^"
+				NEWTEXT
+				DONE;
+
+	_		_:	PROCESS LocSecond
+				NOTSAME 38 flagRet			// Si el contenedor no está aquí
+				NOTEQ flagRet CARRIED		// Ni lo tengo
+				NOTEQ flagRet WORN			// Ni lo llevo puesto
+				SYSMESS Sys_NoEntendiMeter
+                PROCESS PrintFirstArtDet
+                SYSMESS ".^"
+				NEWTEXT
+				DONE;
+
+	_ 		_:	PROCESS EsContainerSecond
+				//ZERO flagRet				// Si no es un contenedor
+				LT 44 50                        // Y es una persona
+                SYSMESS Sys_AccionPsi
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS EsContainerSecond
+				ZERO flagRet				// Si no es un contenedor
+				SYSMESS Sys_NoPuedesMeterCosas
+				PROCESS PrintSecondArtUnDet
+				SYSMESS		".^"
+				NEWTEXT
+				DONE;
+
+	_       _:  PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				PROCESS ExtPropiedad 
+                PROCESS RestauraFirst
+                NOTZERO PROP_ABRIBLE    // Si es de abrir y cerrar
+                ZERO PROP_ABIERTO       // y está cerrado
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_MeterNo
+                SYSMESS Sys_MeterCosas
+                PROCESS PrintSecondArtDet
+                SYSMESS Sys_EstaCerrado1
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_Cerrado
+                PROCESS TermGenero
+                PROCESS RestauraFirst
+                SYSMESS ".^"
+                DONE;
+                
+    _		_:	PROCESS CodeSecond
+				COPYFF 38 tmpFlag1
+				COPYFF flagRet 38 // El codigo del container también es el nº de localidad
+				AUTOD
+				COPYFF tmpFlag1 38
+				SYSMESS Sys_Metes
+				PROCESS PrintFirstArtDet
+				SYSMESS Sys_MetesEn
+				PROCESS PrintSecondArtDet
+				SYSMESS ".^"
+                DONE;
+}
+
+Process SacarSub
+{ 
+	*     * :       WHATO;
+    
+    _       _:  PROCESS Present
+                ZERO flagRet
+                PROCESS PresentSecond
+                ZERO flagRet
+                SYSMESS Sys_NoVeoSacarNiContenedor
+                NEWTEXT
+                DONE;
+    _		_:	PROCESS LocSecond
+				NOTSAME 38 flagRet			// Si el contenedor no está aquí
+				NOTEQ flagRet CARRIED		// Ni lo tengo
+				NOTEQ flagRet WORN			// Ni lo llevo puesto
+				SYSMESS Sys_NoEntendiSacar
+                PROCESS PrintFirstArtDet
+                SYSMESS ".^"
+				NEWTEXT
+				DONE;
+                
+    _       _:  PROCESS EsContainerSecond
+				ZERO flagRet				// Si no es un contenedor
+                LT 44 50                        // Y es una persona
+                Process PrintSecond
+                SYSMESS Sys_SacarPsiNoTiene
+                NEWTEXT
+                DONE;
+                
+    _       _:  ZERO flagRet				// Si no es un contenedor
+				SYSMESS Sys_NoPuedes
+                SYSMESS Sys_SacarNo
+                SYSMESS Sys_SacarCosas
+                SYSMESS "de "
+                PROCESS PrintSecondArtUnDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				PROCESS ExtPropiedad 
+                PROCESS RestauraFirst
+                NOTZERO PROP_ABRIBLE    // Si es de abrir y cerrar
+                ZERO    PROP_ABIERTO    // y está cerrado
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_SacarNo
+                SYSMESS Sys_SacarCosas
+                PROCESS PrintSecondDel
+                SYSMESS Sys_EstaCerrado1
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_Cerrado
+                PROCESS TermGenero
+                PROCESS RestauraFirst
+                SYSMESS ".^"
+                DONE;
+                
+    _       _:  PROCESS CodeSecond
+                NOTSAME 54 flagRet    // Si el objeto no está en el contenedor
+                LT 44 50                    // Y es una persona
+                Process PrintSecond        
+                SYSMESS Sys_SacarPsiNoTiene // "Pepito no tiene..."
+                NEWTEXT
+                DONE;
+                
+    _       _:  NOTSAME 54 flagRet    // Si el objeto no está en el contenedor
+                SYSMESS 52                 // "No hay nada de eso en "
+                PROCESS PrintSecondArtDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+	_		_:	LT 44 50                    // Si es una persona
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_CogerNo
+                Process PrintFirstArtDet
+                SYSMESS Sys_Pertenece
+                PROCESS TermGeneroVerbo
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS "_.^"
+                PROCESS RestauraFirst
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS ExtPropiedad
+                NOTZERO PROP_ESTATICO       // Si el objeto es estático
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_SacarNo
+                PROCESS PrintFirstArtDet
+                SYSMESS Sys_FormaParteDe1
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_FormaParteDe2
+                PROCESS PrintSecondDel
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PUTO CARRIED
+				SYSMESS Sys_Sacas
+				PROCESS PrintFirstArtDet
+				SYSMESS " "
+				PROCESS PrintSecondDel
+				SYSMESS ".^"
+                DONE;
+}
+
+Process DarSub
+{
+    *     * :       WHATO;
+    _       _:  PROCESS Present
+                ZERO flagRet
+                SYSMESS 28 // No tienes nada de eso
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS CodeSecond          // Si no hay second o no representa 
+                EQ flagRet 255              // un objeto
+                SYSMESS Sys_AquienDar       // "No veo a quien quieres darle "
+                Process PrintFirstArtDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS GuardaFirst         
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                COPYFF 54 tmpFlag1
+                PROCESS RestauraFirst
+                NOTSAME tmpFlag1 38           // Si el second no está aquí 
+                NOTEQ tmpFlag1 CARRIED        // Ni lo tengo
+                NOTEQ tmpFlag1 WORN           // Ni lo llevo puesto
+                SYSMESS Sys_AquienDar       // "No veo a quien quieres darle "
+                Process PrintFirstArtDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  GT 44 49                // Si no es una persona
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_DarNo
+                Process PrintFirstArtDet
+                SYSMESS Sys_DarA
+                Process PrintSecondArtUndet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  EQ 54 WORN              // Si lo llevo puesto
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_DarNo
+                Process PrintFirstArtDet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS " _, "
+                PROCESS RestauraFirst
+                PROCESS ProAcusativo
+                SYSMESS Sys_LlevasPuest
+                PROCESS TermGenero
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS Present
+                NOTEQ flagRet CARRIED       // Si no lo tengo (está en un contenedor)
+                GT flagRet2 49              // Y el contenedor no es una persona
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_DarNo
+                Process PrintFirstArtDet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS " _,"
+                PROCESS RestauraFirst
+                SYSMESS Sys_DescEsta
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_MetesEn
+                PROCESS GuardaFirst
+                COPYFF flagRet2 34        // Nombre del contenedor
+                COPYFF flagRet3 35        // Adj. del contenedor
+                PROCESS PrintFirstArtDet
+                PROCESS RestauraFirst
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS Present
+                NOTEQ flagRet CARRIED       // Si no lo tengo (lo tiene una persona)
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_DarNo
+                Process PrintFirstArtDet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS " _"
+                PROCESS RestauraFirst
+                SYSMESS Sys_Pertenece
+                PROCESS TermGeneroVerbo
+                PROCESS GuardaFirst
+                COPYFF flagRet2 34        // Nombre del contenedor (persona que lo tiene)
+                COPYFF flagRet3 35        // Adj. del contenedor
+                WHATO
+                SYSMESS "_.^"
+                PROCESS RestauraFirst
+                NEWTEXT
+                DONE;
+                
+                // Mensaje por defecto: El xx no parece interesar a yyy.
+    _       _ : Process PrintFirstArtDetMayusc
+                SYSMESS Sys_NoInteresa
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS "_.^"
+                PROCESS RestauraFirst
+                NEWTEXT
+                DONE;
+}
+
+Process MostrarSub
+{
+    *     * :       WHATO;
+    _       _:  PROCESS Present
+                ZERO flagRet
+                SYSMESS 28 // No tienes nada de eso
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS CodeSecond          // Si no hay second o no representa 
+                EQ flagRet 255              // un objeto
+                SYSMESS Sys_AquienMostrar       // "No veo a quien quieres enseñar "
+                Process PrintFirstArtDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS GuardaFirst         
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                COPYFF 54 tmpFlag1
+                PROCESS RestauraFirst
+                NOTSAME tmpFlag1 38             // Si el second no está aquí 
+                NOTEQ tmpFlag1 CARRIED        // Ni lo tengo
+                NOTEQ tmpFlag1 WORN           // Ni lo llevo puesto
+                SYSMESS Sys_AquienMostrar       // "No veo a quien quieres darle "
+                Process PrintFirstArtDet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  GT 44 49                // Si no es una persona
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_MostrarNo
+                Process PrintFirstArtDet
+                SYSMESS Sys_DarA
+                Process PrintSecondArtUndet
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+                
+    _       _:  PROCESS Present
+                NOTEQ flagRet CARRIED       // Si no lo tengo
+                NOTEQ flagRet WORN       // Ni lo llevo puesto (->está en un contenedor)
+                GT flagRet2 49              // Y el contenedor no es una persona
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_MostrarNo
+                Process PrintFirstArtDet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS " _,"
+                PROCESS RestauraFirst
+                SYSMESS Sys_DescEsta
+                PROCESS TermGeneroVerbo
+                SYSMESS Sys_MetesEn
+                PROCESS GuardaFirst
+                COPYFF flagRet2 34        // Nombre del contenedor
+                COPYFF flagRet3 35        // Adj. del contenedor
+                PROCESS PrintFirstArtDet
+                PROCESS RestauraFirst
+                SYSMESS ".^"
+                NEWTEXT
+                DONE;
+                
+    _       _:  PROCESS Present
+                NOTEQ flagRet CARRIED       // Si no lo tengo (lo tiene una persona)
+                NOTEQ flagRet WORN       // Ni lo llevo puesto (lo tiene una persona)
+                SYSMESS Sys_NoPuedes
+                SYSMESS Sys_MostrarNo
+                Process PrintFirstArtDet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS " _"
+                PROCESS RestauraFirst
+                SYSMESS Sys_Pertenece
+                PROCESS TermGeneroVerbo
+                PROCESS GuardaFirst
+                COPYFF flagRet2 34        // Nombre del contenedor (persona que lo tiene)
+                COPYFF flagRet3 35        // Adj. del contenedor
+                WHATO
+                SYSMESS "_.^"
+                PROCESS RestauraFirst
+                NEWTEXT
+                DONE;
+                
+                // Mensaje por defecto: El xx no parece interesar a yyy.
+    _       _ : Process PrintFirstArtDetMayusc
+                SYSMESS Sys_NoInteresa
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+                WHATO
+                SYSMESS "_.^"
+                PROCESS RestauraFirst
+                NEWTEXT
+                DONE;
+}
+
+Process MirarEnSub // Funcion respuesta a "Mira en xxxx"
+{
+    *     * :       WHATO;
+    _   _:  	EQ 56 128		                    // ¿Es contenedor?
+                PROCESS DescPropiedad   // Lista el contenido
+                DONE;
+    _   _:    NOTEQ 51 255 // ¿Es un objeto?
+                SYSMESS Sys_MirarEn1
+                PROCESS PrintFirstArtDet
+                SYSMESS Sys_MirarEn3
+                DONE;
+    _   _:    SYSMESS Sys_MirarEn4
+                DONE;
+}
+
+Process EsContainerSecond // Parte de MeterSub
+{
+	_		_:	CLEAR flagRet
+                PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+				EQ 56 128		// ¿Es contenedor?
+				SET flagRet;
+				
+	_		_:	PROCESS RestauraFirst
+				DONE;
+}
+
+Process LocSecond // Devuelve la localizacion del objeto del second noun
+{
+	_		_:	EQ 44 255
+				LET flagRet NOTCREATED	// Si no hay second, NOTCREATED
+				DONE;
+				
+	_		_:	PROCESS GuardaFirst
+                COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+				COPYFF 54 flagRet
+				PROCESS RestauraFirst
+                DONE
+				;
+}
+
+Process CodeSecond // Devuelve el código del objeto del second noun
+{
+	_		_:	EQ 44 255
+				LET flagRet 255	// Si no hay second, 255
+				DONE;
+				
+	_		_:	PROCESS GuardaFirst
+				COPYFF 44 34	// Hacemos que el segundo nombre sea el 1º
+                COPYFF 45 35    // Igual para el adjetivo
+				WHATO			// Y volcamos a los flags
+				COPYFF 51 flagRet
+				PROCESS RestauraFirst
+                DONE;
+}
+
+
+//---------------------------------------------------------------------------
+// Listado automático de salidas disponibles.
+// Si además de las conexiones queremos que el juego muestre salidas que no están en las conexiones, incluir lo siguiente (por ejemplo para que salga el norte), junto a la definición de la localidad para ampliar el proceso Salidas
+//
+// PROCESS Salidas { * _ : AT xxxxx PLACE Obj_norte compass; }
+//---------------------------------------------------------------------------
+Location Loc_compas // Esta localidad almacena las salidas visibles
+{
+	"";
+}
+
+// Objetos del compas
+Object Obj_norte { "al norte"; }
+Object Obj_sur { "al sur"; }
+Object Obj_este { "al este"; }
+Object Obj_oeste { "al oeste"; }
+Object Obj_nordeste { "al nordeste"; }
+Object Obj_noroeste { "al noroeste"; }
+Object Obj_sureste { "al sureste"; }
+Object Obj_suroeste { "al suroeste"; }
+Object Obj_arriba { "subir"; }
+Object Obj_abajo { "bajar"; }
+Object Obj_entrar { "entrar"; }
+Object Obj_salir { "salir"; }
+
+// Proceso que lista las salidas disponibles
+
+PROCESS Salidas
+{
+	* * : DESTROY Obj_norte
+	      DESTROY Obj_sur
+	      DESTROY Obj_este
+	      DESTROY Obj_sur
+	      DESTROY Obj_oeste
+	      DESTROY Obj_nordeste
+	      DESTROY Obj_noroeste
+	      DESTROY Obj_sureste
+	      DESTROY Obj_suroeste
+	      DESTROY Obj_arriba
+	      DESTROY Obj_abajo
+	      DESTROY Obj_entrar
+	      DESTROY Obj_salir;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 NORTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_norte Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 SUR
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_sur Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 ESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_este Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 OESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_oeste Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 NORDESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_nordeste Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 SURESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_sureste Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 NOROESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_noroeste Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 SUROESTE
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_suroeste Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 ENTRA
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_entrar Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 SALIR
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_salir Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1 // Copiamos la loc actual en nuestro flag
+	      LET 33 ARRIBA
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_arriba Loc_compas;
+
+	* * : COPYFF 38 tmpFlag1
+	      LET 33 ABAJO
+	      MOVE tmpFlag1
+	      NOTSAME 38 tmpFlag1
+	      PLACE Obj_abajo Loc_compas;
+
+	_ _ : SYSMESS "{16}{6}Salidas visibles:{16}{7} "
+	      LISTAT Loc_compas
+	      DONE;
+}
+VOCABULARY { VERB: "X", "SALIDAS"; }
+
+RESPONSE { SALIDAS _ : PROCESS Salidas DONE; }
+#ifdef MOSTRAR_SALIDAS
+PROCESS 1 { _ _: NEWLINE PROCESS Salidas; }// Listamos las salidas tras describir cada localidad 
+#endif
+
+
+//----------------------------------------------------------
+// Fin del listado automático de salidas
+//----------------------------------------------------------
+
+//----------------------------------------------------------------
+// Funcion ContarAt: cuenta el número de objetos en una localidad
+// En flagPrm1 la localidad
+// Devuelve en flagRet el número de objetos
+// Devuelve en flagRet2 el género/número del primer objeto de la lista (salvo en los CARRIED)
+//----------------------------------------------------------------
+
+PROCESS ContarAt
+{
+    _   _:CLEAR flagRet2  
+            PROCESS guardaFirst
+            EQ flagPrm1 CARRIED
+            LET flagRet2 GenNum_MS // Por defecto MS, no podemos saber cual es el genero del 1º
+            COPYFF 1 flagRet                // Si lo llevamos, devolvemos el flag 1
+            DONE;
+            
+    _   _:  COPYFF 38 tmpFlag1
+            CLEAR flagRet
+            NOTEQ flagPrm1 WORN  // Objetos puestos
+            NOTEQ flagPrm1 255   // Aquí
+            NOTEQ flagPrm1 NOTCREATED   // Objetos no creados
+            COPYFF flagPrm1 38;
+            
+    _   _:  PROCESS ContarAtInc
+            COPYFF tmpFlag1 38
+            PROCESS restauraFirst
+            DONE;
+}
+Process ContarAtInc;
+Process ContarAtInc
+{
+    * *: NOTEQ flagPrm1 WORN NOTEQ flagPrm1 NOTCREATED DOALL 255;
+    * *: EQ flagPrm1 WORN DOALL WORN;
+    * *: EQ flagPrm1 NOTCREATED DOALL NOTCREATED;
+    * *: PROCESS ExtPropiedad ZERO PROP_NOLISTAR PLUS flagRet 1;
+    * *: NOTZERO PROP_NOLISTAR EQ 50 CARRIED PLUS flagRet 1;
+    * *: NOTZERO PROP_NOLISTAR EQ 50 WORN PLUS flagRet 1;
+    * *: ZERO flagRet2 COPYFF PROP_GENNUM flagRet2;
+}
+
+PROCESS ContarAtReal; // no tiene en cuenta si son no listables
+PROCESS ContarAtReal
+{
+    _   _:CLEAR flagRet2  
+            PROCESS guardaFirst
+            EQ flagPrm1 CARRIED
+            LET flagRet2 GenNum_MS // Por defecto MS, no podemos saber cual es el genero del 1º
+            COPYFF 1 flagRet        // Si lo llevamos, devolvemos el flag 1
+            DONE;
+            
+    _   _:  COPYFF 38 tmpFlag1
+            CLEAR flagRet
+            NOTEQ flagPrm1 WORN  // Objetos puestos
+            NOTEQ flagPrm1 255   // Aquí
+            NOTEQ flagPrm1 NOTCREATED   // Objetos no creados
+            COPYFF flagPrm1 38;
+            
+    _   _:  PROCESS ContarAtIncReal
+            COPYFF tmpFlag1 38
+            PROCESS restauraFirst
+            DONE;
+}
+Process ContarAtIncReal;
+Process ContarAtIncReal
+{
+    * *: NOTEQ flagPrm1 WORN NOTEQ flagPrm1 NOTCREATED DOALL 255;
+    * *: EQ flagPrm1 WORN DOALL WORN;
+    * *: EQ flagPrm1 NOTCREATED DOALL NOTCREATED;
+    * *: PLUS flagRet 1 ZERO flagRet2 COPYFF PROP_GENNUM flagRet2;
+}
+
+//------------------------------------------------------
+// Fin de ContarAt
+//------------------------------------------------------
+
+//----------------------------------------------------------
+// Funciónes alternativas a LISTAT/LISTOBJ
+//----------------------------------------------------------
+
+// En flagPrm1 copiar la localidad que se quiere listar
+// Devuelve en flagRet el numero de objetos listados
+// Si no hay objetos, no pinta absolutamente nada
+PROCESS ListAt
+{
+    _   _:  PROCESS ContarAt    // Contamos cuantos objetos
+            ZERO flagRet        // Si hay nada que listar, volvemos
+            DONE;
+            
+    _   _:  PROCESS GuardaFirst
+            COPYFF 38 tmpFlag1
+            NOTEQ flagPrm1 WORN  // Objetos puestos
+            NOTEQ flagPrm1 255   // Aquí
+            NOTEQ flagPrm1 NOTCREATED   // Objetos no creados
+            NOTEQ flagPrm1 CARRIED  // Objetos llevados
+            COPYFF flagPrm1 38;
+            
+    _   _:  PROCESS ListAtPrint
+            COPYFF tmpFlag1 38
+            PROCESS RestauraFirst
+            DONE;
+}
+
+Process ListAtPrint;
+Process ListAtPrint
+{
+    * *: LET tmpFlag2 1;           // Nº de objeto actual
+    * *: NOTEQ flagPrm1 WORN 
+         NOTEQ flagPrm1 NOTCREATED 
+         NOTEQ flagPrm1 CARRIED 
+         DOALL 255;
+    * *: EQ flagPrm1 WORN DOALL WORN;
+    * *: EQ flagPrm1 NOTCREATED DOALL NOTCREATED;
+    * *: EQ flagPrm1 cARRIED DOALL CARRIED;
+    
+    // Acción del DOALL
+    * *: PROCESS ExtPropiedad 
+         NOTZERO PROP_NOLISTAR   // Si no es listable
+         NOTEQ 50 CARRIED        // Y no lo tengo
+         NOTEQ 50 WORN           // y no lo llevo puesto
+         DONE;                   // Retornar sin listar
+         
+    * *: GT tmpFlag2 1             // Si no es primero del listado
+         NOTSAME tmpFlag2 flagRet  // y tampoco el último
+         SYSMESS 46;               // Pinta ", "
+    * *: GT tmpFlag2 1             // Si no es primero del listado
+         SAME tmpFlag2 flagRet     // y es el último
+         SYSMESS 47;               // Pinta " y "
+    * *: PROCESS PrintFirstArtUnDet
+         SAME tmpFlag2 flagRet     // Si ha sido el último
+         SYSMESS ".";
+    * *: PLUS tmpFlag2 1
+         DONE;
+}
+
+Process ListObj
+{
+    _   _:  LET  flagPrm1 255
+               PROCESS ContarAt
+            ZERO flagRet
+            DONE;
+            
+    _   _:  SYSMESS 1 LET flagPrm1 255 PROCESS ListAt NEWLINE DONE;
+}
+
+Process ListAtFirstNoun
+{
+    // Listado de cosas en un objeto contenedor
+    // Con mensajes previos ("En el cajón ves ...")
+    _   _ : WHATO
+            SYSMESS Sys_MirarEn1
+            PROCESS PrintFirstArtDet
+            COPYFF 51 flagPrm1
+            PROCESS ContarAt
+            NOTZERO flagRet
+            SYSMESS Sys_MirarEn2
+            PROCESS ListAt
+            DONE;
+    _   _ : SYSMESS Sys_MirarEn3
+            DONE;
+}
+
+//----------------------------------------------------------
+// Fin de función alternativa a LISTAT
+//----------------------------------------------------------
+
+//----------------------------------------------------------
+// Funcion Inventario
+//----------------------------------------------------------
+
+Process Inventario
+{
+    _   _:  NOTZERO 1
+            SYSMESS 9 // Llevas:
+            LET flagPrm1 CARRIED
+            PROCESS ListAt
+            LET flagPrm1 WORN
+            PROCESS ContarAt
+            NOTZERO flagRet
+            SYSMESS Sys_Inven // Además, l
+            SYSMESS 10;        // "levas puest"
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_MS SYSMESS "o ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_FS SYSMESS "a ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_MP SYSMESS "os ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_FP SYSMESS "as ";
+    
+     _ _: NOTZERO flagRet 
+            PROCESS ListAt
+            NEWLINE
+            DONE;
+            
+    _   _:  LET flagPrm1 WORN
+            PROCESS ContarAt
+            NOTZERO flagRet
+            SYSMESS "L"
+            SYSMESS 10;
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_MS SYSMESS "o ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_FS SYSMESS "a ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_MP SYSMESS "os ";
+    _  _ : NOTZERO flagRet EQ flagRet2 GenNum_FP SYSMESS "as ";       
+     _ _ : NOTZERO flagRet PROCESS ListAt
+            NEWLINE
+            DONE;
+            
+    _   _:  ZERO 1 
+            LET flagPrm1 WORN
+            PROCESS ContarAt
+            ZERO flagRet
+            SYSMESS Sys_InvenNada NEWLINE DONE;
+            
+    _   _:  ZERO flagRet NEWLINE;//DONE;
+}
+
+//-----------------------------------------------------
+// Fin funcion inventario
+//-----------------------------------------------------
+
+//-----------------------------------------------------------
+// Función alternativa a PRESENT: devuelve en flagRet la localidad
+// donde está el objeto del first noun, o 0 si no está presente
+// Tiene en cuenta objetos aquí, llevados, llevados puestos, así
+// como los contenedores abiertos presentes
+//-----------------------------------------------------------
+
+
+Process BuscarEn;
+Process BuscarEnLoop;
+Process Present
+{
+    _   _:  //MESSAGE "Busco _"
+            CLEAR flagRet
+            WHATO
+            SAME 54 38          // El objeto está aquí
+            COPYFF 38 flagRet
+            DONE;
+            
+    _   _:  EQ 54 CARRIED       // El objeto está en el inventario
+            COPYFF 54 flagRet
+            DONE;
+            
+    _   _:  EQ 54 WORN          // O lo llevo puesto
+            COPYFF 54 flagRet
+            DONE;
+            
+    _   _:  COPYFF 54 flagPrm2 // en PRM1, el contenedor/loc donde está el objeto
+            LET flagPrm1 255 // busca aquí
+            PROCESS BuscarEn
+            ZERO flagRet
+            LET flagPrm1 CARRIED // si no, busca en el inventario
+            PROCESS BuscarEn
+            ZERO flagRet
+            LET flagPrm1 WORN // o en los que llevo puestos
+            PROCESS BuscarEn;
+            
+    //_   _:  MES "Esta en " PRINT flagRet MESSAGE "";
+}
+
+flag guardaNoun;
+flag guardaAdj;
+
+Process PresentSecond
+{
+    _ _ : COPYFF 34 guardaNoun COPYFF 35 guardaAdj
+          COPYFF 44 34 COPYFF 45 35
+          PROCESS PRESENT
+          COPYFF guardaNoun 34 COPYFF guardaAdj 35
+          WHATO;
+}
+
+// Busca si la localidad donde está el objeto flagPrm2 es un contenedor y 
+// está en la loc indicada por flagPrm1
+PROCESS BuscarEn
+{
+    _   _:  PROCESS ContarAtReal    // Contamos cuantos objetos
+            //MES "Objetos en " PRINT flagPrm1 MES ": " PRINT flagRet MESSAGE ""
+            ZERO flagRet        // Si hay nada que listar, volvemos
+            DONE;
+            
+    _   _:  PROCESS GuardaFirst
+            COPYFF 38 tmpFlag1
+            NOTEQ flagPrm1 WORN  // Objetos puestos
+            NOTEQ flagPrm1 255   // Aquí
+            NOTEQ flagPrm1 NOTCREATED   // Objetos no creados
+            NOTEQ flagPrm1 CARRIED  // Objetos llevados
+            COPYFF flagPrm1 38;
+            
+    _   _:  CLEAR flagRet
+            PROCESS BuscarEnLoop
+            COPYFF tmpFlag1 38
+            PROCESS RestauraFirst
+            DONE;
+}
+
+Process BuscarEnLoop
+{
+    * *: NOTEQ flagPrm1 WORN 
+         NOTEQ flagPrm1 NOTCREATED 
+         NOTEQ flagPrm1 CARRIED 
+         DOALL 255;
+    * *: EQ flagPrm1 WORN DOALL WORN;
+    * *: EQ flagPrm1 NOTCREATED DOALL NOTCREATED;
+    * *: EQ flagPrm1 cARRIED DOALL CARRIED;
+    
+    // Acción del DOALL
+    * *: ZERO flagRet
+         PROCESS ExtPropiedad 
+         //MES "Contenedor _ en:" PRINT flagPrm1 MESSAGE ""
+         NOTZERO PROP_CONTENEDOR   // Es un contenedor?
+         NOTZERO PROP_ABIERTO      // Está abierto?
+         sAME flagPrm2 51          // Y coincide con la localización?
+         COPYFF flagPrm2 flagRet   // retornamos
+         COPYFF 34 flagRet2        // guardando el noun y el 
+         COPYFF 35 flagRet3        // adjetivo del contenedor
+         DONE;
+}
+
+//----------------------------------------------------------
+// Funciones para guardar y restaurar el estado
+// del objeto del 1st noun
+//----------------------------------------------------------
+FLAG guardaFirstNoun;
+FLAG guardaFirstAdj;
+FLAG guardaPresentObj;
+FLAG guardaPresentLoc;
+FLAG guardaPresentWeight;
+FLAG guardaPresentContainer;
+FLAG guardaPresentWearable;
+Process GuardaFirst
+{
+    _   _:  COPYFF 34 guardaFirstNoun
+            COPYFF 35 guardaFirstAdj
+            COPYFF 51 guardaPresentObj
+            COPYFF 54 guardaPresentLoc
+            COPYFF 55 guardaPresentWeight
+            COPYFF 56 guardaPresentContainer
+            COPYFF 57 guardaPresentWearable
+            DONE;
+}
+Process RestauraFirst
+{
+    _   _:  COPYFF guardaFirstNoun 34
+            COPYFF guardaFirstAdj 35
+            COPYFF guardaPresentObj 51
+            COPYFF guardaPresentLoc 54
+            COPYFF guardaPresentWeight 55
+            COPYFF guardaPresentContainer 56
+            COPYFF guardaPresentWearable 57
+            DONE;
+}
+//----------------------------------------------------------
+// Fin de las funciones para guardar y restaurar el estado
+// del objeto del 1st noun
+//----------------------------------------------------------
+

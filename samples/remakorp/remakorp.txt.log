@@ -1,35 +1,35 @@
-      0 txtMap v0.45 20080624
-      0 entrada: /home/baltasarq/prys/txtmap/remakorp/remakorp.txt
+      0 txtMap v0.6 20140612
+      0 entrada: samples/remakorp/remakorp.txt
       0 ========================
       4 nueva localidad 'El templo'
-      6 tomando descripción
+      6 tomando desc.
       9 preparando primer movimiento
      11 nueva localidad 'Cripta de los Reyes'
      11 'El templo' por ESTE a 'Cripta de los Reyes'
      11 'Cripta de los Reyes' por [inversa]  OESTE a 'El templo'
-     13 tomando descripción
+     13 tomando desc.
      15 tomando desc. objeto
-     15 Aceptando descripción de objeto 
+     15 Aceptando desc. de objeto 
      15 Objeto respiraderos
      18 tomando desc. objeto
-     18 Aceptando descripción de objeto 
+     18 Aceptando desc. de objeto 
      18 Objeto pedestal
      21 tomando desc. objeto
-     21 Aceptando descripción de objeto 
+     21 Aceptando desc. de objeto 
      21 Objeto estatuas
      24 tomando desc. objeto
-     24 Aceptando descripción de objeto 
+     24 Aceptando desc. de objeto 
      24 Objeto canal
      27 tomando desc. objeto
-     27 Aceptando descripción de objeto 
+     27 Aceptando desc. de objeto 
      27 Objeto líquido
      30 tomando desc. objeto
-     30 Aceptando descripción de objeto 
+     30 Aceptando desc. de objeto 
      30 Objeto recipientes
      33 tomando desc. objeto
-     33 Aceptando descripción de objeto 
+     33 Aceptando desc. de objeto 
      33 Objeto frasco
      36 tomando objeto
      36 Creando/modificando objeto (coger).
      36 Objeto ya existente: frasco
-     40 Fín del proceso de /home/baltasarq/prys/txtmap/remakorp/remakorp.txt ...
+     40 Fin del proceso de samples/remakorp/remakorp.txt ...

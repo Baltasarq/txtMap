@@ -1,0 +1,181 @@
+// generado por INPAWS@txtMap, v0.1/ v0.6 20140612
+// Tue Jun 24 21:18:30 2014
+
+
+#include "LibPAW.h";
+
+
+// *** Crs intl --
+
+#ifdef PAWSPECTRUM
+SUBCHAR "¿" "{146}";
+SUBCHAR "á" "{144}";
+SUBCHAR "é" "{148}";
+SUBCHAR "í" "{152}";
+SUBCHAR "ó" "{158}";
+SUBCHAR "ú" "{159}";
+SUBCHAR "¡" "{147}";
+SUBCHAR "ñ" "{149}";
+SUBCHAR "Ñ" "{150}";
+SUBCHAR "ü" "{151}";
+#endif
+
+
+// *** Locs --
+
+LOCATION ElInicio 0 {
+	"Remakorp v20140624^
+Empieza la aventura...";
+}
+
+LOCATION locCriptaDeLosReyes 1 {
+	"Cripta de los Reyes^
+	^La cripta se ilumina vagamente gracias a la poca luz que entra por la compuerta abierta, y a la que sale de unos respiraderos disimulados en la pared del templo. En el suelo, un pequeño canal semicircular conduce un líquido marrón en una secuencia que se adivina continúa por la pared del templo para aparecer en el otro lado. En el interior del semicírculo, sobre un pedestal, lo que aparentan ser estatuas te observan desde su imponente altura.";
+	CONNECTIONS {
+		OESTE to locElTemplo
+	};
+};
+
+LOCATION locElTemplo 2 {
+	"El templo^
+	^El templo tiene un pilón central, rematado por una argolla. Extrañas inscripciones llenan la parte media de las paredes.";
+	CONNECTIONS {
+		ESTE to locCriptaDeLosReyes
+	};
+};
+
+
+// *** Objs --
+
+OBJECT objCanal 1 {
+	"un canal";
+	WEIGHT 1;
+	WORDS canal _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "canal"; };
+
+RESPONSE {
+	EX canal: MESSAGE "El pequeño canal (de apenas el fondo de la suela de un zapato, y el ancho de un pie), rodea las estatuas, como si del foso de un castillo se tratara. Un líquido marrón corre por todo el canal, como si fuera un circuíto cerrado." DONE;
+	COGE canal: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+OBJECT objEstatuas 2 {
+	"unas estatuas";
+	WEIGHT 1;
+	WORDS estatuas _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "estatuas"; };
+
+RESPONSE {
+	EX estatuas: MESSAGE "Las estatuas son de piedra, y no son monolíticas, sino que una estrecha ranura las recorre por la totalidad de los costados. Se puede adivinar que son momias, y dada la pinta de la estatua y el territorio en el que se encuentra el templo, son con seguridad momias y'nharr." DONE;
+	COGE estatuas: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+OBJECT objFrasco 3 {
+	"un frasco";
+	WEIGHT 1;
+	WORDS frasco _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "frasco"; };
+
+RESPONSE {
+	EX frasco: MESSAGE "El interior del frasco está vacío. Si alguna vez hubo algo en su interior, se ha evaporado con el paso del tiempo." DONE;
+};
+
+OBJECT objLQuido 4 {
+	"un liquido";
+	WEIGHT 1;
+	WORDS liquido _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "liquido"; };
+
+RESPONSE {
+	EX liquido: MESSAGE "Un líquido de parda apariencia corre contínuamente por el canal. Su olor es nauseabundo. Puede que los Y'nharr creyeran en este líquido como en una forma de alejar a los malos espíritus de sus reyes." DONE;
+	COGE liquido: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+OBJECT objPedestal 5 {
+	"un pedestal";
+	WEIGHT 1;
+	WORDS pedestal _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "pedestal"; };
+
+RESPONSE {
+	EX pedestal: MESSAGE "Sobre el pedestal se sitúan tres estatuas. Bajo ellas, puedes ver varios recipientes." DONE;
+	COGE pedestal: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+OBJECT objRecipientes 6 {
+	"unos recipientes";
+	WEIGHT 1;
+	WORDS recipientes _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "recipientes"; };
+
+RESPONSE {
+	EX recipientes: MESSAGE "A los pies de las estatuas hay varios recipientes. A pesar de estar medio carcomidos por el paso del tiempo, puedes identificar un frasco entre todos ellos." DONE;
+	COGE recipientes: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+OBJECT objRespiraderos 7 {
+	"unos respiraderos";
+	WEIGHT 1;
+	WORDS respiraderos _;
+	INITIALLYAT locCriptaDeLosReyes;
+};	VOCABULARY { Noun: "respiraderos"; };
+
+RESPONSE {
+	EX respiraderos: MESSAGE "Unos respiraderos con formato vertical, de manera que quedan sin duda ocultos desde el exterior del templo." DONE;
+	COGE respiraderos: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+};
+
+
+// *** Boot --
+
+PROCESS 1
+{
+	* _: AT ElInicio PROMPT 2 ANYKEY GOTO locElTemplo DESC;
+	_ _: NEWLINE PROCESS Salidas;
+};
+
+CHARACTERS {
+	8, 16, 56, 4, 60, 68, 60, 0,
+	0, 0, 0, 0, 0, 0, 0, 0,
+	0, 16, 0, 16, 32, 66, 60, 0,
+	0, 8, 0, 8, 8, 8, 8, 0,
+	8, 16, 56, 68, 120, 64, 60, 0,
+	56, 0, 120, 68, 68, 68, 68, 0,
+	24, 66, 98, 82, 74, 70, 66, 0,
+	40, 0, 68, 68, 68, 68, 56, 0,
+	8, 16, 0, 48, 16, 16, 56, 0,
+	0, 0, 0, 15, 8, 8, 8, 8,
+	0, 0, 0, 248, 8, 8, 8, 8,
+	8, 8, 8, 15, 0, 0, 0, 0,
+	8, 8, 8, 248, 0, 0, 0, 0,
+	8, 8, 8, 8, 8, 8, 8, 8,
+	8, 16, 56, 68, 68, 68, 56, 0,
+	8, 16, 68, 68, 68, 68, 56, 0,
+	16, 8, 16, 8, 16, 8, 16, 8,
+	170, 85, 170, 85, 170, 85, 170, 85,
+	255, 255, 255, 255, 255, 255, 255, 255,
+	170, 85, 170, 85, 170, 85, 170, 85,
+	204, 51, 204, 51, 204, 51, 204, 51,
+	170, 170, 85, 85, 170, 170, 85, 85,
+	136, 0, 2, 0, 136, 0, 32, 0,
+	0, 0, 32, 0, 0, 0, 2, 0,
+	16, 16, 16, 16, 16, 16, 16, 16,
+	0, 0, 0, 255, 0, 0, 0, 0,
+	68, 68, 68, 68, 68, 68, 68, 68,
+	0, 255, 0, 0, 0, 255, 0, 0,
+	128, 64, 32, 16, 8, 4, 2, 1,
+	1, 2, 4, 8, 16, 32, 64, 128,
+	34, 17, 136, 68, 34, 17, 136, 68,
+	68, 136, 17, 34, 68, 136, 17, 34,
+	195, 60, 195, 60, 195, 60, 195, 60,
+	4, 4, 255, 64, 64, 64, 255, 4,
+	1, 3, 6, 12, 24, 48, 96, 192, 0
+};
+
+
+#include "LibPAW.paw";

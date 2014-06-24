@@ -1,4 +1,4 @@
-      0 txtMap v0.51 20140418
+      0 txtMap v0.6 20140612
       0 entrada: samples/ejemplo.txt
       0 ========================
       2 nueva localidad 'Salón'
@@ -28,7 +28,4 @@
      21 Sala de la prensadora por AFUERA a Bodega
      22 Sala de la prensadora por ESTE a Salón
      23 Sala de la prensadora por ABAJO a Bodega
-     24      24: 
-     24, ERROR entrada/salida (creando samples/htmlEjemplo/locbodega.html
-).
-
+     24 Fin del proceso de samples/ejemplo.txt ...
