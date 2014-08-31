@@ -1,5 +1,5 @@
 // generado por INPAWS@txtMap, v0.1/ v0.6 20140612
-// Tue Jun 24 21:18:30 2014
+// Tue Jun 24 21:56:54 2014
 
 
 #include "LibPAW.h";
@@ -47,87 +47,46 @@ LOCATION locElTemplo 2 {
 
 // *** Objs --
 
-OBJECT objCanal 1 {
-	"un canal";
-	WEIGHT 1;
-	WORDS canal _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "canal"; };
-
+VOCABULARY { Noun: "canal"; };
 RESPONSE {
-	EX canal: MESSAGE "El pequeño canal (de apenas el fondo de la suela de un zapato, y el ancho de un pie), rodea las estatuas, como si del foso de un castillo se tratara. Un líquido marrón corre por todo el canal, como si fuera un circuíto cerrado." DONE;
-	COGE canal: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX canal: AT locCriptaDeLosReyes MESSAGE "El pequeño canal (de apenas el fondo de la suela de un zapato, y el ancho de un pie), rodea las estatuas, como si del foso de un castillo se tratara. Un líquido marrón corre por todo el canal, como si fuera un circuíto cerrado." DONE;
 };
 
-OBJECT objEstatuas 2 {
-	"unas estatuas";
-	WEIGHT 1;
-	WORDS estatuas _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "estatuas"; };
-
+VOCABULARY { Noun: "estatuas"; };
 RESPONSE {
-	EX estatuas: MESSAGE "Las estatuas son de piedra, y no son monolíticas, sino que una estrecha ranura las recorre por la totalidad de los costados. Se puede adivinar que son momias, y dada la pinta de la estatua y el territorio en el que se encuentra el templo, son con seguridad momias y'nharr." DONE;
-	COGE estatuas: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX estatuas: AT locCriptaDeLosReyes MESSAGE "Las estatuas son de piedra, y no son monolíticas, sino que una estrecha ranura las recorre por la totalidad de los costados. Se puede adivinar que son momias, y dada la pinta de la estatua y el territorio en el que se encuentra el templo, son con seguridad momias y'nharr." DONE;
 };
 
-OBJECT objFrasco 3 {
-	"un frasco";
+VOCABULARY { Noun: "frasco"; };
+OBJECT objFrasco 1 {
+	"frasco";
 	WEIGHT 1;
 	WORDS frasco _;
 	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "frasco"; };
+};
 
 RESPONSE {
 	EX frasco: MESSAGE "El interior del frasco está vacío. Si alguna vez hubo algo en su interior, se ha evaporado con el paso del tiempo." DONE;
 };
 
-OBJECT objLQuido 4 {
-	"un liquido";
-	WEIGHT 1;
-	WORDS liquido _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "liquido"; };
-
+VOCABULARY { Noun: "liquido"; };
 RESPONSE {
-	EX liquido: MESSAGE "Un líquido de parda apariencia corre contínuamente por el canal. Su olor es nauseabundo. Puede que los Y'nharr creyeran en este líquido como en una forma de alejar a los malos espíritus de sus reyes." DONE;
-	COGE liquido: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX liquido: AT locCriptaDeLosReyes MESSAGE "Un líquido de parda apariencia corre contínuamente por el canal. Su olor es nauseabundo. Puede que los Y'nharr creyeran en este líquido como en una forma de alejar a los malos espíritus de sus reyes." DONE;
 };
 
-OBJECT objPedestal 5 {
-	"un pedestal";
-	WEIGHT 1;
-	WORDS pedestal _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "pedestal"; };
-
+VOCABULARY { Noun: "pedestal"; };
 RESPONSE {
-	EX pedestal: MESSAGE "Sobre el pedestal se sitúan tres estatuas. Bajo ellas, puedes ver varios recipientes." DONE;
-	COGE pedestal: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX pedestal: AT locCriptaDeLosReyes MESSAGE "Sobre el pedestal se sitúan tres estatuas. Bajo ellas, puedes ver varios recipientes." DONE;
 };
 
-OBJECT objRecipientes 6 {
-	"unos recipientes";
-	WEIGHT 1;
-	WORDS recipientes _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "recipientes"; };
-
+VOCABULARY { Noun: "recipientes"; };
 RESPONSE {
-	EX recipientes: MESSAGE "A los pies de las estatuas hay varios recipientes. A pesar de estar medio carcomidos por el paso del tiempo, puedes identificar un frasco entre todos ellos." DONE;
-	COGE recipientes: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX recipientes: AT locCriptaDeLosReyes MESSAGE "A los pies de las estatuas hay varios recipientes. A pesar de estar medio carcomidos por el paso del tiempo, puedes identificar un frasco entre todos ellos." DONE;
 };
 
-OBJECT objRespiraderos 7 {
-	"unos respiraderos";
-	WEIGHT 1;
-	WORDS respiraderos _;
-	INITIALLYAT locCriptaDeLosReyes;
-};	VOCABULARY { Noun: "respiraderos"; };
-
+VOCABULARY { Noun: "respiraderos"; };
 RESPONSE {
-	EX respiraderos: MESSAGE "Unos respiraderos con formato vertical, de manera que quedan sin duda ocultos desde el exterior del templo." DONE;
-	COGE respiraderos: AT locCriptaDeLosReyes MESSAGE "No es algo que puedas coger." DONE;
+	EX respiraderos: AT locCriptaDeLosReyes MESSAGE "Unos respiraderos con formato vertical, de manera que quedan sin duda ocultos desde el exterior del templo." DONE;
 };
 
 
