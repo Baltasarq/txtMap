@@ -1,7 +1,8 @@
 obj/
 bin/
+txtmap.cbp
 txtmap.depend
 txtmap.layout
 src/txtmap
 *.o
-*.obj
+*.exe
