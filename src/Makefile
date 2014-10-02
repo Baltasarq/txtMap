@@ -1,17 +1,21 @@
-cc=g++
+CFLAGS=-m32 -O2
 
 all: txtmap.o persistente.o stringman.o plugin.o
-	$(cc) -otxtmap txtmap.o persistente.o stringman.o plugin.o
+	$(CXX) $(CFLAGS) -otxtmap txtmap.o persistente.o stringman.o plugin.o
 
 plugin.o: plugin.cpp plugin.h
-	$(cc) -c plugin.cpp
+	$(CXX) $(CFLAGS) -c plugin.cpp -oplugin.o
 
 txtmap.o: txtmap.cpp txtmap.h
-	$(cc) -c txtmap.cpp
+	$(CXX) $(CFLAGS) -c txtmap.cpp -otxtmap.o
 
 persistente.o: persistente.cpp persistente.h
-	$(cc) -c persistente.cpp
+	$(CXX) $(CFLAGS) -c persistente.cpp -opersistente.o
 
 stringman.o: stringman.cpp stringman.h
-	$(cc) -c stringman.cpp
+	$(CXX) $(CFLAGS) -c stringman.cpp -ostringman.o
 
+clean:
+	$(RM) *.o
+	$(RM) txtmap
+	$(RM) txtmap.exe

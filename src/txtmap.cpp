@@ -1931,7 +1931,7 @@ void mkdir(const std::string &d)
     }
 
 
-    std::system( std::string( "mkdir " + dir ).c_str() );
+    int retVal = std::system( std::string( "mkdir " + dir ).c_str() );
 
     return;
 }

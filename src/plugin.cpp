@@ -1936,7 +1936,7 @@ void I7Plugin::describirLocalidad( FILE * f, Localidad *loc, TDS * tds, Localida
                         + ".\n\n"
         ;
 
-        fprintf( f, dondeEsta.c_str() );
+        fprintf( f, "%s", dondeEsta.c_str() );
     }
 
     // Guardar los objetos

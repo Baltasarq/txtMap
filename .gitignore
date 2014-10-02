@@ -1,0 +1,7 @@
+obj/
+bin/
+txtmap.depend
+txtmap.layout
+src/txtmap
+*.o
+*.obj
