@@ -243,7 +243,7 @@ Parser::Parser(Scanner *sc, bool cl)
 {
 
         // El nombre del log se crea simplemente incorporando la ext de log
-        // con esto el fichero sería fich.ext.log
+        // con esto el fichero serï¿½a fich.ext.log
         nomFich = scanSCE->devNombreEntrada() + extlog;
 
         if  ( !enModoLimpio() ) {
@@ -297,7 +297,7 @@ const std::string ParserAvNat::strDeterminantes =
                         " mi mis tu tus su sus"
                         " nuestras nuestros vuestras vuestros"
                         " un una uno a"
-                        // ------------ inglés --------------
+                        // ------------ inglï¿½s --------------
                         " the this these those"
                         " my your his her our"
                         " at a "
@@ -498,7 +498,7 @@ void ParserAvNat::crearNuevaLoc(Localidad *&loc, Localidad::Direccion &ultimaDir
 {
         std::string locAnt;
 
-        // ¿Hay loc anterior? ... si hay, enlazarla
+        // ï¿½Hay loc anterior? ... si hay, enlazarla
         if ( loc != NULL ) {
                 locAnt = loc->getId();
                 if ( ultimaDir != Localidad::LIMBO ) {
@@ -635,7 +635,7 @@ void ParserAvNat::procesaInventario(Localidad *loc)
         std::string nombreObj;
         size_t posAnt = 0;
 
-        ponLogStr( "Añadiendo objetos al inventario." );
+        ponLogStr( "Aï¿½adiendo objetos al inventario." );
 
         nombresObjs = buscaSigLineaCmd( CapturaTexto );
 
@@ -681,7 +681,7 @@ void ParserAvNat::procesaObjetoEscenario(Localidad *loc)
         nombreObj = linact.substr( pos, linact.length() );
         ponLogStr( "Objeto " + nombreObj );
 
-        // Tomar las sigs líneas (descripción)
+        // Tomar las sigs lï¿½neas (descripciï¿½n)
         descObj = buscaSigLineaCmd( CapturaTexto );
 
         // Si no existe, crearlo
@@ -691,7 +691,7 @@ void ParserAvNat::procesaObjetoEscenario(Localidad *loc)
                 obj->ponEstatico();
         }
 
-        // Darle la descripción
+        // Darle la descripciï¿½n
         if ( obj->getDesc().empty() )
                 obj->ponDesc( descObj );
         else throw ErrorIdDuplicado( '\''
@@ -714,12 +714,12 @@ void ParserAvNat::procEntrada(void) throw(Error)
                   throw ErrorES( "entrada inexistente" );
         }
 
-        // Tomar primera línea de la entrada con info
+        // Tomar primera lï¿½nea de la entrada con info
         linact = scanSCE->leeLinea();
 
         // Cargar localidades y objetos hasta final de fichero
         while ( !( linact.empty() ) ) {
-              // ¿Cambiamos de estado?
+              // ï¿½Cambiamos de estado?
               if ( cambiaEstado( linact ) )
               {
                 if ( getEstado() == TIT )
@@ -790,7 +790,7 @@ void ParserAvNat::procEntrada(void) throw(Error)
                 }
               }
 
-              // Tomar siguiente línea
+              // Tomar siguiente lï¿½nea
               muestraProceso( scanSCE, this );
 
               if ( !noCargar )
@@ -1379,7 +1379,7 @@ void Localidad::guardar(FILE *f)
                 guardarCampo( f, "Com", getComentario() );
         }
 
-        // Guardar recursos gráfico-sonoros
+        // Guardar recursos grï¿½fico-sonoros
         if ( !nombreRecGrafico.empty() ) {
                 guardarCampo( f, "Grf", nombreRecGrafico );
         }
@@ -1455,7 +1455,7 @@ Localidad * Localidad::recuperar(FILE *f)
                                         recuperarCampo( f, txt );
                         }
                         else {
-                                // Es una dirección ?
+                                // Es una direcciï¿½n ?
                                 Direccion direccion =
                                         cnvtStrADireccion(
                                                 StringMan::mays( txt )
@@ -1717,8 +1717,8 @@ void TDS::chk() throw (ErrorSemantico, ErrorInterno)
 
         // Comprobar inconsistencias
         porPantalla( "\nChk( " + nombreAventura + ',' + ' '
-                + StringMan::toString( getNumLocs() ) + " locs, "
-                + StringMan::toString( getNumObjs() ) + " objs ):\n"
+                + StringMan::stringFromUInt( getNumLocs() ) + " locs, "
+                + StringMan::stringFromUInt( getNumObjs() ) + " objs ):\n"
         );
 
         // Chk rooms
@@ -1730,9 +1730,9 @@ void TDS::chk() throw (ErrorSemantico, ErrorInterno)
                 if ( it->getDesc().length() > getMaxChars() ) {
                     throw ErrorSemantico( "En '"
                                 + it->getId() + "': #chars desc="
-                                + StringMan::toString( it->getDesc().length() )
+                                + StringMan::stringFromUInt( it->getDesc().length() )
                                 + " > MaxChars="
-                                + StringMan::toString( getMaxChars() )
+                                + StringMan::stringFromUInt( getMaxChars() )
                     );
                 }
 
@@ -1755,7 +1755,7 @@ void TDS::chk() throw (ErrorSemantico, ErrorInterno)
                 }
         }
 
-        porPantalla( '\t' + StringMan::toString( numLocs ) + " locs ok.\n" );
+        porPantalla( '\t' + StringMan::stringFromUInt( numLocs ) + " locs ok.\n" );
 
         // Comprobar los objetos del inventario
         for(size_t i = 0; i < getListaInventarioStr()->size(); ++i) {
@@ -1781,23 +1781,23 @@ void TDS::chk() throw (ErrorSemantico, ErrorInterno)
                 if ( obj->getDesc().length() > getMaxChars() ) {
                     throw ErrorSemantico( "En '"
                                 + it->getId() + "': #chars desc="
-                                + StringMan::toString( obj->getDesc().length() )
+                                + StringMan::stringFromUInt( obj->getDesc().length() )
                                 + " > MaxChars="
-                                + StringMan::toString( getMaxChars() )
+                                + StringMan::stringFromUInt( getMaxChars() )
 
                     );
                 }
         }
 
-        porPantalla( '\t' + StringMan::toString( numObjs ) + " objs ok.\n\n" );
+        porPantalla( '\t' + StringMan::stringFromUInt( numObjs ) + " objs ok.\n\n" );
 
         if ( numObjs != getNumObjs()
           || numLocs != getNumLocs() )
         {
-            throw ErrorInterno( "#locs(" + StringMan::toString( numLocs )
-                                + ") <> " + StringMan::toString( getNumLocs() )
-                                + "|| #objs(" + StringMan::toString( numObjs )
-                                + ") <> " + StringMan::toString( getNumObjs() )
+            throw ErrorInterno( "#locs(" + StringMan::stringFromUInt( numLocs )
+                                + ") <> " + StringMan::stringFromUInt( getNumLocs() )
+                                + "|| #objs(" + StringMan::stringFromUInt( numObjs )
+                                + ") <> " + StringMan::stringFromUInt( getNumObjs() )
             );
         }
 
@@ -1851,7 +1851,7 @@ void mostrarSintaxis()
 }
 
 void eliminaGuionesPrecedentes(std::string &arg)
-// Eliminar los guiones precedentes en argumentos de línea de comando.
+// Eliminar los guiones precedentes en argumentos de lï¿½nea de comando.
 {
         size_t guion = 0;
 
@@ -1932,7 +1932,7 @@ void mkdir(const std::string &d)
 
 
     int retVal = std::system( std::string( "mkdir " + dir ).c_str() );
-
+    ++retVal;
     return;
 }
 
@@ -1968,7 +1968,7 @@ std::string procesaOpciones(int argc, char *argv[],
 		{
             eliminaGuionesPrecedentes( arg );
 
-			// Cuál es?
+			// Cuï¿½l es?
 			if ( arg.length() >= opOutput.length()
 			&& arg.compare( 0, opOutput.length(), opOutput ) == 0 )
 			{
@@ -2049,7 +2049,7 @@ std::string procesaOpciones(int argc, char *argv[],
             }
 			else {
 				mostrarSintaxis();
-				throw ErrorSintaxis( "opción desconocida '" +
+				throw ErrorSintaxis( "opciï¿½n desconocida '" +
 						std::string(argv[argAct]) + '\'');
 			}
 		} else break;
@@ -2153,7 +2153,7 @@ int procesarAventura(int argc, char *argv[])
 
             // Mostrar maxchars o darle valor max.
             if ( maxChars > 0 )
-                    porPantalla( ' ' + opMaxChars + StringMan::toString( maxChars ) );
+                    porPantalla( ' ' + opMaxChars + StringMan::stringFromUInt( maxChars ) );
             else    maxChars = UINT_MAX;
 
             porPantalla( "\n" );
@@ -2178,7 +2178,7 @@ int procesarAventura(int argc, char *argv[])
                         if (  sce == NULL
                          ||!( sce->preparado() ) )
                         {
-                              porPantalla("ERROR El archivo no existe o no está "
+                              porPantalla("ERROR El archivo no existe o no estï¿½ "
                                             "disponible.\n");
                         }
                         else {

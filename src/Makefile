@@ -1,4 +1,4 @@
-CFLAGS=-m32 -O2
+CFLAGS=-O2 -Wall
 
 all: txtmap.o persistente.o stringman.o plugin.o
 	$(CXX) $(CFLAGS) -otxtmap txtmap.o persistente.o stringman.o plugin.o

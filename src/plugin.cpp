@@ -249,12 +249,12 @@ HtmlPlugin * HtmlPlugin::creaHtmlPlugin()
 std::string &HtmlPlugin::cnvtStrHtml(std::string &str)
 {
         procStr( str, '\n', "<br>" );
-        procStr( str, 'á', "&aacute;" );
-        procStr( str, 'é', "&eacute;" );
-        procStr( str, 'í', "&iacute;" );
-        procStr( str, 'ó', "&oacute;" );
-        procStr( str, 'ú', "&uacute;" );
-        procStr( str, 'ñ', "&ntilde;" );
+        procStr( str, 'ï¿½', "&aacute;" );
+        procStr( str, 'ï¿½', "&eacute;" );
+        procStr( str, 'ï¿½', "&iacute;" );
+        procStr( str, 'ï¿½', "&oacute;" );
+        procStr( str, 'ï¿½', "&uacute;" );
+        procStr( str, 'ï¿½', "&ntilde;" );
 
         return str;
 }
@@ -278,7 +278,7 @@ void HtmlPlugin::procesar(TDS *tds)
         std::string nombreLocDest;
         std::string nombreFichLoc;
         int numSalidas;
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
 
         // Crear archivo index
         porPantalla( "\nCreando index.html" );
@@ -362,7 +362,7 @@ void HtmlPlugin::procesar(TDS *tds)
                                 cnvtStrHtml( hora ).c_str()
                     );
 
-                    // Título
+                    // Tï¿½tulo
                     fprintf( f,
                              "<html><head><title>%s</title></head><body>",
                              cnvtStrHtml( loc->getId() ).c_str()
@@ -543,7 +543,7 @@ void SrcPlugin::procesar(TDS *tds)
 {
         Localidad * loc;
         std::ostringstream cnvt;
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
 
         // Crear el archivo
         StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".txt" );
@@ -773,7 +773,7 @@ void InfPlugin::procesar(TDS *tds)
         Objeto *obj;
         std::string aux;
         std::string objetosInventario;
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
         std::string mediaCmd;
         std::string nombreArchivo;
         std::string includeLengua = ( lenguaAOpcionInform( lengua ) + "G" );
@@ -902,7 +902,7 @@ void InfPlugin::procesar(TDS *tds)
                         fprintf( f, "\n! [%s]\n", loc->getComentario().c_str() );
                 }
 
-                // Guardar el título
+                // Guardar el tï¿½tulo
                 fprintf( f, "\%s %s \"%s\"\nwith\n",
                         classRoom.c_str(),
                         loc->getIdUnico().c_str(),
@@ -1011,7 +1011,7 @@ const std::string InformatePlugin::EtqLocalidad = "Estancia";
 const std::string InformatePlugin::FinalCorrecto =
     "Object MensajesLibreria\n"
     "with\n\tantes [;\n\t\tMiscelanea:\n\t\t\tif ( ml_n == 4 ) {\n"
-    "\t\t\t\tprint \"¡Has ganado! ***^\";\n"
+    "\t\t\t\tprint \"ï¿½Has ganado! ***^\";\n"
     "\t\t\t\trtrue;\n"
     "\t\t\t}\n"
     "\t]\n;"
@@ -1120,7 +1120,7 @@ GlulxInformatePlugin::GlulxInformatePlugin(const std::string &a, const std::stri
 const std::string InformPlugin::FinalCorrecto =
     "Object LibraryMessages\n"
     "with\n\tbefore [;\n\t\tMiscellany:\n\t\t\tif ( lm_n == 4 ) {\n"
-    "\t\t\t\tprint \"¡Has ganado! ***^\";\n"
+    "\t\t\t\tprint \"ï¿½Has ganado! ***^\";\n"
     "\t\t\t\trtrue;\n"
     "\t\t\t}\n"
     "\t]\n;"
@@ -1206,7 +1206,7 @@ void SuperglusPlugin::procesar(TDS *tds)
 {
         Localidad * loc;
         std::ostringstream cnvt;
-        std::string hora = StringMan::toString( std::time( NULL ) );
+        std::string hora = StringMan::stringFromTime( std::time( NULL ) );
 
         StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".txp" );
         FILE * f = fopen( nomFichSal.c_str(), "wt" );
@@ -1231,25 +1231,25 @@ void SuperglusPlugin::procesar(TDS *tds)
         while( !tds->esLocalidadFinal() )
         {
                 // Guardar el encabezado
-                fprintf( f, "\n/%u ;%s\n",
+                fprintf( f, "\n/%lu ;%s\n",
                         loc->getNumLoc(),
                         loc->getId().c_str()
                 );
 
-                fprintf( f, "\n#define loc %s = %u\n",
+                fprintf( f, "\n#define loc %s = %lu\n",
                         ( std::string( "loc" ) + loc->getIdUnico() ).c_str(),
                         loc->getNumLoc()
                 );
 
                 // Recursos de msc. y sonido
                 if ( !loc->nombreRecGrafico.empty() ) {
-                        fprintf( f, "\n#define pic %s = %u\n",
+                        fprintf( f, "\n#define pic %s = %lu\n",
                                 loc->nombreRecGrafico.c_str(),
                                 loc->getNumLoc()
                         );
                 }
                 if ( !loc->nombreRecMusica.empty() ) {
-                        fprintf( f, "\n#define msc %s = %u\n",
+                        fprintf( f, "\n#define msc %s = %lu\n",
                                 loc->nombreRecMusica.c_str(),
                                 loc->getNumLoc()
                         );
@@ -1324,7 +1324,7 @@ void PawsPlugin::procesar(TDS *tds)
         Localidad * loc;
         Localidad * locCon;
         std::string aux;
-        std::string hora = StringMan::toString( std::time( NULL ) );
+        std::string hora = StringMan::stringFromTime( std::time( NULL ) );
 
         StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".sce" );
         FILE * f = fopen( nomFichSal.c_str(), "wt" );
@@ -1349,7 +1349,7 @@ void PawsPlugin::procesar(TDS *tds)
         while( !tds->esLocalidadFinal() )
         {
                 // Guardar el encabezado
-                fprintf( f, "\n/%u ;%s\n",
+                fprintf( f, "\n/%lu ;%s\n",
                         loc->getNumLoc(),
                         loc->getId().c_str()
                 );
@@ -1374,7 +1374,7 @@ void PawsPlugin::procesar(TDS *tds)
 
         while( !tds->esLocalidadFinal() )
         {
-                fprintf( f, "\n/%u\n", loc->getNumLoc() );
+                fprintf( f, "\n/%lu\n", loc->getNumLoc() );
 
                 // Guardar las direcciones
                 for(size_t i = 0; i < Localidad::NumDirecciones; ++i)
@@ -1390,7 +1390,7 @@ void PawsPlugin::procesar(TDS *tds)
                               }
 
 
-                              fprintf( f, "%s %u\n",
+                              fprintf( f, "%s %lu\n",
                                       Localidad::strDireccion[i].c_str(),
                                       locCon->getNumLoc()
                               );
@@ -1407,7 +1407,7 @@ void PawsPlugin::procesar(TDS *tds)
 
         while( !tds->esObjetoFinal() )
         {
-                fprintf( f, "\n/%d\n%s\n",
+                fprintf( f, "\n/%lu\n%s\n",
                         obj->getNumObj(),
                         obj->getDesc().c_str()
                 );
@@ -1424,7 +1424,7 @@ void PawsPlugin::procesar(TDS *tds)
         while( !tds->esObjetoFinal() )
         {
                 // Num. de objeto
-                fprintf( f, "\n/%d\t", obj->getNumObj() );
+                fprintf( f, "\n/%lu\t", obj->getNumObj() );
 
                 // Localidad/Llevado/Puesto y peso
                 aux.erase();
@@ -1434,7 +1434,7 @@ void PawsPlugin::procesar(TDS *tds)
                         else    aux = "CARRIED";
                 }
                 else {
-                        aux = StringMan::toString(
+                        aux = StringMan::stringFromUInt(
                                 obj->getContinente()->getNumLoc()
                         );
                 }
@@ -1479,7 +1479,7 @@ void AGEPlugin::procesar(TDS *tds)
         Localidad *loc;
         Objeto * obj;
         std::ostringstream cabDir;
-        std::string hora = StringMan::toString( std::time( NULL ) );
+        std::string hora = StringMan::stringFromTime( std::time( NULL ) );
         size_t numObjs;
 
         // Abrir archivo
@@ -1511,7 +1511,7 @@ void AGEPlugin::procesar(TDS *tds)
 
         // Meter al jugador
         fprintf( f, "<PlayerGeneration>\n"
-                    "<Template id=\"20000000\" name=\"Nuestro Héroe\" "
+                    "<Template id=\"20000000\" name=\"Nuestro Hï¿½roe\" "
                     "extends=\"0\" clones=\"0\" type=\"null\" "
                     "properName=\"true\" hp=\"100\" mp=\"0\" maxhp=\"100\" "
                     "maxmp=\"0\" gender=\"true\">\n"
@@ -1710,7 +1710,7 @@ void KenshiraPlugin::procesar(TDS *tds)
         Objeto *obj;
         std::string aux;
         std::string objetosInventario;
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
 
         // Abrir archivo
         StringMan::ponerExtensionAdecuadaNombreArchivo( nomFichSal, ".k" );
@@ -1737,7 +1737,7 @@ void KenshiraPlugin::procesar(TDS *tds)
             "class Cosa\nendclass\n"
         );
         fprintf( f, "\n\nobject jugador:Personaje dentro:%s\n\tnombre MS:jugador", locIni->getIdUnico().c_str() );
-        fprintf( f, "\n\tvar DescLarga = \"Tú eres el protagonista.\"\nendobject\n\n" );
+        fprintf( f, "\n\tvar DescLarga = \"Tï¿½ eres el protagonista.\"\nendobject\n\n" );
 
         // locs
         fprintf ( f, "\n// ================= LOCALIDADES ===============\n\n" );
@@ -1991,7 +1991,7 @@ void I7Plugin::procesar(TDS *tds)
 {
         std::time_t ahora;
         std::tm * tiempo = std::localtime( &ahora );
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
         locsVisitadas.clear();
         locsVisitadas.reserve( tds->getNumLocs() );
 
@@ -2090,7 +2090,7 @@ void BasPlugin::procesar(TDS *tds)
 {
         Localidad * loc;
         Objeto *obj;
-        std::string hora = StringMan::toString( std::time( NULL ) );
+        std::string hora = StringMan::stringFromTime( std::time( NULL ) );
         int numLinea;
 
         // Abrir la salida
@@ -2114,7 +2114,7 @@ void BasPlugin::procesar(TDS *tds)
         numLinea = NumLineaComienzo;
         fprintf( f, "%d rem *** Story data ***\n", numLinea );
         fprintf( f, "%d rem *** Rooms ***\n", numLinea += 5 );
-        fprintf( f, "%d let MaxLocs = %d:dim h$(MaxLocs)"
+        fprintf( f, "%d let MaxLocs = %lu:dim h$(MaxLocs)"
                     ":rem dim h$(MaxLocs,255):rem spectrum\n",
                         numLinea += 5, tds->getNumLocs()
         );
@@ -2172,7 +2172,7 @@ void BasPlugin::procesar(TDS *tds)
                     Localidad * locDest = tds->buscaLoc( salida );
 
                     if ( locDest != NULL )
-                            fprintf( f, "%d", locDest->numId );
+                            fprintf( f, "%lu", locDest->numId );
                     else    fprintf( f, "-1" );
                 }
 
@@ -2187,7 +2187,7 @@ void BasPlugin::procesar(TDS *tds)
         }
 
         fprintf( f, "%d rem *** OBJS ***\n", numLinea += 5 );
-        fprintf( f, "%d let MaxObjs = %d:dim o$(MaxObjs):"
+        fprintf( f, "%d let MaxObjs = %lu:dim o$(MaxObjs):"
                     "rem dim o$(MaxObjs,255):rem spectrum\n",
                                 numLinea += 5, tds->getNumObjs()
         );
@@ -2222,7 +2222,7 @@ void BasPlugin::procesar(TDS *tds)
         obj = tds->getPriObj();
         while( !tds->esObjetoFinal() )
         {
-            fprintf( f, "%d data %d,%d,%d\n",
+            fprintf( f, "%d data %lu,%d,%d\n",
                     numLinea += 5,
                     obj->getContinente()->numId,
                     obj->esEscenario() ? 1 : 0,
@@ -2234,10 +2234,10 @@ void BasPlugin::procesar(TDS *tds)
 
         // motor juego (bueh ...)
         fprintf( f, "9000 rem *** playing engine draft (sort of...)***\n" );
-        fprintf( f, "9010 print \"Loading ...\": gosub %d\n", NumLineaComienzo);
+        fprintf( f, "9010 print \"Loading ...\": gosub %lu\n", NumLineaComienzo);
         fprintf( f, "9020 print \"Enter initial of any compass direction. QUIT ends. Only capitals.\"\n" );
         fprintf( f, "9040 print \"Introduzca la inicial de cualquier direccion del compas. FIN termina. Use mays.\"\n" );
-        fprintf( f, "9050 let room=%d\n", tds->locComienzo->numId );
+        fprintf( f, "9050 let room=%lu\n", tds->locComienzo->numId );
         fprintf( f, "9060 print:print h$(room)\n" );
         fprintf( f, "9070 print:input \">\"; i$\n" );
         fprintf( f, "9080 if i$=\"N\" then if d(room,1) > 0 then let room=d(room,1):goto 9060\n" );
@@ -2299,7 +2299,7 @@ void StdCPlugin::procesar(TDS *tds)
 {
         Localidad * loc;
         Objeto *obj;
-        std::string hora = StringMan::toString( time( NULL ) );
+        std::string hora = StringMan::stringFromTime( time( NULL ) );
         int numLoc = 0;
 
         // Abrir la salida
@@ -2339,8 +2339,8 @@ void StdCPlugin::procesar(TDS *tds)
         fprintf( f, "#define AtrWearable 1\n" );
         fprintf( f, "#define AtrScenery 2\n" );
         fprintf( f, "/* Last room is the player */\n" );
-        fprintf( f, "#define MaxRooms %d\n", tds->getNumLocs() + 1 );
-        fprintf( f, "#define MaxObjects %d\n", tds->getNumObjs() );
+        fprintf( f, "#define MaxRooms %lu\n", tds->getNumLocs() + 1 );
+        fprintf( f, "#define MaxObjects %lu\n", tds->getNumObjs() );
         fprintf( f, "#define MaxChars 1024\n" );
         fprintf( f, "#define North 0\n" );
         fprintf( f, "#define South 1\n" );
@@ -2421,7 +2421,7 @@ void StdCPlugin::procesar(TDS *tds)
                     Localidad * locDest = tds->buscaLoc( salida );
 
                     if ( locDest != NULL )
-                            fprintf( f, "%d", locDest->numId );
+                            fprintf( f, "%lu", locDest->numId );
                     else    fprintf( f, "-1" );
                 }
 
@@ -2493,7 +2493,7 @@ void StdCPlugin::procesar(TDS *tds)
 
         fprintf( f, "char objectAtrs[MaxObjects][MaxAtrs] = {\n");
         for(obj = tds->getPriObj(); !tds->esObjetoFinal(); obj = tds->getSigObj()) {
-            fprintf( f, "\t%d, %d, %d,\n", obj->getContinente()->numId,
+            fprintf( f, "\t%lu, %d, %d,\n", obj->getContinente()->numId,
                                 obj->esPonible() ? 1 : 0,
                                 obj->esEscenario() ? 1 : 0
             );
@@ -2576,7 +2576,7 @@ void StdCPlugin::procesar(TDS *tds)
 
         // main
         fprintf( f, "int main(void)\n" );
-        fprintf( f, "{\n\tStory story;\n\tchar buffer[MaxChars];\n\tint room = %d;\n\n"
+        fprintf( f, "{\n\tStory story;\n\tchar buffer[MaxChars];\n\tint room = %lu;\n\n"
                     "\t#ifndef ES\n\tprintf( \"Loading ...\\n\" );\n"
                     "\tprintf( \"Enter compass directions initials to move\\n\" );\n"
                     "\t#else\n"
@@ -2637,7 +2637,7 @@ void FiJsPlugin::procesar(TDS *tds)
         Localidad * loc;
         Objeto *obj;
         time_t currentTime = time( NULL );
-        std::string hora = StringMan::toString( currentTime );
+        std::string hora = StringMan::stringFromTime( currentTime );
         std::tm * fecha = std::localtime( &currentTime );
 
         // Abrir la salida
@@ -2783,7 +2783,7 @@ void InPawsPlugin::procesar(TDS *tds)
         Localidad * loc;
         Objeto *obj;
         time_t currentTime = time( NULL );
-        std::string hora = StringMan::toString( currentTime );
+        std::string hora = StringMan::stringFromTime( currentTime );
         std::tm * fecha = std::localtime( &currentTime );
 
         // Abrir la salida
@@ -2807,16 +2807,16 @@ void InPawsPlugin::procesar(TDS *tds)
 
         fprintf( f, "\n// *** Crs intl --\n\n" );
         fprintf( f, "#ifdef PAWSPECTRUM\n" );
-        fprintf( f, "SUBCHAR \"¿\" \"{146}\";\n" );
-        fprintf( f, "SUBCHAR \"á\" \"{144}\";\n" );
-        fprintf( f, "SUBCHAR \"é\" \"{148}\";\n" );
-        fprintf( f, "SUBCHAR \"í\" \"{152}\";\n" );
-        fprintf( f, "SUBCHAR \"ó\" \"{158}\";\n" );
-        fprintf( f, "SUBCHAR \"ú\" \"{159}\";\n" );
-        fprintf( f, "SUBCHAR \"¡\" \"{147}\";\n" );
-        fprintf( f, "SUBCHAR \"ñ\" \"{149}\";\n" );
-        fprintf( f, "SUBCHAR \"Ñ\" \"{150}\";\n" );
-        fprintf( f, "SUBCHAR \"ü\" \"{151}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{146}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{144}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{148}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{152}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{158}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{159}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{147}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{149}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{150}\";\n" );
+        fprintf( f, "SUBCHAR \"ï¿½\" \"{151}\";\n" );
         fprintf( f, "#endif\n\n" );
 
         // Localidades
@@ -2835,7 +2835,7 @@ void InPawsPlugin::procesar(TDS *tds)
             std::string desc = StringMan::cambiarCadenas( loc->getDesc(), '\n', "^" );
             StringMan::cambiarCadenasCnvt( desc, '"', "\\\"" );
 
-            fprintf( f, "LOCATION %s %d {\n", loc->getIdUnico().c_str(), num );
+            fprintf( f, "LOCATION %s %lu {\n", loc->getIdUnico().c_str(), num );
 
             if ( !( loc->nombreRecGrafico.empty()) ) {
                 fprintf( f, "\t// .grf %s\n",
@@ -2898,7 +2898,7 @@ void InPawsPlugin::procesar(TDS *tds)
                 continue;
             }
 
-            fprintf( f, "OBJECT %s %d {\n",
+            fprintf( f, "OBJECT %s %lu {\n",
                         obj->getIdUnico().c_str(), num );
             fprintf( f, "\t\"%s\";\n", voc.c_str() );
             fprintf( f, "\tWEIGHT 1;\n" );

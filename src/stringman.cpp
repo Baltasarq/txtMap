@@ -14,9 +14,9 @@
 #include <algorithm>
 
 const std::string StringMan::Espacios = " \t\r\n";
-const std::string StringMan::CaracteresEspecialesMins = "áéíóúñüç";
-const std::string StringMan::CaracteresEspecialesMays = "ÁÉÍÓÚÑÜÇ";
-const std::string StringMan::CaracteresEspecialesMarcas = "¿¡";
+const std::string StringMan::CaracteresEspecialesMins = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+const std::string StringMan::CaracteresEspecialesMays = "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½";
+const std::string StringMan::CaracteresEspecialesMarcas = "ï¿½ï¿½";
 const std::string StringMan::CaracteresEspecialesMinsNorm = "aeiounuc";
 const std::string StringMan::CaracteresEspecialesMaysNorm = "AEIOUNUC";
 const std::string StringMan::CaracteresEspecialesMarcasHtml[] = {
@@ -106,13 +106,13 @@ std::string StringMan::trim(const std::string &x)
         return trimCnvt( toret );
 }
 
-// Mayúsculas y minúsculas =====================================================
+// Mayï¿½sculas y minï¿½sculas =====================================================
 char StringMan::maysCnvtCh(char c, bool acentos)
 {
         char toret = std::toupper( c );
 		std::string::size_type pos = CaracteresEspecialesMins.find( toret );
 
-		// Vocales acentuadas minúsculas
+		// Vocales acentuadas minï¿½sculas
 		if ( pos != std::string::npos ) {
 			if ( acentos == MantenAcentos )
 					toret = CaracteresEspecialesMays[ pos ];
@@ -122,7 +122,7 @@ char StringMan::maysCnvtCh(char c, bool acentos)
 		if ( acentos == EliminaAcentos ) {
 			pos = CaracteresEspecialesMays.find( toret );
 
-			// Vocales acentuadas mayúsculas
+			// Vocales acentuadas mayï¿½sculas
 			if ( pos != std::string::npos ) {
 				toret = CaracteresEspecialesMaysNorm[ pos ];
 			}
@@ -136,7 +136,7 @@ char StringMan::minsCnvtCh(char c, bool acentos)
         char toret = std::tolower( c );
 		std::string::size_type pos = CaracteresEspecialesMays.find( toret );
 
-		// Vocales acentuadas mayúsculas
+		// Vocales acentuadas mayï¿½sculas
 		if ( pos != std::string::npos ) {
 			if ( acentos == MantenAcentos )
 					toret = CaracteresEspecialesMins[ pos ];
@@ -146,7 +146,7 @@ char StringMan::minsCnvtCh(char c, bool acentos)
 		if ( acentos == EliminaAcentos ) {
 			pos = CaracteresEspecialesMins.find( toret );
 
-			// Vocales acentuadas minúsculas
+			// Vocales acentuadas minï¿½sculas
 			if ( pos != std::string::npos ) {
 				toret = CaracteresEspecialesMinsNorm[ pos ];
 			}
@@ -212,10 +212,10 @@ std::string &StringMan::normCnvt(std::string &x)
 	// Quitar los espacios
         trimCnvt( x );
 
-	// Quitar los acentos y pasar a mayúsculas
+	// Quitar los acentos y pasar a mayï¿½sculas
         maysCnvt( x, EliminaAcentos );
 
-	// Quitar cualquier carácter no imprimible
+	// Quitar cualquier carï¿½cter no imprimible
 	for(it = x.begin(); it != x.end(); ++it) {
 		if ( !std::isprint( *it ) ) {
 			*it = CaracterEspecial;
@@ -233,13 +233,13 @@ std::string &StringMan::cambiarFmtImprCnvt(std::string &x)
         // Quitar espacios
         trimCnvt( x );
 
-        // Pasar a minúsculas
+        // Pasar a minï¿½sculas
         minsCnvt( x );
 
-        // Poner la primera en mayúsculas
+        // Poner la primera en mayï¿½sculas
         x[ 0 ] = maysCnvtCh( x[ 0 ] );
 
-        // Poner las secundarias en mayúsculas (después de espacios)
+        // Poner las secundarias en mayï¿½sculas (despuï¿½s de espacios)
         pos = x.find(' ');
 
         while ( pos != std::string::npos )
@@ -249,7 +249,7 @@ std::string &StringMan::cambiarFmtImprCnvt(std::string &x)
                 pos = x.find( ' ', pos + 1 );
         }
 
-        // Poner las secundarias en mayúsculas (después de guiones)
+        // Poner las secundarias en mayï¿½sculas (despuï¿½s de guiones)
         pos = x.find( '-' );
 
         while ( pos != std::string::npos )
@@ -300,7 +300,7 @@ bool StringMan::esNumeroDecimal(const std::string &strNum)
 		size_t numPuntos = 0;
 		bool toret = false;
 
-		// Revisión sintáctica
+		// Revisiï¿½n sintï¿½ctica
 		while( pos != strNum.end() )
 		{
 			if ( *pos == '.' ) {
@@ -329,7 +329,7 @@ bool StringMan::esNumeroDecimal(const std::string &strNum)
 			++pos;
 		}
 
-		// Sólo puede haber un punto, se tiene que haber revisado toda la cadena
+		// Sï¿½lo puede haber un punto, se tiene que haber revisado toda la cadena
 		if ( numPuntos <= 1
 		  && pos == strNum.end() )
 		{
@@ -345,7 +345,7 @@ bool StringMan::esNumeroEntero(const std::string &strNum)
 		bool toret = true;
 		std::string::const_iterator pos = strNum.begin();
 
-		// Revisión sintáctica
+		// Revisiï¿½n sintï¿½ctica
 		while( pos != strNum.end() )
 		{
 			if ( !isdigit( *pos ) ) {
@@ -361,7 +361,7 @@ bool StringMan::esNumeroEntero(const std::string &strNum)
 
 
 // ------------------------------------------------------- StringMan::toString()
-std::string StringMan::toString(const int &x)
+std::string StringMan::stringFromInt(const int &x)
 {
         std::ostringstream cnvt;
 
@@ -371,7 +371,7 @@ std::string StringMan::toString(const int &x)
 }
 
 // ------------------------------------------------------- StringMan::toString()
-std::string StringMan::toString(const unsigned int &x)
+std::string StringMan::stringFromUInt(const unsigned int &x)
 {
         std::ostringstream cnvt;
 
@@ -381,7 +381,7 @@ std::string StringMan::toString(const unsigned int &x)
 }
 
 // ------------------------------------------------------- StringMan::toString()
-std::string StringMan::toString(const double &x, int w, int d)
+std::string StringMan::stringFromDouble(const double &x, int w, int d)
 {
         std::ostringstream cnvt;
 
@@ -394,7 +394,7 @@ std::string StringMan::toString(const double &x, int w, int d)
 }
 
 // ------------------------------------------------------- StringMan::toString()
-std::string StringMan::toString(const std::time_t &x)
+std::string StringMan::stringFromTime(const std::time_t &x)
 {
         std::tm *tmHora = std::localtime( &x );
 
@@ -438,14 +438,14 @@ std::string &StringMan::cambiarCadenasCnvt(std::string &x, char c, const std::st
 	std::string::size_type pos = x.find( c );
 
 	while( pos != std::string::npos ) {
-		// Avanzar hasta la posición
+		// Avanzar hasta la posiciï¿½n
 		it = x.begin();
 		std::advance( it, pos );
 
 		// Reemplazar
 		x.replace(it, it + 1, txt );
 
-		// Siguiente búsqueda
+		// Siguiente bï¿½squeda
 		pos += txt.length();
 		pos = x.find( c, pos );
 	}
@@ -472,14 +472,14 @@ std::string &StringMan::cambiarCadenasCnvt(
 	std::string::size_type pos = x.find( txt1 );
 
 	while( pos != std::string::npos ) {
-		// Avanzar hasta la posición
+		// Avanzar hasta la posiciï¿½n
 		it = x.begin();
 		std::advance( it, pos );
 
 		// Reemplazar
 		x.replace(it, it + txt1.length(), txt2 );
 
-		// Siguiente búsqueda
+		// Siguiente bï¿½squeda
 		pos += txt2.length();
 		pos = x.find( txt1, pos );
 	}
@@ -490,8 +490,8 @@ std::string &StringMan::cambiarCadenasCnvt(
 // ----------------------------------------------------- StringMan::toHtmlCnvt()
 std::string &StringMan::toHtmlCnvt(std::string &x)
 /*
-	Es necesario recalcular los punteros, ya que al cambiar el tamaño
-	de la cadena, es posible que ésta ya no esté en la antigua posición
+	Es necesario recalcular los punteros, ya que al cambiar el tamaï¿½o
+	de la cadena, es posible que ï¿½sta ya no estï¿½ en la antigua posiciï¿½n
 	en memoria.
 */
 {
@@ -507,7 +507,7 @@ std::string &StringMan::toHtmlCnvt(std::string &x)
 		);
 	}
 
-	// Las minúsculas
+	// Las minï¿½sculas
 	for( it = CaracteresEspecialesMins.begin(); it < CaracteresEspecialesMins.end(); ++it) {
 		cambiarCadenasCnvt( x,
 				    *it,
@@ -517,7 +517,7 @@ std::string &StringMan::toHtmlCnvt(std::string &x)
 		);
 	}
 
-	// Las mayúsculas
+	// Las mayï¿½sculas
 	for( it = CaracteresEspecialesMays.begin(); it < CaracteresEspecialesMays.end(); ++it) {
 		cambiarCadenasCnvt( x,
 				    *it,

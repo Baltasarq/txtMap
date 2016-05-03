@@ -34,11 +34,11 @@ public:
         static char maysCnvtCh(char c,       bool = MantenAcentos);
         static char minsCnvtCh(char c,       bool = MantenAcentos);
 
-        // Mayúsculas
+        // Mayï¿½sculas
         static std::string mays(const std::string &, bool = MantenAcentos);
         static std::string &maysCnvt(std::string &,   bool = MantenAcentos);
 
-        // Minúsculas
+        // Minï¿½sculas
         static std::string mins(const std::string &, bool = MantenAcentos);
         static std::string &minsCnvt(std::string &,   bool = MantenAcentos);
 
@@ -58,14 +58,12 @@ public:
         // Conversiones de tipos
 		static bool esNumeroDecimal(const std::string &);
 		static bool esNumeroEntero(const std::string &);
-        static std::string toString(const int &);
-        static std::string toString(const unsigned int &);
-        static std::string toString(const double &, int = -1, int = -1);
-        static std::string toString(const std::time_t &);
+        static std::string stringFromInt(const int &);
+        static std::string stringFromUInt(const unsigned int &);
+        static std::string stringFromDouble(const double &, int = -1, int = -1);
+        static std::string stringFromTime(const std::time_t &);
         static int toIntNum(const std::string &);
         static double toFltNum(const std::string &);
-        static const std::string &toString(const std::string &s)
-            { return s; }
 
         // Modificaciones
         static size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
@@ -86,19 +84,19 @@ public:
 		/// @see normCnvt
         static std::string norm(const std::string &);
 		/**
-        	Devuelve la "forma canónica" de una cadena:
-        	convertida en mayúsculas y sin acentos. Otros caracteres como caracter especial
+        	Devuelve la "forma canï¿½nica" de una cadena:
+        	convertida en mayï¿½sculas y sin acentos. Otros caracteres como caracter especial
 		@see CaracterEspecial
 		*/
         static std::string &normCnvt(std::string &);
 
-		/// Pone la cadena en formato de impresión
+		/// Pone la cadena en formato de impresiï¿½n
         static std::string &cambiarFmtImprCnvt(std::string &);
 
 		/// @see cambiarFmtImprCnvt
         static std::string cambiarFmtImpr(const std::string &);
 
-		/** Compara dos cadenas, s1 y s2 lexicográficamente, sin importar el tamaño
+		/** Compara dos cadenas, s1 y s2 lexicogrï¿½ficamente, sin importar el tamaï¿½o
 		    @param s1 La primera cadena a comparar
 			@param s2 la segunda cadena a comparar
 			@return true si s1 es menor que s2, false en otro caso
@@ -106,7 +104,7 @@ public:
 		static bool esLexicoGraficamenteMenor(const std::string &s1, const std::string &s2);
 
 		/**
-            Compara dos cadenas, s1 y s2 lexicográficamente, sin importar mays/mins
+            Compara dos cadenas, s1 y s2 lexicogrï¿½ficamente, sin importar mays/mins
 		    @param s1 La primera cadena a comparar
 			@param s2 la segunda cadena a comparar
 			@return true si s1 es igual que s2, false en otro caso

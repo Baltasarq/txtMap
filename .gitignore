@@ -6,3 +6,5 @@ txtmap.layout
 src/txtmap
 *.o
 *.exe
+*.bak
+*~
