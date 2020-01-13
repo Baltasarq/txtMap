@@ -700,7 +700,7 @@ void ParserAvNat::procesaObjetoEscenario(Localidad *loc)
         );
 }
 
-void ParserAvNat::procEntrada(void) throw(Error)
+void ParserAvNat::procEntrada(void)
 {
         Localidad::Direccion ultimaDir = Localidad::LIMBO;
         Localidad *loc = NULL;
@@ -814,7 +814,7 @@ Item::~Item()
 {
 }
 
-void Item::chkId(const std::string &id) throw (ErrorSintaxis)
+void Item::chkId(const std::string &id)
 {
         // Es nulo ?
         if ( StringMan::trim( id ).empty() ) {
@@ -897,7 +897,7 @@ void ListaItems::eliminar() {
         items.clear();
 }
 
-Item * ListaItems::insertaItem(Item *item) throw (ErrorSemantico, ErrorInterno)
+Item * ListaItems::insertaItem(Item *item)
 {
         // Comprobar que no es NULL
         if ( item == NULL ) {
@@ -1708,7 +1708,7 @@ void TDS::volcarXML(const std::string &nom)
         return;
 }
 
-void TDS::chk() throw (ErrorSemantico, ErrorInterno)
+void TDS::chk()
 {
         size_t numLocs = 0;
         size_t numObjs = 0;

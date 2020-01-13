@@ -33,7 +33,7 @@ public:
 		void guardaAtributo(FILE * f)
 				{ std::fprintf( f, "%s", toString().c_str() ); }
 
-		static std::auto_ptr<AtributoXML> leerAtributo(FILE *);
+		static std::unique_ptr<AtributoXML> leerAtributo(FILE *);
 };
 
 class ListaAtributosXML {

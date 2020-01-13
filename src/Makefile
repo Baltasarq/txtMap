@@ -1,4 +1,4 @@
-CFLAGS=-O2 -Wall
+CFLAGS=-fPIE -O2 -Wall
 
 all: txtmap.o persistente.o stringman.o plugin.o
 	$(CXX) $(CFLAGS) -otxtmap txtmap.o persistente.o stringman.o plugin.o

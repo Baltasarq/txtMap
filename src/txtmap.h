@@ -171,7 +171,7 @@ public:
         Item * recuperar(std::FILE *)                                    = 0;
         void guardar(std::FILE *)                                        = 0;
 
-        static void chkId(const std::string &) throw (ErrorSintaxis);
+        static void chkId(const std::string &);
         static void resetNumItems()        { numItems = 1; }
         static std::string cnvtId(const std::string &);
         static size_t getNumItems()  { return numItems; }
@@ -184,7 +184,7 @@ private:
         MapaItems items;
         MapaItems::const_iterator it;
 public:
-        Item * insertaItem(Item *item) throw (ErrorSemantico, ErrorInterno);
+        Item * insertaItem(Item *item);
 
         Item * buscaItem(const std::string &x)
                 { MapaItems::iterator it = items.find( x );
@@ -425,7 +425,7 @@ class TDS : public Persistente {
                 void guardar(FichSalida &fs);
                 static TDS * cargar(FichEntrada &);
 
-                void chk() throw (ErrorSemantico, ErrorInterno);
+                void chk();
                 void volcarXML(const std::string &);
 
                 ListaInventarioStr * getListaInventarioStr()
@@ -456,7 +456,7 @@ public:
         { return nomFich; }
 
     virtual bool cambiaEstado(const std::string &) = 0;
-    virtual void procEntrada(void) throw(Error) = 0;
+    virtual void procEntrada(void) = 0;
     void ponLogStr(const std::string &);
 
     bool enModoLimpio() const
@@ -485,7 +485,7 @@ public:
         void ignoraDeterminantes(const std::string &, size_t &);
         bool cambiaEstadoPorObjeto();
         bool cambiaEstado(const std::string &);
-        void procEntrada(void) throw(Error);
+        void procEntrada(void);
         std::string buscaSigLineaCmd(bool = false);
 
         void crearNuevaLoc(Localidad *&, Localidad::Direccion &);

@@ -12,13 +12,13 @@
 #include <cstdio>
 
 // ================================================================= AtributoXML
-std::auto_ptr<AtributoXML> AtributoXML::leerAtributo(std::FILE *f)
+std::unique_ptr<AtributoXML> AtributoXML::leerAtributo(std::FILE *f)
 {
 	long int pos = ftell( f );
 	int ch;
 	std::string etq;
 	std::string val;
-	std::auto_ptr<AtributoXML> toret( NULL );
+	std::unique_ptr<AtributoXML> toret( nullptr );
 
 	// Leer la etiqueta
 	Persistente::pasaEsp( f );
@@ -61,7 +61,7 @@ ListaAtributosXML Persistente::lAtribs;
 
 bool ListaAtributosXML::leerAtributos(std::FILE *f)
 {
-	std::auto_ptr<AtributoXML> atr( AtributoXML::leerAtributo( f ) );
+	std::unique_ptr<AtributoXML> atr( AtributoXML::leerAtributo( f ) );
 
 	reset();
 	while ( atr.get() != NULL ) {
