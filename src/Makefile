@@ -1,4 +1,6 @@
-CFLAGS=-fPIE -O2 -Wall
+CFLAGS=-O2 -Wall
+
+.PHONY = clean
 
 all: txtmap.o persistente.o stringman.o plugin.o
 	$(CXX) $(CFLAGS) -otxtmap txtmap.o persistente.o stringman.o plugin.o

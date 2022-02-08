@@ -17,17 +17,17 @@ vez un tutorial de cómo manejar la herramienta.]
 
 Autor
 Baltasar
-Puedes enviar tus comentarios a baltasarq en yahoo de es.
+Puedes enviar tus comentarios a baltasarq en gmail de es.
 Esta pequeña herramienta se distribuye bajo licencia LGPL
 
 > se
 
 Compilar
 La herramienta puede compilarse en *nix con la siguiente orden:
-$ g++ txtmap.cpp plugin.cpp persistente.cpp stringman.cpp -otxtmap
+$ make
 Esta misma orden puede escribirse en Windows si se dispone de MINGW.
 En Windows, con Borland C++ Builder (gratuíto):
-c:> bcc32 txtmap.cpp plugin.cpp persistente.cpp stringman.cpp
+c:> make
 
 > o a Introduccion
 > so
